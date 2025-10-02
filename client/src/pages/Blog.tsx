@@ -4,7 +4,10 @@ import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import BlogCard from "@/components/BlogCard";
 import Newsletter from "@/components/Newsletter";
+import BackToTop from "@/components/BackToTop";
+import AnimatedSection from "@/components/AnimatedSection";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 import franchiseImage from "@assets/generated_images/Modern_franchise_storefront_exterior_d22cec85.png";
 import entrepreneurImage from "@assets/generated_images/Entrepreneur_working_retail_business_524a5c04.png";
 import inventoryImage from "@assets/generated_images/Retail_inventory_management_operations_044874bb.png";
@@ -79,13 +82,21 @@ export default function Blog() {
           subtitle="Our blog features expert advice, success stories, and industry trends to help you succeed in retail business ownership."
         />
 
-        <section className="py-16 sm:py-20">
-          <div className="container mx-auto px-4 max-w-7xl">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {currentPosts.map((post) => (
-                <BlogCard key={post.id} post={post} />
-              ))}
-            </div>
+        <AnimatedSection>
+          <section className="py-16 sm:py-20">
+            <div className="container mx-auto px-4 max-w-7xl">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {currentPosts.map((post, index) => (
+                  <motion.div
+                    key={post.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                  >
+                    <BlogCard post={post} />
+                  </motion.div>
+                ))}
+              </div>
 
             {totalPages > 1 && (
               <div className="flex items-center justify-center gap-2 mt-12">
@@ -121,11 +132,13 @@ export default function Blog() {
             )}
           </div>
         </section>
+        </AnimatedSection>
 
         <Newsletter />
       </main>
 
       <Footer />
+      <BackToTop />
     </div>
   );
 }

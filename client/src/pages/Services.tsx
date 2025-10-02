@@ -2,6 +2,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import ServicesGrid from "@/components/ServicesGrid";
+import BackToTop from "@/components/BackToTop";
+import AnimatedSection from "@/components/AnimatedSection";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Store, MapPin, Package, Megaphone } from "lucide-react";
@@ -74,9 +76,12 @@ export default function Services() {
           overlay={true}
         />
 
-        <ServicesGrid services={services} />
+        <AnimatedSection>
+          <ServicesGrid services={services} />
+        </AnimatedSection>
 
-        <section className="py-16 sm:py-20 bg-card">
+        <AnimatedSection delay={0.2}>
+          <section className="py-16 sm:py-20 bg-card">
           <div className="container mx-auto px-4 max-w-3xl text-center">
             <h3 className="font-heading font-bold text-3xl sm:text-4xl mb-6">
               Ready to Get Started?
@@ -91,9 +96,11 @@ export default function Services() {
             </Link>
           </div>
         </section>
+        </AnimatedSection>
       </main>
 
       <Footer />
+      <BackToTop />
     </div>
   );
 }

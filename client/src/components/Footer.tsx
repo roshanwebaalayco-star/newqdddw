@@ -43,9 +43,9 @@ export default function Footer() {
               {navigationLinks.map((link) => (
                 <li key={link.path}>
                   <Link href={link.path}>
-                    <a className="text-muted-foreground hover:text-primary transition-colors text-sm" data-testid={`link-footer-${link.name.toLowerCase()}`}>
+                    <span className="text-muted-foreground hover:text-primary transition-colors text-sm cursor-pointer" data-testid={`link-footer-${link.name.toLowerCase()}`}>
                       {link.name}
-                    </a>
+                    </span>
                   </Link>
                 </li>
               ))}

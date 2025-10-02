@@ -2,6 +2,9 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import ValuesCard from "@/components/ValuesCard";
+import Timeline from "@/components/Timeline";
+import BackToTop from "@/components/BackToTop";
+import AnimatedSection from "@/components/AnimatedSection";
 import teamImage from "@assets/generated_images/Professional_business_team_photo_512d4920.png";
 
 export default function About() {
@@ -28,6 +31,34 @@ export default function About() {
     },
   ];
 
+  const timelineItems = [
+    {
+      year: "2004",
+      title: "Founded",
+      description: "CLC Retail Group was established by industry veterans with a vision to democratize retail business ownership.",
+    },
+    {
+      year: "2008",
+      title: "100 Businesses",
+      description: "Reached a milestone of helping 100 entrepreneurs successfully launch their retail businesses.",
+    },
+    {
+      year: "2015",
+      title: "National Expansion",
+      description: "Expanded services nationwide, bringing our expertise to entrepreneurs across the country.",
+    },
+    {
+      year: "2020",
+      title: "Digital Innovation",
+      description: "Launched comprehensive digital tools and remote consultation services to better serve our clients.",
+    },
+    {
+      year: "2025",
+      title: "500+ Success Stories",
+      description: "Celebrated helping over 500 entrepreneurs achieve their business dreams with continued growth.",
+    },
+  ];
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -40,7 +71,8 @@ export default function About() {
           overlay={true}
         />
 
-        <section className="py-16 sm:py-20 bg-card">
+        <AnimatedSection>
+          <section className="py-16 sm:py-20 bg-card">
           <div className="container mx-auto px-4 max-w-4xl">
             <div className="text-center mb-12">
               <h2 className="font-heading font-bold text-3xl sm:text-4xl mb-6">
@@ -60,10 +92,16 @@ export default function About() {
             </div>
           </div>
         </section>
+        </AnimatedSection>
 
-        <ValuesCard values={values} />
+        <Timeline items={timelineItems} />
 
-        <section className="py-16 sm:py-20 bg-gradient-to-b from-background to-card">
+        <AnimatedSection delay={0.2}>
+          <ValuesCard values={values} />
+        </AnimatedSection>
+
+        <AnimatedSection delay={0.3}>
+          <section className="py-16 sm:py-20 bg-gradient-to-b from-background to-card">
           <div className="container mx-auto px-4 max-w-3xl text-center">
             <h3 className="font-heading font-bold text-3xl sm:text-4xl mb-6">
               Join Our Success Story
@@ -73,9 +111,11 @@ export default function About() {
             </p>
           </div>
         </section>
+        </AnimatedSection>
       </main>
 
       <Footer />
+      <BackToTop />
     </div>
   );
 }
