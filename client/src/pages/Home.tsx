@@ -3,6 +3,10 @@ import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import TrustGrid from "@/components/TrustGrid";
 import ServicesPreview from "@/components/ServicesPreview";
+import BackToTop from "@/components/BackToTop";
+import StickyCTA from "@/components/StickyCTA";
+import TestimonialsSlider from "@/components/TestimonialsSlider";
+import AnimatedSection from "@/components/AnimatedSection";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Handshake, Lightbulb, Package, Store, MapPin, Megaphone } from "lucide-react";
@@ -45,6 +49,27 @@ export default function Home() {
     },
   ];
 
+  const testimonials = [
+    {
+      name: "Sarah Johnson",
+      role: "Owner",
+      company: "Fresh Market Grocery",
+      content: "CLC Retail Group transformed my dream into reality. Their expert guidance through site selection, setup, and operations made launching my store seamless. I couldn't have asked for a better partner.",
+    },
+    {
+      name: "Michael Chen",
+      role: "Franchise Owner",
+      company: "Tech Gadgets Plus",
+      content: "The comprehensive support from CLC was invaluable. From inventory management to marketing strategies, they covered every aspect. My business has exceeded all expectations in just the first year.",
+    },
+    {
+      name: "Emily Rodriguez",
+      role: "Entrepreneur",
+      company: "Style Haven Boutique",
+      content: "Working with CLC gave me the confidence to start my retail business. Their team's expertise and hands-on approach made all the difference. I'm now running a thriving boutique thanks to their support.",
+    },
+  ];
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -59,11 +84,22 @@ export default function Home() {
           overlay={true}
         />
 
-        <TrustGrid items={trustItems} />
+        <AnimatedSection>
+          <TrustGrid items={trustItems} />
+        </AnimatedSection>
 
-        <ServicesPreview services={services} />
+        <AnimatedSection>
+          <div className="container mx-auto px-4 max-w-5xl py-16">
+            <TestimonialsSlider testimonials={testimonials} />
+          </div>
+        </AnimatedSection>
 
-        <section className="py-16 sm:py-20 bg-gradient-to-b from-background to-card">
+        <AnimatedSection delay={0.2}>
+          <ServicesPreview services={services} />
+        </AnimatedSection>
+
+        <AnimatedSection delay={0.3}>
+          <section className="py-16 sm:py-20 bg-gradient-to-b from-background to-card">
           <div className="container mx-auto px-4 max-w-3xl text-center">
             <h3 className="font-heading font-bold text-3xl sm:text-4xl mb-6">
               Ready to Take Control of Your Future?
@@ -78,9 +114,12 @@ export default function Home() {
             </Link>
           </div>
         </section>
+        </AnimatedSection>
       </main>
 
       <Footer />
+      <BackToTop />
+      <StickyCTA />
     </div>
   );
 }

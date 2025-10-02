@@ -1,7 +1,9 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
-import ContactForm from "@/components/ContactForm";
+import EnhancedContactForm from "@/components/EnhancedContactForm";
+import BackToTop from "@/components/BackToTop";
+import AnimatedSection from "@/components/AnimatedSection";
 import { Card, CardContent } from "@/components/ui/card";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 
@@ -43,11 +45,12 @@ export default function Contact() {
           subtitle="We're here to answer your questions and help you take the first step toward your business dreams."
         />
 
-        <section className="py-16 sm:py-20">
+        <AnimatedSection>
+          <section className="py-16 sm:py-20">
           <div className="container mx-auto px-4 max-w-7xl">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               <div>
-                <ContactForm />
+                <EnhancedContactForm />
               </div>
 
               <div className="space-y-6">
@@ -114,9 +117,11 @@ export default function Contact() {
             </div>
           </div>
         </section>
+        </AnimatedSection>
       </main>
 
       <Footer />
+      <BackToTop />
     </div>
   );
 }
