@@ -10,7 +10,8 @@ import AnimatedSection from "@/components/AnimatedSection";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Handshake, Lightbulb, Package, Store, MapPin, Megaphone } from "lucide-react";
-import heroImage from "@assets/generated_images/Modern_retail_store_management_1c208bea.png";
+
+const heroImage = "https://images.unsplash.com/photo-1753161618091-b4cf35b9aa99?w=1920&q=80";
 
 export default function Home() {
   const trustItems = [
