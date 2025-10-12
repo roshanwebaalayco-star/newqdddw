@@ -34,15 +34,8 @@ export default function Header() {
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="flex items-center justify-between">
           <Link href="/" data-testid="link-home">
-            <div className="flex items-center gap-2 hover-elevate rounded-md px-3 py-2">
-              <div className="flex items-center justify-center w-10 h-10 rounded-md bg-primary">
-                <span className="text-primary-foreground font-heading font-bold text-xl">
-                  CLC
-                </span>
-              </div>
-              <span className="font-heading font-bold text-xl hidden sm:block">
-                CLC Retail Group
-              </span>
+            <div className="hover-elevate rounded-md px-3 py-2">
+              <Logo />
             </div>
           </Link>
 
