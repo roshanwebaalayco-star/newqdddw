@@ -14,76 +14,61 @@
   --elevate-1: rgba(0,0,0, .03);
   --elevate-2: rgba(0,0,0, .08);
 
+  /* CLC Brand Colors - Light Mode */
+  --color-clc-bg: #2C2E3A;
+  --color-clc-fg: #F5F5F5;
+  --color-clc-accent: #B08A7C;
+  --radius-xl: 1.25rem;
+  --shadow-ambient: 0 4px 24px -4px rgba(44, 46, 58, 0.12);
+
   --background: 0 0% 98%;
-
   --foreground: 235 20% 20%;
-
   --border: 0 0% 88%;
-
   --card: 0 0% 96%;
-
   --card-foreground: 235 20% 20%;
-
   --card-border: 0 0% 90%;
 
   --sidebar: 0 0% 94%;
-
   --sidebar-foreground: 235 20% 20%;
-
   --sidebar-border: 0 0% 88%;
-
-  --sidebar-primary: 20 28% 45%;
-
+  --sidebar-primary: 20 40% 58%;
   --sidebar-primary-foreground: 0 0% 98%;
-
   --sidebar-accent: 20 12% 88%;
-
   --sidebar-accent-foreground: 235 20% 20%;
-
-  --sidebar-ring: 20 28% 45%;
+  --sidebar-ring: 20 40% 58%;
 
   --popover: 0 0% 92%;
-
   --popover-foreground: 235 20% 20%;
-
   --popover-border: 0 0% 86%;
 
-  --primary: 20 28% 45%;
-
+  --primary: 20 40% 58%;
   --primary-foreground: 0 0% 98%;
 
   --secondary: 220 70% 55%;
-
   --secondary-foreground: 0 0% 98%;
 
   --muted: 0 0% 90%;
-
   --muted-foreground: 235 15% 40%;
 
-  --accent: 280 60% 60%;
-
+  --accent: 20 40% 58%;
   --accent-foreground: 0 0% 98%;
 
   --success: 140 65% 45%;
-
   --success-foreground: 0 0% 98%;
 
   --info: 200 85% 50%;
-
   --info-foreground: 0 0% 98%;
 
   --warning: 40 95% 55%;
-
   --warning-foreground: 235 20% 20%;
 
   --destructive: 0 72% 42%;
-
   --destructive-foreground: 0 0% 98%;
 
   --input: 0 0% 78%;
-  --ring: 20 28% 45%;
+  --ring: 20 40% 58%;
   --chart-1: 235 20% 30%;
-  --chart-2: 20 28% 45%;
+  --chart-2: 20 40% 58%;
   --chart-3: 15 32% 38%;
   --chart-4: 25 24% 52%;
   --chart-5: 235 15% 50%;
@@ -148,76 +133,60 @@
   --elevate-1: rgba(255,255,255, .04);
   --elevate-2: rgba(255,255,255, .09);
 
-  --background: 235 20% 12%;
+  /* CLC Brand Colors - Dark Mode */
+  --color-clc-bg: #2C2E3A;
+  --color-clc-fg: #F5F5F5;
+  --color-clc-accent: #B08A7C;
+  --shadow-ambient: 0 4px 24px -4px rgba(0, 0, 0, 0.4);
 
-  --foreground: 0 0% 98%;
-
-  --border: 235 18% 20%;
-
-  --card: 235 20% 14%;
-
-  --card-foreground: 0 0% 98%;
-
-  --card-border: 235 18% 18%;
+  --background: 237 18% 18%;
+  --foreground: 0 0% 96%;
+  --border: 235 18% 24%;
+  --card: 237 18% 20%;
+  --card-foreground: 0 0% 96%;
+  --card-border: 235 18% 22%;
 
   --sidebar: 235 20% 16%;
-
   --sidebar-foreground: 0 0% 98%;
-
   --sidebar-border: 235 18% 20%;
-
-  --sidebar-primary: 20 28% 45%;
-
+  --sidebar-primary: 20 40% 58%;
   --sidebar-primary-foreground: 0 0% 98%;
-
   --sidebar-accent: 235 15% 22%;
-
   --sidebar-accent-foreground: 0 0% 98%;
-
-  --sidebar-ring: 20 28% 60%;
+  --sidebar-ring: 20 40% 60%;
 
   --popover: 235 20% 18%;
-
   --popover-foreground: 0 0% 98%;
-
   --popover-border: 235 18% 22%;
 
-  --primary: 20 28% 45%;
-
+  --primary: 20 40% 58%;
   --primary-foreground: 0 0% 98%;
 
   --secondary: 220 70% 55%;
-
   --secondary-foreground: 0 0% 98%;
 
   --muted: 235 15% 20%;
-
   --muted-foreground: 0 0% 75%;
 
-  --accent: 280 60% 60%;
-
+  --accent: 20 40% 58%;
   --accent-foreground: 0 0% 98%;
 
   --success: 140 65% 45%;
-
   --success-foreground: 0 0% 98%;
 
   --info: 200 85% 50%;
-
   --info-foreground: 0 0% 98%;
 
   --warning: 40 95% 55%;
-
   --warning-foreground: 235 20% 20%;
 
   --destructive: 0 72% 42%;
-
   --destructive-foreground: 0 0% 98%;
 
   --input: 235 18% 30%;
-  --ring: 20 28% 60%;
+  --ring: 20 40% 60%;
   --chart-1: 0 0% 85%;
-  --chart-2: 20 28% 60%;
+  --chart-2: 20 40% 60%;
   --chart-3: 15 32% 65%;
   --chart-4: 25 24% 70%;
   --chart-5: 235 15% 75%;
@@ -232,8 +201,8 @@
   --shadow-2xl: 0px 25px 50px -12px hsl(235 40% 8% / 0.60);
 
   /* Glassmorphism effects */
-  --glass-bg: rgba(44, 46, 58, 0.2);
-  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-bg: rgba(44, 46, 58, 0.3);
+  --glass-border: rgba(176, 138, 124, 0.15);
 
   /* Automatically computed borders - intensity can be controlled by the user by the --opaque-button-border-intensity setting */
   --sidebar-primary-border: hsl(var(--sidebar-primary));
@@ -265,6 +234,31 @@
 
   body {
     @apply font-sans antialiased bg-background text-foreground;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+    line-height: 1.2;
+  }
+
+  p {
+    line-height: 1.5;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
