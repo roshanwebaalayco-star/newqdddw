@@ -111,7 +111,7 @@ export default function Home() {
               Ready to Take Control of Your Future?
             </h3>
             <p className="text-lg text-muted-foreground mb-8">
-              Join hundreds of successful entrepreneurs who have transformed their dreams into thriving businesses with our expert guidance.
+              The first step toward financial freedom is just a click away. Contact us to learn more about how we can help you build your legacy.
             </p>
             <Link href="/contact">
               <Button size="lg" className="text-base px-8" data-testid="button-cta-bottom">
