@@ -11,23 +11,23 @@ export default function About() {
   const values = [
     {
       title: "Visionary Partnership",
-      description: "We see beyond transactions to build lasting partnerships that grow with your success. Your vision becomes our mission.",
+      description: "More than a service provider; strategic partner in growth. Seeing potential, identifying locations, envisioning profitable spaces. Working alongside clients, sharing insights and expertise to make their store vision a reality.",
     },
     {
       title: "Relentless Execution",
-      description: "From planning to launch, we execute with precision and attention to every detail, ensuring nothing is left to chance.",
+      description: "Focus on flawless execution from property acquisition. Managing every detail with precision and efficiency: complex purchase agreements, securing supply contracts, designing functional and beautiful stores. Handling complexities so clients can focus on their business.",
     },
     {
       title: "Integrity & Transparency",
-      description: "Honest communication and ethical practices are the foundation of everything we do. No hidden fees, no surprises.",
+      description: "Cornerstone of business. Operating with complete honesty and transparency: property negotiations, project budgets. Clients can rely on candid communication, ethical practices, and doing what is right. Relationship built on mutual respect and open dialogue.",
     },
     {
       title: "Innovation in Design & Operations",
-      description: "We constantly evolve our methods to deliver cutting-edge solutions that keep you ahead of the competition.",
+      description: "Retail space as a strategic asset. Constantly seeking innovative solutions in store design, layout, and supply chain management for efficiency and customer experience. Leveraging latest trends and technologies for aesthetically pleasing, functional, and profitable spaces for long-term success.",
     },
     {
       title: "Seamless Experience",
-      description: "Every touchpoint is designed to make your journey smooth, efficient, and stress-free from start to finish.",
+      description: "Making the journey from idea to open store smooth and seamless. Acting as a single point of contact, coordinating real estate agents, designers, contractors, and suppliers. Commitment to a hassle-free process for an easy and stress-free transition to a new location.",
     },
   ];
 
