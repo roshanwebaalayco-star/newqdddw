@@ -7,6 +7,8 @@ import AnimatedSection from "@/components/AnimatedSection";
 import { Card, CardContent } from "@/components/ui/card";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 
+const contactHeroImage = "https://images.unsplash.com/photo-1758518729685-f88df7890776?w=1920&q=80";
+
 export default function Contact() {
   const contactInfo = [
     {
