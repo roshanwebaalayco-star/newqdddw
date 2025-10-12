@@ -80,14 +80,8 @@ export default function About() {
               </h2>
             </div>
             <div className="prose prose-lg max-w-none">
-              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                At CLC Retail Group, our mission is to empower individuals to achieve their business goals through comprehensive support, expert guidance, and innovative solutions. We believe that entrepreneurship should be accessible to everyone with the drive and determination to succeed.
-              </p>
-              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                Founded by industry veterans who understand the challenges of starting and running a retail business, we've built our company on the principle that success comes from strong partnerships. We don't just provide services—we become invested in your journey, celebrating your wins and supporting you through challenges.
-              </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Our team combines decades of experience in retail operations, franchise development, real estate, marketing, and business management. This diverse expertise allows us to offer truly comprehensive solutions that address every aspect of launching and growing a successful retail business.
+                At CLC Retail Group, our mission is to empower individuals to achieve their business goals. We are committed to providing the best resources, unwavering support, and a pathway to entrepreneurial success for our partners.
               </p>
             </div>
           </div>
