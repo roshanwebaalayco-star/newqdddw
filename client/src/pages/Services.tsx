@@ -7,7 +7,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Store, MapPin, Package, Megaphone } from "lucide-react";
-import servicesImage from "@assets/generated_images/Business_partnership_handshake_retail_480f72db.png";
+const servicesImage = "https://images.unsplash.com/photo-1681505526188-b05e68c77582?w=1920&q=80";
 
 export default function Services() {
   const services = [
