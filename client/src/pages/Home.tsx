@@ -17,17 +17,17 @@ export default function Home() {
   const trustItems = [
     {
       title: "Partnership",
-      description: "We build lasting relationships with our clients, working together every step of the way to ensure your success.",
+      description: "We are not just a company; we are your dedicated partners committed to your success.",
       icon: Handshake,
     },
     {
       title: "Expertise",
-      description: "Our team brings decades of retail industry experience to help you make informed decisions and avoid common pitfalls.",
+      description: "Benefit from our years of experience and expert guidance in the retail industry.",
       icon: Lightbulb,
     },
     {
       title: "Complete Solution",
-      description: "From site selection to grand opening, we provide everything you need to launch and grow your retail business.",
+      description: "From site selection to supplier management, we provide a full-service solution to get you started.",
       icon: Package,
     },
   ];
