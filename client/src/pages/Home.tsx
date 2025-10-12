@@ -35,17 +35,22 @@ export default function Home() {
   const services = [
     {
       title: "Franchise Opportunities",
-      description: "Explore proven business models with established brand recognition and comprehensive support systems.",
+      description: "We match you with a proven franchise model that fits your goals and market demands.",
       icon: Store,
     },
     {
       title: "Site Selection & Setup",
-      description: "Expert location analysis and complete store setup services to ensure your business starts on the right foot.",
+      description: "Our experts help you find the perfect location and manage the entire store setup process, from design to grand opening.",
       icon: MapPin,
     },
     {
+      title: "Inventory & Supplier Management",
+      description: "We connect you with trusted suppliers and provide a system for managing your inventory efficiently.",
+      icon: Package,
+    },
+    {
       title: "Marketing & Branding",
-      description: "Complete marketing solutions to build your brand and attract customers from day one.",
+      description: "We help you build a strong local brand and reach your target customers effectively.",
       icon: Megaphone,
     },
   ];
