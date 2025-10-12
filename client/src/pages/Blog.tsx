@@ -8,9 +8,11 @@ import BackToTop from "@/components/BackToTop";
 import AnimatedSection from "@/components/AnimatedSection";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import franchiseImage from "@assets/generated_images/Modern_franchise_storefront_exterior_d22cec85.png";
-import entrepreneurImage from "@assets/generated_images/Entrepreneur_working_retail_business_524a5c04.png";
-import inventoryImage from "@assets/generated_images/Retail_inventory_management_operations_044874bb.png";
+
+const blogHeroImage = "https://images.unsplash.com/photo-1758691736872-61a1f75fe2d5?w=1920&q=80";
+const franchiseImage = "https://images.unsplash.com/photo-1556740758-90de374c12ad?w=800&q=80";
+const entrepreneurImage = "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&q=80";
+const inventoryImage = "https://images.unsplash.com/photo-1553413077-190dd305871c?w=800&q=80";
 
 export default function Blog() {
   const allPosts = [
