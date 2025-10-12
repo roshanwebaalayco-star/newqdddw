@@ -81,7 +81,9 @@ export default function Blog() {
       <main className="flex-1 pt-16">
         <HeroSection
           title="Insights for Your Entrepreneurial Journey"
-          subtitle="Our blog features expert advice, success stories, and industry trends to help you succeed in retail business ownership."
+          subtitle="Our blog features expert advice, success stories, and industry trends to help you succeed."
+          backgroundImage={blogHeroImage}
+          overlay={true}
         />
 
         <AnimatedSection>
