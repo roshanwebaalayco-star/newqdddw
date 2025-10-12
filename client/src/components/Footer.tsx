@@ -25,13 +25,8 @@ export default function Footer() {
       <div className="container mx-auto px-4 py-12 max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="flex items-center justify-center w-10 h-10 rounded-md bg-primary">
-                <span className="text-primary-foreground font-heading font-bold text-xl">
-                  CLC
-                </span>
-              </div>
-              <span className="font-heading font-bold text-lg">CLC Retail Group</span>
+            <div className="mb-4">
+              <Logo showText={false} />
             </div>
             <p className="text-muted-foreground text-sm">
               Empowering individuals to achieve their business goals through expert guidance and complete retail solutions.
