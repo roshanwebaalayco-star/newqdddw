@@ -45,6 +45,8 @@ export default function Contact() {
         <HeroSection
           title="Let's Start a Conversation"
           subtitle="We're here to answer your questions and help you take the first step toward your business dreams."
+          backgroundImage={contactHeroImage}
+          overlay={true}
         />
 
         <AnimatedSection>
