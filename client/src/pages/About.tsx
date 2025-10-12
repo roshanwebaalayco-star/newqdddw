@@ -5,7 +5,7 @@ import ValuesCard from "@/components/ValuesCard";
 import Timeline from "@/components/Timeline";
 import BackToTop from "@/components/BackToTop";
 import AnimatedSection from "@/components/AnimatedSection";
-import teamImage from "@assets/generated_images/Professional_business_team_photo_512d4920.png";
+const teamImage = "https://images.unsplash.com/photo-1758518731468-98e90ffd7430?w=1920&q=80";
 
 export default function About() {
   const values = [
