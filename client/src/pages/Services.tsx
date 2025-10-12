@@ -13,7 +13,7 @@ export default function Services() {
   const services = [
     {
       title: "Franchise Opportunities",
-      description: "Partner with established brands and proven business models for guaranteed success.",
+      description: "We match you with a proven franchise model that fits your goals and market demands.",
       icon: Store,
       features: [
         "Access to top-performing franchise brands across multiple industries",
@@ -25,7 +25,7 @@ export default function Services() {
     },
     {
       title: "Site Selection & Setup",
-      description: "Strategic location analysis and complete store setup services to launch your business perfectly.",
+      description: "Our experts help you find the perfect location and manage the entire store setup process, from design to grand opening.",
       icon: MapPin,
       features: [
         "Detailed market analysis and demographics research",
@@ -38,7 +38,7 @@ export default function Services() {
     },
     {
       title: "Inventory & Supplier Management",
-      description: "Streamlined supply chain solutions for optimal inventory control and profitability.",
+      description: "We connect you with trusted suppliers and provide a system for managing your inventory efficiently.",
       icon: Package,
       features: [
         "Established supplier network and vendor relationships",
@@ -51,7 +51,7 @@ export default function Services() {
     },
     {
       title: "Marketing & Branding",
-      description: "Complete marketing solutions to build your brand and attract customers from day one.",
+      description: "We help you build a strong local brand and reach your target customers effectively.",
       icon: Megaphone,
       features: [
         "Professional brand identity development",
