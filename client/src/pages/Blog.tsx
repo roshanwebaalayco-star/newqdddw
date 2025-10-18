@@ -1,112 +1,76 @@
 import { useState } from "react";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import BlogCard from "@/components/BlogCard";
 import Newsletter from "@/components/Newsletter";
-import BackToTop from "@/components/BackToTop";
 import AnimatedSection from "@/components/AnimatedSection";
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
+import MarketingLayout from "@/components/layouts/MarketingLayout";
+import LoadingScreen from "@/components/LoadingScreen";
+import { useBlogPosts } from "@/hooks/useBlogPosts";
 
-const blogHeroImage = "https://images.unsplash.com/photo-1758691736872-61a1f75fe2d5?w=1920&q=80";
-const franchiseImage = "https://images.unsplash.com/photo-1556740758-90de374c12ad?w=800&q=80";
-const entrepreneurImage = "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&q=80";
-const inventoryImage = "https://images.unsplash.com/photo-1553413077-190dd305871c?w=800&q=80";
+const blogHeroImage = "https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=2000&q=80";
 
 export default function Blog() {
-  const allPosts = [
-    {
-      id: "1",
-      title: "5 Essential Tips for First-Time Business Owners",
-      excerpt: "Starting your first business can be overwhelming. Learn the key strategies that successful entrepreneurs use to navigate the challenges and build thriving retail businesses.",
-      date: "January 15, 2025",
-      image: franchiseImage,
-      slug: "5-essential-tips-for-first-time-business-owners",
-    },
-    {
-      id: "2",
-      title: "How to Choose the Perfect Location for Your Retail Store",
-      excerpt: "Location can make or break a retail business. Discover the factors that matter most when selecting your store's location and how to conduct proper market research.",
-      date: "January 10, 2025",
-      image: entrepreneurImage,
-      slug: "how-to-choose-perfect-location-retail-store",
-    },
-    {
-      id: "3",
-      title: "Inventory Management Best Practices for Small Businesses",
-      excerpt: "Effective inventory management is crucial for profitability. Learn proven techniques to optimize your stock levels, reduce waste, and improve cash flow.",
-      date: "January 5, 2025",
-      image: inventoryImage,
-      slug: "inventory-management-best-practices",
-    },
-    {
-      id: "4",
-      title: "Building a Strong Brand Identity from Day One",
-      excerpt: "Your brand is more than just a logo. Discover how to create a compelling brand identity that resonates with customers and sets you apart from competitors.",
-      date: "December 28, 2024",
-      image: franchiseImage,
-      slug: "building-strong-brand-identity",
-    },
-    {
-      id: "5",
-      title: "The Ultimate Guide to Franchise Ownership",
-      excerpt: "Thinking about buying a franchise? This comprehensive guide covers everything you need to know, from choosing the right brand to managing daily operations.",
-      date: "December 20, 2024",
-      image: entrepreneurImage,
-      slug: "ultimate-guide-franchise-ownership",
-    },
-    {
-      id: "6",
-      title: "Digital Marketing Strategies for Retail Success",
-      excerpt: "In today's digital age, online presence is essential. Learn how to leverage social media, SEO, and email marketing to drive foot traffic and sales.",
-      date: "December 15, 2024",
-      image: inventoryImage,
-      slug: "digital-marketing-strategies-retail",
-    },
-  ];
-
+  const { data, isLoading, isError, error, refetch } = useBlogPosts();
   const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 6;
-  const totalPages = Math.ceil(allPosts.length / postsPerPage);
 
+  if (isLoading) {
+    return (
+      <MarketingLayout>
+        <LoadingScreen message="Curating articles" />
+      </MarketingLayout>
+    );
+  }
+
+  if (isError || !data) {
+    return (
+      <MarketingLayout>
+        <div className="container mx-auto max-w-3xl px-4 py-24 text-center">
+          <h2 className="font-heading text-3xl font-semibold">We couldn’t load the latest insights</h2>
+          <p className="mt-4 text-muted-foreground">
+            {error?.message ?? "Please refresh or try again in a few moments."}
+          </p>
+          <div className="mt-6 flex justify-center">
+            <Button onClick={() => refetch()}>Retry</Button>
+          </div>
+        </div>
+      </MarketingLayout>
+    );
+  }
+
+  const postsPerPage = 6;
+  const totalPages = Math.ceil(data.length / postsPerPage);
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = allPosts.slice(indexOfFirstPost, indexOfLastPost);
+  const currentPosts = data.slice(indexOfFirstPost, indexOfLastPost);
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
-      
-      <main className="flex-1 pt-16">
-        <HeroSection
-          title="Insights for Your Entrepreneurial Journey"
-          subtitle="Our blog features expert advice, success stories, and industry trends to help you succeed."
-          backgroundImage={blogHeroImage}
-          overlay={true}
-        />
+    <MarketingLayout>
+      <HeroSection
+        eyebrow="Retail intelligence"
+        title="Insights for your entrepreneurial journey"
+        subtitle="From location strategy to post-launch growth, explore playbooks and founder stories to inform your next move."
+        ctaText="Start a project"
+        ctaLink="/contact"
+        secondaryCtaText="Get the newsletter"
+        secondaryCtaLink="#newsletter"
+        backgroundImage={blogHeroImage}
+      />
 
-        <AnimatedSection>
-          <section className="py-16 sm:py-20">
-            <div className="container mx-auto px-4 max-w-7xl">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {currentPosts.map((post, index) => (
-                  <motion.div
-                    key={post.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
-                  >
-                    <BlogCard post={post} />
-                  </motion.div>
-                ))}
-              </div>
+      <AnimatedSection>
+        <section className="py-20">
+          <div className="container mx-auto max-w-7xl px-4">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {currentPosts.map((post) => (
+                <BlogCard key={post.id} post={post} />
+              ))}
+            </div>
 
             {totalPages > 1 && (
-              <div className="flex items-center justify-center gap-2 mt-12">
+              <div className="mt-12 flex items-center justify-center gap-2">
                 <Button
                   variant="outline"
-                  onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                  onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
                   disabled={currentPage === 1}
                   data-testid="button-prev-page"
                 >
@@ -126,7 +90,7 @@ export default function Blog() {
                 </div>
                 <Button
                   variant="outline"
-                  onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+                  onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))}
                   disabled={currentPage === totalPages}
                   data-testid="button-next-page"
                 >
@@ -136,13 +100,11 @@ export default function Blog() {
             )}
           </div>
         </section>
-        </AnimatedSection>
+      </AnimatedSection>
 
+      <div id="newsletter">
         <Newsletter />
-      </main>
-
-      <Footer />
-      <BackToTop />
-    </div>
+      </div>
+    </MarketingLayout>
   );
 }

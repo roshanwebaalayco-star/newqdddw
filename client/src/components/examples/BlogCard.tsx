@@ -8,6 +8,8 @@ export default function BlogCardExample() {
     date: "January 15, 2025",
     image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&h=400&fit=crop",
     slug: "5-essential-tips-for-first-time-business-owners",
+    readTime: "6 min read",
+    category: "Retail Strategy",
   };
 
   return (

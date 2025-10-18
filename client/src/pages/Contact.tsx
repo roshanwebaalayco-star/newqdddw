@@ -1,13 +1,11 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import EnhancedContactForm from "@/components/EnhancedContactForm";
-import BackToTop from "@/components/BackToTop";
 import AnimatedSection from "@/components/AnimatedSection";
+import MarketingLayout from "@/components/layouts/MarketingLayout";
 import { Card, CardContent } from "@/components/ui/card";
-import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, ExternalLink } from "lucide-react";
 
-const contactHeroImage = "https://images.unsplash.com/photo-1758518729685-f88df7890776?w=1920&q=80";
+const contactHeroImage = "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=2000&q=80";
 
 export default function Contact() {
   const contactInfo = [
@@ -38,61 +36,65 @@ export default function Contact() {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
-      
-      <main className="flex-1 pt-16">
-        <HeroSection
-          title="Let's Start a Conversation"
-          subtitle="We're here to answer your questions and help you take the first step toward your business dreams."
-          backgroundImage={contactHeroImage}
-          overlay={true}
-        />
+    <MarketingLayout>
+      <HeroSection
+        eyebrow="We’re ready when you are"
+        title="Let's map your next retail milestone"
+        subtitle="Talk directly with our expansion strategists about timelines, locations, and what launch support looks like for your concept."
+        ctaText="Book a consultation"
+        ctaLink="/contact"
+        secondaryCtaText="See service menu"
+        secondaryCtaLink="/services"
+        backgroundImage={contactHeroImage}
+      />
 
-        <AnimatedSection>
-          <section className="py-16 sm:py-20">
-          <div className="container mx-auto px-4 max-w-7xl">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              <div>
-                <EnhancedContactForm />
-              </div>
+      <AnimatedSection>
+        <section className="py-20">
+          <div className="container mx-auto max-w-7xl px-4">
+            <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+              <EnhancedContactForm />
 
-              <div className="space-y-6">
-                <div>
-                  <h2 className="font-heading font-bold text-2xl sm:text-3xl mb-6">
-                    Get in Touch
-                  </h2>
-                  <p className="text-muted-foreground mb-8">
-                    Have questions about our services or ready to start your entrepreneurial journey? Our team is here to help you every step of the way.
+              <div className="space-y-8">
+                <div className="space-y-4">
+                  <h2 className="font-heading text-3xl font-semibold sm:text-4xl">Talk with a retail partner</h2>
+                  <p className="text-base text-muted-foreground">
+                    Have questions about locations, capital, or operational readiness? We’ll co-create a plan aligned to your goals and plug you into our vetted vendor network.
                   </p>
                 </div>
 
-                <div className="space-y-4">
+                <div className="grid gap-4">
                   {contactInfo.map((info, index) => {
                     const Icon = info.icon;
                     const content = info.link ? (
                       <a
                         href={info.link}
-                        className="text-primary hover:underline"
+                        className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
                         target={info.link.startsWith("http") ? "_blank" : undefined}
                         rel={info.link.startsWith("http") ? "noopener noreferrer" : undefined}
                         data-testid={`link-contact-${index}`}
                       >
                         {info.content}
+                        {info.link.startsWith("http") ? <ExternalLink className="h-3.5 w-3.5" /> : null}
                       </a>
                     ) : (
-                      <span data-testid={`text-contact-${index}`}>{info.content}</span>
+                      <span className="text-sm text-muted-foreground" data-testid={`text-contact-${index}`}>
+                        {info.content}
+                      </span>
                     );
 
                     return (
-                      <Card key={index} className="hover-elevate transition-all" data-testid={`card-contact-info-${index}`}>
-                        <CardContent className="flex items-start gap-4 p-4">
-                          <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 flex-shrink-0">
-                            <Icon className="h-6 w-6 text-primary" />
+                      <Card
+                        key={index}
+                        className="border border-border/60 bg-card/80 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+                        data-testid={`card-contact-info-${index}`}
+                      >
+                        <CardContent className="flex items-start gap-4 p-5">
+                          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/15 text-primary">
+                            <Icon className="h-5 w-5" />
                           </div>
                           <div>
-                            <h3 className="font-heading font-semibold mb-1">{info.title}</h3>
-                            <div className="text-sm text-muted-foreground">{content}</div>
+                            <h3 className="font-heading text-base font-semibold">{info.title}</h3>
+                            {content}
                           </div>
                         </CardContent>
                       </Card>
@@ -100,7 +102,7 @@ export default function Contact() {
                   })}
                 </div>
 
-                <Card className="glass-lg border-0 overflow-hidden">
+                <Card className="overflow-hidden border border-border/60">
                   <CardContent className="p-0">
                     <div className="aspect-video">
                       <iframe
@@ -121,11 +123,7 @@ export default function Contact() {
             </div>
           </div>
         </section>
-        </AnimatedSection>
-      </main>
-
-      <Footer />
-      <BackToTop />
-    </div>
+      </AnimatedSection>
+    </MarketingLayout>
   );
 }

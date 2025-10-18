@@ -1,13 +1,12 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import ServicesGrid from "@/components/ServicesGrid";
-import BackToTop from "@/components/BackToTop";
 import AnimatedSection from "@/components/AnimatedSection";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Store, MapPin, Package, Megaphone } from "lucide-react";
-const servicesImage = "https://images.unsplash.com/photo-1681505526188-b05e68c77582?w=1920&q=80";
+import MarketingLayout from "@/components/layouts/MarketingLayout";
+
+const servicesImage = "https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=2000&q=80";
 
 export default function Services() {
   const services = [
@@ -65,42 +64,46 @@ export default function Services() {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
-      
-      <main className="flex-1 pt-16">
-        <HeroSection
-          title="Your Complete Business Solution"
-          subtitle="We simplify the path to business ownership with a full suite of services designed for your success."
-          backgroundImage={servicesImage}
-          overlay={true}
-        />
+    <MarketingLayout>
+      <HeroSection
+        eyebrow="Full-stack retail launch"
+        title="From site strategy to day-one sales, we orchestrate every detail"
+        subtitle="Our multidisciplinary operators plug into your vision, building the roadmap, partnerships, and systems to bring your concept to life."
+        ctaText="Plan your build"
+        ctaLink="/contact"
+        secondaryCtaText="See case studies"
+        secondaryCtaLink="/blog"
+        backgroundImage={servicesImage}
+      />
 
-        <AnimatedSection>
-          <ServicesGrid services={services} />
-        </AnimatedSection>
+      <AnimatedSection>
+        <ServicesGrid services={services} />
+      </AnimatedSection>
 
-        <AnimatedSection delay={0.2}>
-          <section className="py-16 sm:py-20 bg-card">
-          <div className="container mx-auto px-4 max-w-3xl text-center">
-            <h3 className="font-heading font-bold text-3xl sm:text-4xl mb-6">
-              Ready to Get Started?
-            </h3>
-            <p className="text-lg text-muted-foreground mb-8">
-              Schedule a free consultation to discuss how our services can help you achieve your business goals.
-            </p>
-            <Link href="/contact">
-              <Button size="lg" className="text-base px-8" data-testid="button-services-cta">
-                Contact Us Today
-              </Button>
-            </Link>
+      <AnimatedSection delay={0.2}>
+        <section className="py-20">
+          <div className="container mx-auto max-w-4xl px-4 text-center">
+            <div className="rounded-3xl border border-border/60 bg-card/80 p-10 shadow-lg">
+              <h3 className="font-heading text-3xl sm:text-4xl">Ready to get started?</h3>
+              <p className="mt-4 text-base text-muted-foreground">
+                Book a discovery call to scope your launch, align on timelines, and meet the specialists who will guide every milestone.
+              </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
+                <Link href="/contact">
+                  <Button size="lg" className="rounded-full px-8" data-testid="button-services-cta">
+                    Contact us today
+                  </Button>
+                </Link>
+                <Link href="/about">
+                  <Button size="lg" variant="outline" className="rounded-full px-8">
+                    Meet the team
+                  </Button>
+                </Link>
+              </div>
+            </div>
           </div>
         </section>
-        </AnimatedSection>
-      </main>
-
-      <Footer />
-      <BackToTop />
-    </div>
+      </AnimatedSection>
+    </MarketingLayout>
   );
 }

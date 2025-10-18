@@ -1,239 +1,151 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { motion } from "framer-motion";
-import { Check } from "lucide-react";
+import { contactFormSchema, type ContactFormInput } from "@/lib/validation";
+import { apiRequest } from "@/lib/queryClient";
+import { Phone, Send, UserRound, AtSign } from "lucide-react";
+
+const fieldMeta: Array<{ name: keyof ContactFormInput; label: string; placeholder: string; icon: ReactNode; type?: string }> = [
+  {
+    name: "fullName",
+    label: "Full name",
+    placeholder: "Your full name",
+    icon: <UserRound className="h-4 w-4 text-primary" />,
+  },
+  {
+    name: "email",
+    label: "Email",
+    placeholder: "you@nextventure.com",
+    icon: <AtSign className="h-4 w-4 text-primary" />,
+    type: "email",
+  },
+  {
+    name: "phone",
+    label: "Phone",
+    placeholder: "(555) 123-4567",
+    icon: <Phone className="h-4 w-4 text-primary" />,
+    type: "tel",
+  },
+];
 
 export default function EnhancedContactForm() {
-  const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
-    phone: "",
-    message: "",
-  });
-  const [focused, setFocused] = useState<string | null>(null);
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const validateField = (name: string, value: string) => {
-    switch (name) {
-      case "fullName":
-        return value.length < 2 ? "Name must be at least 2 characters" : "";
-      case "email":
-        return !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? "Invalid email address" : "";
-      case "phone":
-        return !/^\(\d{3}\)\s\d{3}-\d{4}$/.test(value) && value.length > 0
-          ? "Format: (555) 123-4567"
-          : "";
-      case "message":
-        return value.length < 10 ? "Message must be at least 10 characters" : "";
-      default:
-        return "";
-    }
-  };
+  const form = useForm<ContactFormInput>({
+    resolver: zodResolver(contactFormSchema),
+    defaultValues: {
+      fullName: "",
+      email: "",
+      phone: "",
+      message: "",
+    },
+  });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    
-    const error = validateField(name, value);
-    setErrors((prev) => ({ ...prev, [name]: error }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    const newErrors: Record<string, string> = {};
-    Object.keys(formData).forEach((key) => {
-      const error = validateField(key, formData[key as keyof typeof formData]);
-      if (error) newErrors[key] = error;
-    });
-
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      return;
-    }
-
+  const onSubmit = async (values: ContactFormInput) => {
     setIsSubmitting(true);
-    
-    console.log("Contact form submitted:", formData);
-    
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    
-    setIsSuccess(true);
-    setTimeout(() => {
+    try {
+      await apiRequest("POST", "/api/contact", values);
       toast({
-        title: "Message Sent!",
-        description: "Thank you for contacting us. We'll get back to you soon.",
+        title: "Thanks for reaching out!",
+        description: "Our consultants will be in touch within one business day.",
       });
-      
-      setFormData({
-        fullName: "",
-        email: "",
-        phone: "",
-        message: "",
+      form.reset();
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Unexpected error";
+      toast({
+        title: "Something went wrong",
+        description: message,
+        variant: "destructive",
       });
+    } finally {
       setIsSubmitting(false);
-      setIsSuccess(false);
-    }, 1000);
-  };
-
-  const FloatingLabelInput = ({
-    label,
-    name,
-    type = "text",
-    required = false,
-  }: {
-    label: string;
-    name: string;
-    type?: string;
-    required?: boolean;
-  }) => {
-    const value = formData[name as keyof typeof formData];
-    const isFocused = focused === name;
-    const hasValue = value.length > 0;
-    const hasError = errors[name];
-
-    return (
-      <div className="relative">
-        <input
-          id={name}
-          name={name}
-          type={type}
-          value={value}
-          onChange={handleChange}
-          onFocus={() => setFocused(name)}
-          onBlur={() => setFocused(null)}
-          required={required}
-          className={`w-full px-4 pt-6 pb-2 rounded-md border bg-background transition-all ${
-            hasError ? "border-destructive" : "border-input focus:border-primary"
-          } focus:outline-none focus:ring-2 focus:ring-primary/20`}
-          data-testid={`input-${name}`}
-        />
-        <label
-          htmlFor={name}
-          className={`absolute left-4 transition-all pointer-events-none ${
-            isFocused || hasValue
-              ? "top-2 text-xs text-primary"
-              : "top-1/2 -translate-y-1/2 text-base text-muted-foreground"
-          }`}
-        >
-          {label}
-        </label>
-        {hasError && (
-          <motion.p
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-xs text-destructive mt-1"
-            data-testid={`error-${name}`}
-          >
-            {hasError}
-          </motion.p>
-        )}
-      </div>
-    );
-  };
-
-  const FloatingLabelTextarea = ({
-    label,
-    name,
-    required = false,
-  }: {
-    label: string;
-    name: string;
-    required?: boolean;
-  }) => {
-    const value = formData[name as keyof typeof formData];
-    const isFocused = focused === name;
-    const hasValue = value.length > 0;
-    const hasError = errors[name];
-
-    return (
-      <div className="relative">
-        <textarea
-          id={name}
-          name={name}
-          value={value}
-          onChange={handleChange}
-          onFocus={() => setFocused(name)}
-          onBlur={() => setFocused(null)}
-          required={required}
-          rows={5}
-          className={`w-full px-4 pt-6 pb-2 rounded-md border bg-background transition-all resize-none ${
-            hasError ? "border-destructive" : "border-input focus:border-primary"
-          } focus:outline-none focus:ring-2 focus:ring-primary/20`}
-          data-testid={`input-${name}`}
-        />
-        <label
-          htmlFor={name}
-          className={`absolute left-4 transition-all pointer-events-none ${
-            isFocused || hasValue
-              ? "top-2 text-xs text-primary"
-              : "top-6 text-base text-muted-foreground"
-          }`}
-        >
-          {label}
-        </label>
-        {hasError && (
-          <motion.p
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-xs text-destructive mt-1"
-            data-testid={`error-${name}`}
-          >
-            {hasError}
-          </motion.p>
-        )}
-      </div>
-    );
+    }
   };
 
   return (
-    <Card className="glass border-0">
-      <CardHeader>
-        <CardTitle className="font-heading text-2xl">Send Us a Message</CardTitle>
+    <Card className="border border-border/60 bg-card/80 shadow-xl">
+      <CardHeader className="space-y-2">
+        <CardTitle className="font-heading text-2xl">Tell us about your concept</CardTitle>
+        <p className="text-sm text-muted-foreground">
+          Share a few details and we’ll curate a launch roadmap tailored to your goals.
+        </p>
       </CardHeader>
       <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <FloatingLabelInput label="Full Name" name="fullName" required />
-          <FloatingLabelInput label="Email Address" name="email" type="email" required />
-          <FloatingLabelInput label="Phone Number" name="phone" type="tel" required />
-          <FloatingLabelTextarea label="Message" name="message" required />
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <div className="grid gap-4 sm:grid-cols-2">
+              {fieldMeta.map(({ name, label, placeholder, icon, type }) => (
+                <FormField
+                  key={name}
+                  control={form.control}
+                  name={name}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="flex items-center gap-2 text-sm font-medium">
+                        {icon}
+                        {label}
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          type={type}
+                          placeholder={placeholder}
+                          disabled={isSubmitting}
+                          data-testid={`input-${name}`}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              ))}
+            </div>
 
-          <Button
-            type="submit"
-            size="lg"
-            className="w-full relative"
-            disabled={isSubmitting}
-            data-testid="button-submit-contact"
-          >
-            {isSubmitting ? (
-              <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: isSuccess ? "100%" : "50%" }}
-                transition={{ duration: 1 }}
-                className="absolute left-0 top-0 bottom-0 bg-primary/20 rounded-md"
-              />
-            ) : null}
-            {isSuccess ? (
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                className="flex items-center gap-2"
-              >
-                <Check className="h-5 w-5" />
-                <span>Sent!</span>
-              </motion.div>
-            ) : isSubmitting ? (
-              "Sending..."
-            ) : (
-              "Send Message"
-            )}
-          </Button>
-        </form>
+            <FormField
+              control={form.control}
+              name="message"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-sm font-medium">How can we support you?</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      {...field}
+                      rows={5}
+                      placeholder="Share your goals, timelines, or any details our team should know."
+                      disabled={isSubmitting}
+                      data-testid="input-message"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <Button
+              type="submit"
+              size="lg"
+              className="w-full rounded-full"
+              disabled={isSubmitting}
+              data-testid="button-submit-contact"
+            >
+              {isSubmitting ? (
+                <span className="inline-flex items-center gap-2">
+                  <Send className="h-4 w-4 animate-spin" />
+                  Sending...
+                </span>
+              ) : (
+                "Send message"
+              )}
+            </Button>
+          </form>
+        </Form>
       </CardContent>
     </Card>
   );

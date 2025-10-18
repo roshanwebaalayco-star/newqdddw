@@ -21,25 +21,27 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-card border-t border-card-border">
-      <div className="container mx-auto px-4 py-12 max-w-7xl">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div>
-            <div className="mb-4">
-              <Logo showText={false} />
-            </div>
-            <p className="text-muted-foreground text-sm">
-              Empowering individuals to achieve their business goals through expert guidance and complete retail solutions.
+    <footer className="relative overflow-hidden border-t border-border/60 bg-card/70 backdrop-blur">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.18),_rgba(255,255,255,0))] dark:bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.08),_rgba(0,0,0,0))]" />
+      <div className="container relative mx-auto max-w-7xl px-4 py-16">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
+          <div className="space-y-4">
+            <Logo size="lg" />
+            <p className="max-w-sm text-sm text-muted-foreground">
+              We partner with founders and franchise operators to design, launch, and scale retail experiences that feel effortlessly modern.
             </p>
           </div>
 
           <div>
-            <h3 className="font-heading font-semibold mb-4">Navigation</h3>
-            <ul className="space-y-2">
+            <h3 className="font-heading text-lg font-semibold text-foreground">Navigation</h3>
+            <ul className="mt-4 space-y-3">
               {navigationLinks.map((link) => (
                 <li key={link.path}>
                   <Link href={link.path}>
-                    <span className="text-muted-foreground hover:text-primary transition-colors text-sm cursor-pointer" data-testid={`link-footer-${link.name.toLowerCase()}`}>
+                    <span
+                      className="text-sm text-muted-foreground transition-colors hover:text-primary"
+                      data-testid={`link-footer-${link.name.toLowerCase()}`}
+                    >
                       {link.name}
                     </span>
                   </Link>
@@ -49,20 +51,27 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-heading font-semibold mb-4">Contact Info</h3>
-            <ul className="space-y-3">
-              <li className="flex items-start gap-2 text-sm">
-                <Phone className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                <span className="text-muted-foreground" data-testid="text-phone">(555) 123-4567</span>
+            <h3 className="font-heading text-lg font-semibold text-foreground">Contact Info</h3>
+            <ul className="mt-4 space-y-4 text-sm text-muted-foreground">
+              <li className="flex items-start gap-3">
+                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/15">
+                  <Phone className="h-4 w-4 text-primary" />
+                </div>
+                <span data-testid="text-phone">(555) 123-4567</span>
               </li>
-              <li className="flex items-start gap-2 text-sm">
-                <Mail className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                <span className="text-muted-foreground" data-testid="text-email">info@clcretailgroup.com</span>
+              <li className="flex items-start gap-3">
+                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/15">
+                  <Mail className="h-4 w-4 text-primary" />
+                </div>
+                <span data-testid="text-email">info@clcretailgroup.com</span>
               </li>
-              <li className="flex items-start gap-2 text-sm">
-                <MapPin className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                <span className="text-muted-foreground" data-testid="text-address">
-                  123 Business Ave, Suite 100<br />
+              <li className="flex items-start gap-3">
+                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/15">
+                  <MapPin className="h-4 w-4 text-primary" />
+                </div>
+                <span data-testid="text-address">
+                  123 Business Ave, Suite 100
+                  <br />
                   New York, NY 10001
                 </span>
               </li>
@@ -70,15 +79,18 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-heading font-semibold mb-4">Follow Us</h3>
-            <div className="flex gap-2">
+            <h3 className="font-heading text-lg font-semibold text-foreground">Follow Us</h3>
+            <p className="mt-4 text-sm text-muted-foreground">
+              Join the community for launch announcements, retail insights, and event invitations.
+            </p>
+            <div className="mt-5 flex gap-3">
               {socialLinks.map((social) => {
                 const Icon = social.icon;
                 return (
                   <a
                     key={social.name}
                     href={social.url}
-                    className="flex items-center justify-center w-9 h-9 rounded-md bg-secondary hover-elevate active-elevate-2"
+                    className="flex h-10 w-10 items-center justify-center rounded-full bg-background/80 text-foreground transition-colors hover:bg-gradient-to-r hover:from-primary hover:to-secondary hover:text-white"
                     aria-label={social.name}
                     data-testid={`link-social-${social.name.toLowerCase()}`}
                   >
@@ -90,10 +102,9 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-border mt-8 pt-8 text-center">
-          <p className="text-muted-foreground text-sm" data-testid="text-copyright">
-            © {currentYear} CLC Retail Group. All rights reserved.
-          </p>
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border/60 pt-8 text-center text-sm text-muted-foreground md:flex-row">
+          <p data-testid="text-copyright">© {currentYear} CLC Retail Group. All rights reserved.</p>
+          <p className="text-xs">Crafted with partnership, performance, and purpose.</p>
         </div>
       </div>
     </footer>
