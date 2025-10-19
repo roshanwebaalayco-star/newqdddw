@@ -37,9 +37,9 @@ export default function Logo({
         data-testid="logo-mark"
       >
         <img
-          src="/logo.jpeg"
+          src="/logo.svg"
           alt="CLC Retail Group logo"
-          className="h-full w-full object-cover object-[50%_42%]"
+          className="h-full w-full object-contain"
           loading="lazy"
         />
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.35),rgba(255,255,255,0)_55%),linear-gradient(145deg,rgba(255,255,255,0.12),rgba(12,12,18,0.55))] mix-blend-screen" />

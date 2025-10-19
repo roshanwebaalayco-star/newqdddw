@@ -131,7 +131,7 @@ All text meets WCAG AA contrast requirements:
 **Example:**
 ```tsx
 <img 
-  src="/logo.jpeg" 
+  src="/logo.svg"
   alt="CLC Retail Group Logo" 
   className="h-12 w-auto"
 />

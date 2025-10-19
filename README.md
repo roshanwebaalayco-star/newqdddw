@@ -263,7 +263,7 @@ Edit the `values` array in `/app/client/src/pages/About.tsx`.
 
 **Issue**: Images not loading
 - Check that image URLs are accessible
-- Verify `/app/client/public/` contains the logo.jpeg file
+- Verify `/app/client/public/` contains the logo.svg file
 
 **Issue**: Styles not applying
 - Run `npm install` to ensure Tailwind is installed

@@ -1,0 +1,51 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="slateGradient" x1="76" y1="76" x2="368" y2="368" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#4A5459" />
+      <stop offset="50%" stop-color="#343C40" />
+      <stop offset="100%" stop-color="#1B2023" />
+    </linearGradient>
+    <linearGradient id="slateAccent" x1="40" y1="64" x2="280" y2="464" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#5B676C" stop-opacity="0.85" />
+      <stop offset="100%" stop-color="#1E2428" stop-opacity="0.95" />
+    </linearGradient>
+    <linearGradient id="copperGradient" x1="296" y1="64" x2="504" y2="424" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#F8E0D1" />
+      <stop offset="45%" stop-color="#D0A18A" />
+      <stop offset="100%" stop-color="#B37B62" />
+    </linearGradient>
+    <linearGradient id="copperGradientInner" x1="352" y1="128" x2="480" y2="368" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FCE9DD" />
+      <stop offset="50%" stop-color="#D9B09B" />
+      <stop offset="100%" stop-color="#BC8168" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#0C0C12" flood-opacity="0.6" />
+    </filter>
+  </defs>
+  <g filter="url(#shadow)">
+    <path
+      d="M168 40h112l83 48 48 83v112l-48 83-83 48H168l-83-48-48-83V171l48-83 83-48z"
+      fill="url(#slateAccent)"
+      opacity="0.65"
+    />
+    <path
+      d="M336 96a176 176 0 1 0 0 320"
+      stroke="url(#slateGradient)"
+      stroke-width="118"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      fill="none"
+    />
+    <path
+      d="M284 64h96v224h132v96H284V64z"
+      fill="url(#copperGradient)"
+      opacity="0.95"
+    />
+    <path
+      d="M352 132h92v156h84v68H352V132z"
+      fill="url(#copperGradientInner)"
+      opacity="0.9"
+    />
+  </g>
+</svg>
