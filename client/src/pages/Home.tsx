@@ -257,7 +257,7 @@ export default function Home() {
     data: {
       name: "CLC Retail Group",
       url: `${baseUrl}/`,
-      logo: `${baseUrl}/logo.png`,
+      logo: `${baseUrl}/logo.jpeg`,
       contactPoint: [
         {
           "@type": "ContactPoint",
