@@ -1,3 +1,4 @@
+import { LOGO_DATA_URL } from "@/assets/logo";
 import { cn } from "@/lib/utils";
 
 interface LogoProps {
@@ -37,7 +38,7 @@ export default function Logo({
         data-testid="logo-mark"
       >
         <img
-          src="/logo.svg"
+          src={LOGO_DATA_URL}
           alt="CLC Retail Group logo"
           className="h-full w-full object-contain"
           loading="lazy"
