@@ -45,10 +45,10 @@ export default function Newsletter() {
   return (
     <section className="py-20">
       <div className="container mx-auto max-w-4xl px-4">
-        <Card className="overflow-hidden border border-white/10 bg-[#0f1222]/95 text-white shadow-[0_36px_110px_-60px_rgba(0,0,0,0.9)]">
+        <Card className="overflow-hidden border border-white/15 bg-gradient-to-br from-[#111a2f]/95 via-[#151f36]/95 to-[#1b2743]/95 text-white shadow-[0_40px_120px_-70px_rgba(15,23,42,1)]">
           <CardContent className="relative p-12 sm:p-16">
-            <div className="pointer-events-none absolute -left-24 top-0 hidden h-48 w-48 rounded-full bg-primary/25 blur-3xl sm:block" />
-            <div className="pointer-events-none absolute -right-24 bottom-0 hidden h-56 w-56 rounded-full bg-secondary/25 blur-3xl sm:block" />
+            <div className="pointer-events-none absolute -left-24 top-0 hidden h-48 w-48 rounded-full bg-primary/30 blur-3xl sm:block" />
+            <div className="pointer-events-none absolute -right-24 bottom-0 hidden h-56 w-56 rounded-full bg-secondary/30 blur-3xl sm:block" />
 
             <div className="relative mx-auto max-w-2xl space-y-8 text-center">
               <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white">
@@ -56,7 +56,7 @@ export default function Newsletter() {
               </div>
               <div className="space-y-4">
                 <h2 className="font-heading text-3xl font-semibold sm:text-4xl">Stay ahead of every retail shift</h2>
-                <p className="text-base text-white/70 sm:text-lg">
+                <p className="text-base text-slate-200 sm:text-lg">
                   Get curated intelligence on emerging concepts, market moves, and launch tactics from the CLC team every other Friday.
                 </p>
               </div>
@@ -77,7 +77,7 @@ export default function Newsletter() {
                             {...field}
                             disabled={isSubmitting}
                             data-testid="input-newsletter-email"
-                            className="border-white/30 bg-white/5 text-white placeholder:text-white/40"
+                            className="border-white/30 bg-white/10 text-white placeholder:text-white/50"
                           />
                         </FormControl>
                         <FormMessage />
@@ -103,7 +103,7 @@ export default function Newsletter() {
                 </form>
               </Form>
 
-              <p className="text-xs uppercase tracking-[0.3em] text-white/40">
+              <p className="text-xs uppercase tracking-[0.3em] text-slate-300">
                 No spam — just actionable ideas and opportunities.
               </p>
             </div>

@@ -19,13 +19,13 @@ export default function ServicesPreview({ services }: ServicesPreviewProps) {
     <section className="py-20">
       <div className="container mx-auto max-w-6xl px-4">
         <div className="mb-14 text-center text-white">
-          <Badge className="mb-4 border border-white/20 bg-white/10 px-5 py-1 text-xs uppercase tracking-[0.35em] text-white/70">
+          <Badge className="mb-4 border border-white/30 bg-white/15 px-5 py-1 text-xs uppercase tracking-[0.35em] text-white/80">
             Our capabilities
           </Badge>
           <h2 className="font-heading text-3xl font-semibold sm:text-4xl lg:text-5xl">
             A single partner for strategy, delivery, and momentum
           </h2>
-          <p className="mx-auto mt-4 max-w-3xl text-base text-white/70 sm:text-lg">
+          <p className="mx-auto mt-4 max-w-3xl text-base text-slate-200 sm:text-lg">
             We shape resilient retail concepts through tightly choreographed workstreams that blend analytics, architecture, and operations.
           </p>
         </div>
@@ -36,27 +36,27 @@ export default function ServicesPreview({ services }: ServicesPreviewProps) {
             return (
               <Card
                 key={index}
-                className="group relative overflow-hidden border border-white/10 bg-gradient-to-br from-white/6 via-white/4 to-transparent p-[1px]"
+                className="group relative overflow-hidden border-none bg-transparent"
                 data-testid={`card-service-${index}`}
               >
-                <div className="relative h-full rounded-[1.75rem] bg-[#0f1222]/90 p-8 text-white shadow-[0_35px_90px_-55px_rgba(0,0,0,0.9)]">
-                  <div className="absolute inset-0 rounded-[1.75rem] bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.18),transparent_70%)] opacity-70" />
-                  <div className="relative flex h-full flex-col">
-                    <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/15 bg-white/10 backdrop-blur">
-                      <Icon className="h-6 w-6 text-white" />
+                <div className="relative h-full rounded-[1.75rem] border border-white/15 bg-gradient-to-br from-[#1f2b46]/95 via-[#17233a]/95 to-[#121a2d]/95 p-[1px] shadow-[0_40px_110px_-70px_rgba(15,23,42,1)]">
+                  <div className="absolute inset-0 rounded-[1.75rem] bg-[radial-gradient(circle_at_20%_15%,rgba(120,131,255,0.15),transparent_60%)] opacity-80 transition duration-500 group-hover:opacity-100" />
+                  <div className="relative flex h-full flex-col rounded-[1.75rem] bg-gradient-to-br from-[#141b2e]/96 via-[#151f36]/96 to-[#19233d]/96 p-8 text-slate-100">
+                    <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/20 bg-gradient-to-br from-primary/70 via-primary/50 to-secondary/70 text-white shadow-[0_18px_45px_-30px_rgba(120,131,255,0.65)]">
+                      <Icon className="h-6 w-6" />
                     </div>
                     <CardHeader className="p-0">
-                      <CardTitle className="font-heading text-xl font-semibold" data-testid={`text-service-title-${index}`}>
+                      <CardTitle className="font-heading text-xl font-semibold text-white" data-testid={`text-service-title-${index}`}>
                         {service.title}
                       </CardTitle>
                     </CardHeader>
-                    <CardContent className="mt-4 flex-1 p-0 text-sm leading-relaxed text-white/70 sm:text-base" data-testid={`text-service-description-${index}`}>
+                    <CardContent className="mt-4 flex-1 p-0 text-sm leading-relaxed text-slate-300 sm:text-base" data-testid={`text-service-description-${index}`}>
                       {service.description}
                     </CardContent>
                     <div className="mt-6">
                       <Button
                         variant="ghost"
-                        className="group inline-flex items-center gap-2 p-0 text-xs font-semibold uppercase tracking-[0.3em] text-white/70 transition hover:text-white"
+                        className="group inline-flex items-center gap-2 p-0 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 transition hover:text-white"
                         asChild
                       >
                         <Link href="/services">
