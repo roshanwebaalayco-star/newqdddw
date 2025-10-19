@@ -4,6 +4,7 @@ import { Menu, X, PhoneCall } from "lucide-react";
 import { useState, useEffect } from "react";
 import Logo from "@/components/Logo";
 import { cn } from "@/lib/utils";
+import { MobileNav } from "@/components/MobileNav";
 
 export default function Header() {
   const [location] = useLocation();
@@ -107,39 +108,12 @@ export default function Header() {
           </div>
         </div>
 
-        {mobileMenuOpen && (
-          <nav
-            className="md:hidden space-y-2 rounded-3xl border border-white/10 bg-[#0f1222]/95 p-5 text-sm font-medium text-white shadow-[0_24px_60px_-25px_rgba(0,0,0,0.75)]"
-            role="navigation"
-            aria-label="Mobile navigation"
-          >
-            {navItems.map((item) => (
-              <Link key={item.path} href={item.path}>
-                <Button
-                  variant="ghost"
-                  className={cn(
-                    "w-full justify-between rounded-2xl border border-transparent bg-white/5 px-4 py-3 text-left text-sm uppercase tracking-[0.18em] text-white/70 focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1222]",
-                    location === item.path && "border-white/20 bg-white/10 text-white",
-                  )}
-                  onClick={() => setMobileMenuOpen(false)}
-                  data-testid={`link-mobile-${item.name.toLowerCase()}`}
-                >
-                  {item.name}
-                </Button>
-              </Link>
-            ))}
-            <Link href="/contact#schedule">
-              <Button
-                variant="default"
-                className="w-full whitespace-nowrap rounded-2xl bg-gradient-to-r from-primary via-primary/80 to-secondary py-3 uppercase tracking-[0.22em] focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1222]"
-                data-testid="button-cta-mobile"
-                data-analytics="cta-schedule"
-              >
-                Schedule a consultation
-              </Button>
-            </Link>
-          </nav>
-        )}
+        <MobileNav
+          open={mobileMenuOpen}
+          onClose={() => setMobileMenuOpen(false)}
+          items={navItems.map(item => ({ ...item, active: location === item.path }))}
+          currentPath={location}
+        />
       </div>
     </header>
   );
