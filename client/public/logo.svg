@@ -1,51 +1,45 @@
 <svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="slateGradient" x1="76" y1="76" x2="368" y2="368" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#4A5459" />
-      <stop offset="50%" stop-color="#343C40" />
-      <stop offset="100%" stop-color="#1B2023" />
+    <linearGradient id="bgGradient" x1="96" y1="64" x2="416" y2="448" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0F172A" />
+      <stop offset="45%" stop-color="#111B2F" />
+      <stop offset="100%" stop-color="#0B1220" />
     </linearGradient>
-    <linearGradient id="slateAccent" x1="40" y1="64" x2="280" y2="464" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#5B676C" stop-opacity="0.85" />
-      <stop offset="100%" stop-color="#1E2428" stop-opacity="0.95" />
+    <linearGradient id="copperGradient" x1="160" y1="160" x2="416" y2="416" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FCE1CF" />
+      <stop offset="40%" stop-color="#F0B999" />
+      <stop offset="100%" stop-color="#C97B57" />
     </linearGradient>
-    <linearGradient id="copperGradient" x1="296" y1="64" x2="504" y2="424" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#F8E0D1" />
-      <stop offset="45%" stop-color="#D0A18A" />
-      <stop offset="100%" stop-color="#B37B62" />
+    <linearGradient id="copperSoft" x1="196" y1="168" x2="388" y2="408" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFEBDD" />
+      <stop offset="55%" stop-color="#F1C0A1" />
+      <stop offset="100%" stop-color="#D38360" />
     </linearGradient>
-    <linearGradient id="copperGradientInner" x1="352" y1="128" x2="480" y2="368" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#FCE9DD" />
-      <stop offset="50%" stop-color="#D9B09B" />
-      <stop offset="100%" stop-color="#BC8168" />
+    <linearGradient id="copperBright" x1="332" y1="188" x2="452" y2="324" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFF5EE" />
+      <stop offset="50%" stop-color="#F2C2A3" />
+      <stop offset="100%" stop-color="#D6895F" />
     </linearGradient>
-    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
-      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#0C0C12" flood-opacity="0.6" />
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0 208 -208 0 256 256)">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.18" />
+      <stop offset="60%" stop-color="#A4C2FF" stop-opacity="0.05" />
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0" />
+    </radialGradient>
+    <filter id="shadow" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#04060A" flood-opacity="0.65" />
     </filter>
   </defs>
   <g filter="url(#shadow)">
+    <rect x="48" y="48" width="416" height="416" rx="128" fill="url(#bgGradient)" />
+    <rect x="48" y="48" width="416" height="416" rx="128" fill="url(#glow)" />
     <path
-      d="M168 40h112l83 48 48 83v112l-48 83-83 48H168l-83-48-48-83V171l48-83 83-48z"
-      fill="url(#slateAccent)"
-      opacity="0.65"
-    />
-    <path
-      d="M336 96a176 176 0 1 0 0 320"
-      stroke="url(#slateGradient)"
-      stroke-width="118"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      fill="none"
-    />
-    <path
-      d="M284 64h96v224h132v96H284V64z"
+      d="M324 128c-107.524 0-196 88.476-196 196s88.476 196 196 196c63.62 0 115.898-28.251 150.624-71.49l-66.128-59.147c-22.036 26.508-51.463 41.637-84.496 41.637-63.245 0-114.5-51.255-114.5-114.5S260.379 202 323.624 202c33.033 0 62.46 15.129 84.496 41.637l66.128-59.147C439.898 156.251 387.62 128 324 128Z"
       fill="url(#copperGradient)"
-      opacity="0.95"
     />
+    <path d="M188 156h80v224h132v76H188V156Z" fill="url(#copperSoft)" />
     <path
-      d="M352 132h92v156h84v68H352V132z"
-      fill="url(#copperGradientInner)"
-      opacity="0.9"
+      d="M388 188c-52.467 0-94.5 42.033-94.5 94.5S335.533 377 388 377c27.246 0 52.112-11.436 69.611-30.524l-44.44-42.261c-7.531 9.546-16.844 14.785-26.788 14.785-18.889 0-34.4-15.511-34.4-34.5 0-18.988 15.511-34.5 34.4-34.5 9.944 0 19.257 5.239 26.788 14.785l44.44-42.261C440.112 199.436 415.246 188 388 188Z"
+      fill="url(#copperBright)"
     />
   </g>
 </svg>
