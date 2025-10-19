@@ -398,4 +398,10 @@
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
   }
+
+  /* Gradient button text contrast enhancement */
+  .bg-gradient-to-r,
+  [class*="bg-gradient"] {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+  }
 }

@@ -55,9 +55,9 @@ export function MobileNav({ open, onClose, items, currentPath }: MobileNavProps)
         role="dialog"
         aria-modal="true"
         aria-label="Main navigation"
-        className="absolute right-0 top-0 h-full w-[88%] max-w-sm overflow-y-auto rounded-l-3xl border border-white/10 bg-[#0f1222]/98 p-6 shadow-[0_24px_80px_-30px_rgba(0,0,0,0.85)] focus:outline-none focus-visible:ring-2 focus-visible:ring-clc-accent/80"
+        className="absolute right-0 top-0 h-full w-[88%] max-w-sm overflow-y-auto rounded-l-3xl border border-white/10 bg-[#0f1222]/98 p-5 shadow-[0_24px_80px_-30px_rgba(0,0,0,0.85)] focus:outline-none focus-visible:ring-2 focus-visible:ring-clc-accent/80 sm:p-6"
       >
-        <ul className="grid gap-3">
+        <ul className="grid gap-3 sm:gap-3.5">
           {items.map((item) => (
             <li key={item.path}>
               <Link
@@ -66,7 +66,7 @@ export function MobileNav({ open, onClose, items, currentPath }: MobileNavProps)
               >
                 <span
                   className={cn(
-                    "block min-h-[44px] rounded-[2rem] border border-transparent bg-white/6 px-6 py-4 text-base uppercase tracking-[0.16em] text-white/70 transition-colors hover:bg-white/10 active:bg-white/14 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1222]",
+                    "block min-h-[44px] cursor-pointer rounded-[2rem] border border-transparent bg-white/6 px-6 py-3.5 text-base uppercase tracking-[0.16em] text-white/70 transition-colors hover:bg-white/10 active:bg-white/14 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1222] sm:py-4",
                     currentPath === item.path && "border-white/20 bg-white/10 text-white",
                   )}
                   data-testid={`link-mobile-${item.name.toLowerCase()}`}
@@ -82,7 +82,7 @@ export function MobileNav({ open, onClose, items, currentPath }: MobileNavProps)
               onClick={onClose}
             >
               <span
-                className="block min-h-[44px] whitespace-nowrap rounded-[2rem] bg-gradient-to-r from-primary to-secondary px-6 py-4 text-center text-base uppercase tracking-[0.18em] text-white shadow-[0_10px_30px_rgba(0,0,0,.25)] transition-transform hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1222]"
+                className="block min-h-[44px] cursor-pointer whitespace-nowrap rounded-[2rem] bg-gradient-to-r from-primary to-secondary px-6 py-3.5 text-center text-base uppercase tracking-[0.18em] text-white shadow-[0_10px_30px_rgba(0,0,0,.25)] transition-transform hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1222] sm:py-4"
                 data-testid="button-cta-mobile"
                 data-analytics="cta-schedule"
               >
