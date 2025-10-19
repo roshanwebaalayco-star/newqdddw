@@ -82,11 +82,12 @@ export default function Header() {
                 +1 (555) 123-4567
               </a>
             </div>
-            <Link href="/contact">
+            <Link href="/contact#schedule">
               <Button
                 variant="default"
-                className="hidden items-center gap-2 rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary px-5 py-2 text-sm font-semibold uppercase tracking-[0.18em] text-white shadow-[0_16px_45px_-25px_rgba(176,138,124,1)] md:inline-flex focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+                className="hidden items-center gap-2 whitespace-nowrap rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary px-5 py-2 text-sm font-semibold uppercase tracking-[0.18em] text-white shadow-[0_16px_45px_-25px_rgba(176,138,124,1)] md:inline-flex focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
                 data-testid="button-cta-header"
+                data-analytics="cta-schedule"
               >
                 <PhoneCall className="h-4 w-4" />
                 Schedule a consultation
@@ -127,11 +128,12 @@ export default function Header() {
                 </Button>
               </Link>
             ))}
-            <Link href="/contact">
+            <Link href="/contact#schedule">
               <Button
                 variant="default"
-                className="w-full rounded-2xl bg-gradient-to-r from-primary via-primary/80 to-secondary py-3 uppercase tracking-[0.22em] focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1222]"
+                className="w-full whitespace-nowrap rounded-2xl bg-gradient-to-r from-primary via-primary/80 to-secondary py-3 uppercase tracking-[0.22em] focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1222]"
                 data-testid="button-cta-mobile"
+                data-analytics="cta-schedule"
               >
                 Schedule a consultation
               </Button>

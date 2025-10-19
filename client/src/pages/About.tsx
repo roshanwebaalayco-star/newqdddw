@@ -152,7 +152,7 @@ export default function About() {
         title="Our story is written with every launch we co-create"
         subtitle="CLC Retail Group is a collective of operators, designers, and analysts rallying behind entrepreneurs who reimagine what retail can be."
         ctaText="Schedule a consultation"
-        ctaLink="/contact"
+        ctaLink="/contact#schedule"
         secondaryCtaText="Explore our services"
         secondaryCtaLink="/services"
         backgroundImage={teamImage}
@@ -175,7 +175,7 @@ export default function About() {
                     Explore our capabilities
                   </Button>
                 </Link>
-                <Link href="/contact">
+                <Link href="/contact#schedule">
                   <Button className="rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary px-6 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-white">
                     Schedule a consultation
                   </Button>
@@ -268,7 +268,7 @@ export default function About() {
               ))}
             </div>
             <div className="mt-10 flex justify-center">
-              <Link href="/contact">
+              <Link href="/contact#schedule">
                 <Button className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary px-8 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-white">
                   Book a discovery call
                   <ArrowUpRight className="h-4 w-4" />

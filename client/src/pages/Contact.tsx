@@ -4,10 +4,9 @@ import AnimatedSection from "@/components/AnimatedSection";
 import MarketingLayout from "@/components/layouts/MarketingLayout";
 import { CardGlass } from "@/components/CardGlass";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Phone, Mail, MapPin, Clock, CalendarClock, ShieldCheck } from "lucide-react";
-import { Link } from "wouter";
 import { Seo } from "@/components/Seo";
+import { SchedulerEmbed } from "@/components/SchedulerEmbed";
 
 const contactHeroImage = "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=2000&q=80&fm=webp";
 const baseUrl = "https://clcretailgroup.com";
@@ -82,7 +81,7 @@ export default function Contact() {
         title="Let's map your next retail milestone"
         subtitle="Talk directly with our expansion strategists about timelines, locations, and what launch support looks like for your concept."
         ctaText="Schedule a consultation"
-        ctaLink="/contact"
+        ctaLink="/contact#schedule"
         secondaryCtaText="Explore our services"
         secondaryCtaLink="/services"
         backgroundImage={contactHeroImage}
@@ -117,22 +116,19 @@ export default function Contact() {
                 <EnhancedContactForm />
               </div>
 
-              <div className="space-y-8 text-white">
-                <CardGlass className="p-8">
-                  <h2 className="font-heading text-3xl">Schedule a consultation</h2>
-                  <p className="mt-4 text-white/75">
-                    Pick a window that works for you. We’ll confirm with a calendar invite and share a prep checklist.
-                  </p>
-                  <div className="mt-6 space-y-3 text-white/80">
-                    <p>Prefer to email? <a className="underline hover:text-white" href="mailto:studio@clcretailgroup.com">studio@clcretailgroup.com</a></p>
-                    <p>Prefer a call? <a className="underline hover:text-white" href="tel:+15551234567">+1 (555) 123-4567</a></p>
+              <div className="space-y-10 text-white">
+                <section id="schedule" className="space-y-6">
+                  <div className="space-y-3">
+                    <Badge className="border border-white/25 bg-white/10 px-4 py-1 text-xs uppercase tracking-[0.35em] text-white/70">
+                      Schedule
+                    </Badge>
+                    <h2 className="font-heading text-3xl">Schedule a consultation</h2>
+                    <p className="max-w-2xl text-white/80">
+                      Pick a time that works for you. You’ll receive a calendar invite immediately along with a prep checklist tailored to your retail concept.
+                    </p>
                   </div>
-                  <Link href="/contact">
-                    <Button className="mt-6 w-full rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary px-6 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-white">
-                      Reserve time with the team
-                    </Button>
-                  </Link>
-                </CardGlass>
+                  <SchedulerEmbed />
+                </section>
 
                 <CardGlass className="p-8">
                   <h3 className="font-heading text-2xl">Where we work</h3>

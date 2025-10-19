@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { ArrowUpRight, RefreshCw } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import BlogCard from "@/components/BlogCard";
 import { Button } from "@/components/ui/button";
@@ -7,7 +7,8 @@ import { CardGlass } from "@/components/CardGlass";
 import { useLatestPosts } from "@/hooks/useLatestPosts";
 
 export function LatestInsights() {
-  const { data, isLoading, isError, refetch } = useLatestPosts();
+  const { data, isLoading } = useLatestPosts();
+  const posts = data ?? [];
 
   return (
     <AnimatedSection delay={0.15}>
@@ -45,34 +46,14 @@ export function LatestInsights() {
             </div>
           ) : null}
 
-          {isError ? (
-            <CardGlass className="mt-12 p-10 text-center">
-              <h3 className="font-heading text-2xl">We hit a snag loading insights</h3>
-              <p className="mt-4 text-white/70">
-                You can still explore all of our perspectives on the blog while we refresh this feed.
-              </p>
-              <div className="mt-6 flex justify-center gap-3">
-                <Button onClick={() => refetch()} className="inline-flex items-center gap-2">
-                  <RefreshCw className="h-4 w-4" />
-                  Retry
-                </Button>
-                <Link href="/blog">
-                  <Button variant="outline" className="rounded-full border-white/30 bg-white/10 text-white/80 hover:text-white">
-                    Browse the blog
-                  </Button>
-                </Link>
-              </div>
-            </CardGlass>
-          ) : null}
-
-          {!isLoading && !isError && data && data.length === 0 ? (
+          {!isLoading && posts.length === 0 ? (
             <CardGlass className="mt-12 p-10 text-center">
               <h3 className="font-heading text-2xl">Insights are coming soon</h3>
               <p className="mt-4 text-white/70">
                 We are editing our latest case studies. In the meantime, book a consultation and we will share tailored recommendations.
               </p>
               <div className="mt-6 flex justify-center gap-3">
-                <Link href="/contact">
+                <Link href="/contact#schedule">
                   <Button className="rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary px-8 py-3 text-sm uppercase tracking-[0.18em]">
                     Schedule a consultation
                   </Button>
@@ -86,9 +67,9 @@ export function LatestInsights() {
             </CardGlass>
           ) : null}
 
-          {!isLoading && !isError && data && data.length > 0 ? (
+          {!isLoading && posts.length > 0 ? (
             <div className="mt-12 grid gap-6 md:grid-cols-3">
-              {data.map((post) => (
+              {posts.map((post) => (
                 <BlogCard key={post.id} post={post} />
               ))}
             </div>

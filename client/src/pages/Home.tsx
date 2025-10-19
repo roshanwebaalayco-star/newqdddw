@@ -284,7 +284,7 @@ export default function Home() {
         title={data.hero.title}
         subtitle={data.hero.subtitle}
         ctaText="Schedule a consultation"
-        ctaLink="/contact"
+        ctaLink="/contact#schedule"
         secondaryCtaText="Explore our services"
         secondaryCtaLink="/services"
         backgroundImage={data.hero.backgroundImage}
@@ -319,7 +319,7 @@ export default function Home() {
                       See service playbooks
                     </Button>
                   </Link>
-                  <Link href="/contact">
+                  <Link href="/contact#schedule">
                     <Button className="rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary px-6 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-white">
                       Schedule a consultation
                     </Button>
@@ -430,7 +430,7 @@ export default function Home() {
                       <p className="text-white/80">{step.description}</p>
                     </div>
                   </div>
-                  <Link href="/contact">
+                  <Link href="/contact#schedule">
                     <Button variant="outline" className="self-start rounded-full border-white/30 bg-white/10 text-white/85 hover:text-white">
                       Plan this phase together
                     </Button>
@@ -527,7 +527,7 @@ export default function Home() {
                   </p>
                 </div>
                 <div className="space-y-4">
-                  <Link href="/contact">
+                  <Link href="/contact#schedule">
                     <Button
                       size="lg"
                       className="w-full rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary px-10 py-6 text-xs font-semibold uppercase tracking-[0.3em] text-white"

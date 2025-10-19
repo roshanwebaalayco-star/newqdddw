@@ -223,7 +223,7 @@ export default function Services() {
         title="From site strategy to day-one sales, we orchestrate every detail"
         subtitle="Our multidisciplinary operators plug into your vision, building the roadmap, partnerships, and systems to bring your concept to life."
         ctaText="Schedule a consultation"
-        ctaLink="/contact"
+        ctaLink="/contact#schedule"
         secondaryCtaText="See case studies"
         secondaryCtaLink="/blog"
         backgroundImage={servicesImage}
@@ -254,7 +254,7 @@ export default function Services() {
                         </div>
                         <div className="space-y-3">
                           <h3 className="font-heading text-2xl">{service.title}</h3>
-                          <p className="text-white/80">{service.summary}</p>
+                          <p className="leading-relaxed text-white/90">{service.summary}</p>
                         </div>
                       </div>
                       <Link href={service.cta.href}>
@@ -267,8 +267,8 @@ export default function Services() {
 
                     <div className="grid gap-6 lg:grid-cols-3">
                       <div className="space-y-4">
-                        <p className="text-xs uppercase tracking-[0.35em] text-white/60">Who it’s for</p>
-                        <ul className="space-y-3 text-white/80">
+                        <p className="text-xs uppercase tracking-[0.35em] text-white/70">Who it’s for</p>
+                        <ul className="space-y-3 text-white/90">
                           {service.who.map((item) => (
                             <li key={item} className="flex items-start gap-3">
                               <Check className="mt-1 h-4 w-4 text-primary" />
@@ -278,8 +278,8 @@ export default function Services() {
                         </ul>
                       </div>
                       <div className="space-y-4">
-                        <p className="text-xs uppercase tracking-[0.35em] text-white/60">What’s included</p>
-                        <ul className="space-y-3 text-white/80">
+                        <p className="text-xs uppercase tracking-[0.35em] text-white/70">What’s included</p>
+                        <ul className="space-y-3 text-white/90">
                           {service.deliverables.map((deliverable) => (
                             <li key={deliverable} className="flex items-start gap-3">
                               <Check className="mt-1 h-4 w-4 text-primary" />
@@ -289,38 +289,38 @@ export default function Services() {
                         </ul>
                       </div>
                       <div className="space-y-4">
-                        <p className="text-xs uppercase tracking-[0.35em] text-white/60">Process & timeline</p>
+                        <p className="text-xs uppercase tracking-[0.35em] text-white/70">Process & timeline</p>
                         <ul className="space-y-3">
                           {service.process.map((phase) => (
-                            <li key={phase.phase} className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                              <div className="flex items-center justify-between text-xs uppercase tracking-[0.3em] text-white/55">
+                            <li key={phase.phase} className="rounded-2xl border border-white/12 bg-white/10 p-4">
+                              <div className="flex items-center justify-between text-xs uppercase tracking-[0.3em] text-white/65">
                                 <span>{phase.phase}</span>
-                                <span className="inline-flex items-center gap-1 text-white/60">
+                                <span className="inline-flex items-center gap-1 text-white/70">
                                   <Clock className="h-3.5 w-3.5" />
                                   {phase.duration}
                                 </span>
                               </div>
-                              <p className="mt-3 text-sm text-white/80">{phase.detail}</p>
+                              <p className="mt-3 text-sm leading-relaxed text-white/85">{phase.detail}</p>
                             </li>
                           ))}
                         </ul>
                       </div>
                     </div>
 
-                    <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
-                      <p className="text-xs uppercase tracking-[0.35em] text-white/60">Case snapshot</p>
+                    <div className="rounded-2xl border border-white/10 bg-white/10 p-6">
+                      <p className="text-xs uppercase tracking-[0.35em] text-white/70">Case snapshot</p>
                       <div className="mt-4 grid gap-4 md:grid-cols-3">
                         <div>
                           <p className="text-sm font-semibold text-white">Problem</p>
-                          <p className="mt-2 text-sm text-white/80">{service.caseStudy.problem}</p>
+                          <p className="mt-2 text-sm leading-relaxed text-white/90">{service.caseStudy.problem}</p>
                         </div>
                         <div>
                           <p className="text-sm font-semibold text-white">Plan</p>
-                          <p className="mt-2 text-sm text-white/80">{service.caseStudy.plan}</p>
+                          <p className="mt-2 text-sm leading-relaxed text-white/90">{service.caseStudy.plan}</p>
                         </div>
                         <div>
                           <p className="text-sm font-semibold text-white">Outcome</p>
-                          <p className="mt-2 text-sm text-white/80">{service.caseStudy.outcome}</p>
+                          <p className="mt-2 text-sm leading-relaxed text-white/90">{service.caseStudy.outcome}</p>
                         </div>
                       </div>
                     </div>
@@ -336,21 +336,21 @@ export default function Services() {
         <section className="py-16">
           <div className="container mx-auto max-w-4xl px-4">
             <CardGlass className="p-10 text-white">
-              <p className="text-xs uppercase tracking-[0.35em] text-white/60">Add-ons</p>
+              <p className="text-xs uppercase tracking-[0.35em] text-white/70">Add-ons</p>
               <h2 className="mt-4 font-heading text-3xl">Extend your engagement</h2>
-              <p className="mt-3 text-white/75">
+              <p className="mt-3 text-white/85">
                 Bolt on modular support to keep momentum after opening or accelerate multi-unit rollouts.
               </p>
-              <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+              <ul className="mt-6 grid gap-3 sm:grid-cols-2 text-white/90">
                 {addons.map((addon) => (
-                  <li key={addon} className="flex items-start gap-3 text-white/80">
+                  <li key={addon} className="flex items-start gap-3">
                     <Check className="mt-1 h-4 w-4 text-primary" />
                     <span>{addon}</span>
                   </li>
                 ))}
               </ul>
               <div className="mt-6 flex flex-wrap gap-3">
-                <Link href="/contact">
+                <Link href="/contact#schedule">
                   <Button className="rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary px-6 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-white">
                     Schedule a consultation
                   </Button>
@@ -375,12 +375,12 @@ export default function Services() {
                 <div className="space-y-4">
                   <p className="text-xs uppercase tracking-[0.35em] text-white/60">Let’s architect it together</p>
                   <h3 className="font-heading text-3xl sm:text-4xl">Ready to scope your launch?</h3>
-                  <p className="max-w-xl text-base text-white/75 sm:text-lg">
+                  <p className="max-w-xl text-base text-white/85 sm:text-lg">
                     Share your concept and target timeline. We’ll assemble the right specialists, map the milestones, and provide a transparent investment profile.
                   </p>
                 </div>
                 <div className="space-y-4">
-                  <Link href="/contact">
+                  <Link href="/contact#schedule">
                     <Button
                       size="lg"
                       className="w-full rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary px-10 py-6 text-xs font-semibold uppercase tracking-[0.3em] text-white"

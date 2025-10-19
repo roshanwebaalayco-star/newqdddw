@@ -122,8 +122,12 @@ export default function Footer() {
                   </a>
                 </div>
               </div>
-              <Link href="/contact">
-                <Button className="w-full rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary py-3 text-xs font-semibold uppercase tracking-[0.3em] text-white focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#141f36]" data-testid="button-footer-cta">
+              <Link href="/contact#schedule">
+                <Button
+                  className="w-full whitespace-nowrap rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary py-3 text-xs font-semibold uppercase tracking-[0.3em] text-white focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#141f36]"
+                  data-testid="button-footer-cta"
+                  data-analytics="cta-schedule"
+                >
                   Schedule a consultation
                 </Button>
               </Link>

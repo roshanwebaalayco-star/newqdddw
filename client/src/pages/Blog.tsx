@@ -77,7 +77,7 @@ export default function Blog() {
               <RefreshCw className="h-4 w-4" />
               Retry
             </Button>
-            <Link href="/contact">
+            <Link href="/contact#schedule">
               <Button variant="outline" className="rounded-full border-white/30 bg-white/10 text-white/80 hover:text-white">
                 Schedule a consultation
               </Button>
@@ -119,7 +119,7 @@ export default function Blog() {
         title="Insights for your entrepreneurial journey"
         subtitle="From location strategy to post-launch growth, explore playbooks and founder stories to inform your next move."
         ctaText="Schedule a consultation"
-        ctaLink="/contact"
+        ctaLink="/contact#schedule"
         secondaryCtaText="Explore our services"
         secondaryCtaLink="/services"
         backgroundImage={blogHeroImage}
@@ -192,7 +192,7 @@ export default function Blog() {
                   No posts yet in this category. Browse all insights or book a consultation for tailored recommendations.
                 </p>
                 <div className="mt-6 flex justify-center gap-3">
-                  <Link href="/contact">
+                  <Link href="/contact#schedule">
                     <Button className="rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary px-6 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-white">
                       Schedule a consultation
                     </Button>
@@ -270,7 +270,7 @@ export default function Blog() {
                   <p className="text-white/75">
                     Subscribe for launch checklists, vendor scorecards, and exclusive invites to our operator roundtables.
                   </p>
-                  <Link href="/contact">
+                  <Link href="/contact#schedule">
                     <Button variant="outline" className="rounded-full border-white/30 bg-white/10 text-white/80 hover:text-white">
                       Book a content briefing
                     </Button>

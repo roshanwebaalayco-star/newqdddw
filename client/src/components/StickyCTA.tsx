@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Link } from "wouter";
 import { X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { SchedulerModal } from "@/components/SchedulerModal";
 
 export default function StickyCTA() {
   const [isVisible, setIsVisible] = useState(false);
@@ -47,11 +47,11 @@ export default function StickyCTA() {
                 </p>
               </div>
               <div className="flex items-center gap-2">
-                <Link href="/contact">
-                  <Button size="lg" data-testid="button-sticky-cta">
-                    Get Started
-                  </Button>
-                </Link>
+                <SchedulerModal
+                  triggerLabel="Schedule a consultation"
+                  buttonProps={{ size: "lg" }}
+                  analyticsId="cta-schedule-sticky"
+                />
                 <Button
                   variant="ghost"
                   size="icon"

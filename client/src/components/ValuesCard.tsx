@@ -25,14 +25,14 @@ export default function ValuesCard({ values }: ValuesCardProps) {
   return (
     <section className="py-12 sm:py-16 lg:py-20">
       <div className="container mx-auto px-4 max-w-7xl">
-        <div className="text-center mb-8 sm:mb-12 text-white">
+        <div className="mb-8 text-center text-white sm:mb-12">
           <Badge className="mb-3 sm:mb-4 border border-white/25 bg-white/10 text-xs sm:text-sm uppercase tracking-[0.35em] text-white/70">
             Our Values
           </Badge>
           <h2 className="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl mb-3 sm:mb-4 px-4">
             The values that drive us
           </h2>
-          <p className="text-white/75 text-sm sm:text-base lg:text-lg max-w-2xl mx-auto px-4">
+          <p className="mx-auto max-w-2xl px-4 text-sm leading-relaxed text-white/85 sm:text-base lg:text-lg">
             Our commitment to excellence is built on these core principles
           </p>
         </div>
@@ -44,19 +44,19 @@ export default function ValuesCard({ values }: ValuesCardProps) {
             return (
               <Card
                 key={index}
-                className="card-glass border border-white/12 bg-white/10 hover:-translate-y-1 transition-all duration-300 group"
+                className="card-glass border border-white/12 bg-white/10 shadow-[0_20px_50px_-35px_rgba(0,0,0,0.7)] transition-all duration-300 hover:-translate-y-1 group"
                 data-testid={`card-value-${index}`}
               >
                 <CardHeader className="p-5 sm:p-6">
                   <div className={`flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl ${color.bg} mb-3 sm:mb-4 transition-transform group-hover:scale-110 group-hover:rotate-6 duration-300`}>
                     <Icon className={`h-6 w-6 sm:h-7 sm:w-7 ${color.icon}`} />
                   </div>
-                  <CardTitle className="font-heading text-lg sm:text-xl text-white" data-testid={`text-value-title-${index}`}>
+                  <CardTitle className="font-heading text-lg text-white sm:text-xl" data-testid={`text-value-title-${index}`}>
                     {value.title}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="p-5 sm:p-6 pt-0">
-                  <p className="text-white/80 text-sm sm:text-base leading-relaxed" data-testid={`text-value-description-${index}`}>
+                  <p className="text-sm leading-relaxed text-white/90 sm:text-base" data-testid={`text-value-description-${index}`}>
                     {value.description}
                   </p>
                 </CardContent>

@@ -102,20 +102,20 @@ export default function HeroSection({
 
           {backgroundImage && (
             <div className="relative h-full">
-              <div className="group relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/5 shadow-[0_32px_90px_-45px_rgba(0,0,0,0.85)]">
+              <div className="group relative aspect-[4/3] overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/5 shadow-[0_32px_90px_-45px_rgba(0,0,0,0.85)]">
                 <img
                   src={backgroundImage}
                   alt="Retail environment inspiration"
-                  className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
+                  className="h-full w-full object-cover object-center transition duration-700 group-hover:scale-[1.04]"
                 />
                 {overlay && <div className="absolute inset-0 bg-gradient-to-br from-[#0b0d16]/40 via-transparent to-[#0b0d16]/65" />}
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.25),_transparent_55%)]" />
-              </div>
-              <div className="absolute -bottom-10 left-8 w-[calc(100%-4rem)] rounded-3xl border border-white/10 bg-[#111526]/95 p-6 text-white shadow-[0_24px_70px_-35px_rgba(0,0,0,0.85)]">
-                <p className="text-xs uppercase tracking-[0.4em] text-white/40">Signature approach</p>
-                <p className="mt-2 text-base font-medium text-white/85">
-                  Multi-disciplinary teams orchestrating strategy, architecture, and operations in lockstep.
-                </p>
+                <div className="absolute bottom-5 right-5 flex max-w-[min(320px,85%)] flex-col gap-2 rounded-2xl border border-white/15 bg-[#111526]/95 p-5 text-white shadow-[0_24px_70px_-35px_rgba(0,0,0,0.85)]">
+                  <p className="text-[11px] uppercase tracking-[0.35em] text-white/45">Signature approach</p>
+                  <p className="text-sm text-white/85">
+                    Multi-disciplinary teams orchestrating strategy, architecture, and operations in lockstep.
+                  </p>
+                </div>
               </div>
             </div>
           )}
