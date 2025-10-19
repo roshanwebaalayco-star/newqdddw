@@ -128,11 +128,11 @@ All text meets WCAG AA contrast requirements:
 - ✅ Logo has descriptive alt: "CLC Retail Group Logo"
 - ✅ Hero images described in context (not decorative)
 
-**Example:**
+**Example:** Referencing the shared logo asset keeps the markup consistent across frameworks.
 ```tsx
-<img 
+<img
   src="/logo.svg"
-  alt="CLC Retail Group Logo" 
+  alt="CLC Retail Group Logo"
   className="h-12 w-auto"
 />
 

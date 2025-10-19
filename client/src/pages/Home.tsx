@@ -1,18 +1,18 @@
 import { useMemo } from "react";
 import { Link } from "wouter";
+import AnimatedSection from "@/components/AnimatedSection";
+import { CardGlass } from "@/components/CardGlass";
 import HeroSection from "@/components/HeroSection";
-import TrustGrid from "@/components/TrustGrid";
+import { LatestInsights } from "@/components/LatestInsights";
+import LoadingScreen from "@/components/LoadingScreen";
+import MarketingLayout from "@/components/layouts/MarketingLayout";
 import ServicesPreview from "@/components/ServicesPreview";
 import TestimonialsSlider from "@/components/TestimonialsSlider";
-import AnimatedSection from "@/components/AnimatedSection";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import MarketingLayout from "@/components/layouts/MarketingLayout";
-import LoadingScreen from "@/components/LoadingScreen";
-import { useHomeContent } from "@/hooks/useHomeContent";
+import TrustGrid from "@/components/TrustGrid";
 import { Seo } from "@/components/Seo";
-import { CardGlass } from "@/components/CardGlass";
-import { LatestInsights } from "@/components/LatestInsights";
+import { useHomeContent } from "@/hooks/useHomeContent";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   UserCheck,
   Building2,
