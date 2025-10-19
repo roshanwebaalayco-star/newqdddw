@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -11,29 +11,24 @@ export interface MobileNavProps {
 }
 
 export function MobileNav({ open, onClose, items, currentPath }: MobileNavProps) {
+  const scrollPositionRef = useRef(0);
+
   useEffect(() => {
     if (open) {
+      scrollPositionRef.current = window.scrollY;
       document.body.style.overflow = "hidden";
       document.body.style.position = "fixed";
       document.body.style.width = "100%";
-      document.body.style.top = `-${window.scrollY}px`;
-    } else {
-      const scrollY = document.body.style.top;
-      document.body.style.overflow = "";
-      document.body.style.position = "";
-      document.body.style.width = "";
-      document.body.style.top = "";
-      if (scrollY) {
-        window.scrollTo(0, parseInt(scrollY || "0") * -1);
-      }
-    }
+      document.body.style.top = `-${scrollPositionRef.current}px`;
 
-    return () => {
-      document.body.style.overflow = "";
-      document.body.style.position = "";
-      document.body.style.width = "";
-      document.body.style.top = "";
-    };
+      return () => {
+        document.body.style.overflow = "";
+        document.body.style.position = "";
+        document.body.style.width = "";
+        document.body.style.top = "";
+        window.scrollTo(0, scrollPositionRef.current);
+      };
+    }
   }, [open]);
 
   useEffect(() => {
