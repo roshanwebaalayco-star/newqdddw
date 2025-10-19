@@ -31,7 +31,7 @@ export default function Logo({
     >
       <div
         className={cn(
-          "relative isolate aspect-square overflow-hidden rounded-3xl border border-white/25 bg-[radial-gradient(circle_at_top,rgba(15,23,42,0.9),rgba(8,11,18,0.85))] shadow-[0_22px_40px_-20px_rgba(12,12,18,0.7)] transition-transform duration-300 group-hover:scale-[1.03]",
+          "relative aspect-square overflow-hidden rounded-3xl bg-black/60 shadow-[0_22px_40px_-20px_rgba(12,12,18,0.7)] transition-transform duration-300 group-hover:scale-[1.03]",
           SIZE_MAP[size ?? "md"],
         )}
         data-testid="logo-mark"
@@ -42,8 +42,6 @@ export default function Logo({
           className="h-full w-full object-contain"
           loading="lazy"
         />
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,0.35),rgba(255,255,255,0)_60%),linear-gradient(160deg,rgba(148,163,255,0.18),rgba(15,23,42,0.5))] opacity-80" />
-        <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/20" />
       </div>
       {showText && (
         <span
