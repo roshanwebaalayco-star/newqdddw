@@ -9,6 +9,8 @@ export default {
         lg: ".5625rem", /* 9px */
         md: ".375rem", /* 6px */
         sm: ".1875rem", /* 3px */
+        xl: "1.25rem",
+        "2xl": "1.5rem",
       },
       colors: {
         background: "hsl(var(--background) / <alpha-value>)",
@@ -75,9 +77,9 @@ export default {
           border: "var(--sidebar-accent-border)"
         },
         clc: {
-          bg: "var(--color-clc-bg)",
-          fg: "var(--color-clc-fg)",
-          accent: "var(--color-clc-accent)",
+          bg: "#2C2E3A",
+          fg: "#F5F5F5",
+          accent: "#B08A7C",
         },
         status: {
           online: "rgb(34 197 94)",
