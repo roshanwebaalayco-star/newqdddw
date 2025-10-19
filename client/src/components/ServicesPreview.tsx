@@ -30,7 +30,7 @@ export default function ServicesPreview({ services }: ServicesPreviewProps) {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-2">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
@@ -39,10 +39,10 @@ export default function ServicesPreview({ services }: ServicesPreviewProps) {
                 className="group relative overflow-hidden border-none bg-transparent"
                 data-testid={`card-service-${index}`}
               >
-                <div className="relative h-full rounded-[1.75rem] border border-white/15 bg-gradient-to-br from-[#1f2b46]/95 via-[#17233a]/95 to-[#121a2d]/95 p-[1px] shadow-[0_40px_110px_-70px_rgba(15,23,42,1)]">
-                  <div className="absolute inset-0 rounded-[1.75rem] bg-[radial-gradient(circle_at_20%_15%,rgba(120,131,255,0.15),transparent_60%)] opacity-80 transition duration-500 group-hover:opacity-100" />
-                  <div className="relative flex h-full flex-col rounded-[1.75rem] bg-gradient-to-br from-[#141b2e]/96 via-[#151f36]/96 to-[#19233d]/96 p-8 text-slate-100">
-                    <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/20 bg-gradient-to-br from-primary/70 via-primary/50 to-secondary/70 text-white shadow-[0_18px_45px_-30px_rgba(120,131,255,0.65)]">
+                <div className="relative h-full rounded-[1.75rem] border border-white/12 bg-white/10 p-[1px] shadow-[0_50px_120px_-70px_rgba(10,14,26,1)]">
+                  <div className="absolute inset-0 rounded-[1.75rem] bg-[radial-gradient(circle_at_20%_15%,rgba(176,138,124,0.18),transparent_60%)] opacity-80 transition duration-500 group-hover:opacity-100" />
+                  <div className="relative flex h-full flex-col rounded-[1.75rem] bg-[#10172b]/95 p-8 text-white/90">
+                    <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/30 bg-gradient-to-br from-primary/80 via-primary/60 to-secondary/70 text-white shadow-[0_18px_45px_-30px_rgba(176,138,124,0.65)]">
                       <Icon className="h-6 w-6" />
                     </div>
                     <CardHeader className="p-0">
@@ -50,7 +50,7 @@ export default function ServicesPreview({ services }: ServicesPreviewProps) {
                         {service.title}
                       </CardTitle>
                     </CardHeader>
-                    <CardContent className="mt-4 flex-1 p-0 text-sm leading-relaxed text-slate-300 sm:text-base" data-testid={`text-service-description-${index}`}>
+                    <CardContent className="mt-4 flex-1 p-0 text-sm leading-relaxed text-white/85 sm:text-base" data-testid={`text-service-description-${index}`}>
                       {service.description}
                     </CardContent>
                     <div className="mt-6">

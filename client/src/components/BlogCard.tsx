@@ -10,7 +10,7 @@ interface BlogCardProps {
 
 export default function BlogCard({ post }: BlogCardProps) {
   return (
-    <Link href={`/blog/${post.slug}`}>
+    <Link href={`/blog/${post.slug}`} aria-label={`Read ${post.title}`}>
       <Card
         className="group flex h-full flex-col overflow-hidden border border-white/10 bg-[#0f1222]/80 shadow-[0_28px_90px_-60px_rgba(0,0,0,0.9)] transition duration-500 hover:-translate-y-1 hover:border-white/20"
         data-testid={`card-blog-${post.id}`}
@@ -19,7 +19,8 @@ export default function BlogCard({ post }: BlogCardProps) {
           <img
             src={post.image}
             alt={post.title}
-            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            loading="lazy"
+            className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#05060c]/90 via-transparent to-transparent" />
           <div className="absolute bottom-4 left-4 flex items-center gap-2">

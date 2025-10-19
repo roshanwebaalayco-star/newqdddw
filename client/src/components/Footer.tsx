@@ -46,7 +46,7 @@ export default function Footer() {
                   <li key={link.path}>
                     <Link href={link.path}>
                       <span
-                        className="inline-flex items-center gap-2 transition hover:text-white"
+                        className="inline-flex items-center gap-2 rounded-full px-2 py-1 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#10172b]"
                         data-testid={`link-footer-${link.name.toLowerCase()}`}
                       >
                         <span className="h-px w-4 bg-white/40" />
@@ -66,7 +66,7 @@ export default function Footer() {
                       <a
                         key={social.name}
                         href={social.url}
-                        className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-slate-200 transition hover:border-white/40 hover:text-white"
+                        className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-slate-200 transition hover:border-white/40 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#10172b]"
                         aria-label={social.name}
                         data-testid={`link-social-${social.name.toLowerCase()}`}
                       >
@@ -86,23 +86,44 @@ export default function Footer() {
               <div className="space-y-4 text-sm text-slate-200">
                 <div className="flex items-center gap-3">
                   <Phone className="h-4 w-4 text-white" />
-                  <span data-testid="text-phone">+1 (555) 123-4567</span>
+                  <a
+                    href="tel:+15551234567"
+                    aria-label="Call CLC Retail Group"
+                    className="transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#141f36]"
+                    data-testid="text-phone"
+                  >
+                    +1 (555) 123-4567
+                  </a>
                 </div>
                 <div className="flex items-center gap-3">
                   <Mail className="h-4 w-4 text-white" />
-                  <span data-testid="text-email">studio@clcretailgroup.com</span>
+                  <a
+                    href="mailto:studio@clcretailgroup.com"
+                    aria-label="Email CLC Retail Group"
+                    className="transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#141f36]"
+                    data-testid="text-email"
+                  >
+                    studio@clcretailgroup.com
+                  </a>
                 </div>
                 <div className="flex items-start gap-3">
                   <MapPin className="mt-1 h-4 w-4 text-white" />
-                  <span data-testid="text-address">
+                  <a
+                    href="https://maps.google.com/?q=123+Business+Ave,+Suite+100,+New+York,+NY+10001"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#141f36]"
+                    aria-label="Open map to 123 Business Ave, Suite 100, New York, NY"
+                    data-testid="text-address"
+                  >
                     123 Business Ave, Suite 100
                     <br />
                     New York, NY 10001
-                  </span>
+                  </a>
                 </div>
               </div>
               <Link href="/contact">
-                <Button className="w-full rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary py-3 text-xs font-semibold uppercase tracking-[0.3em] text-white" data-testid="button-footer-cta">
+                <Button className="w-full rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary py-3 text-xs font-semibold uppercase tracking-[0.3em] text-white focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#141f36]" data-testid="button-footer-cta">
                   Schedule a consultation
                 </Button>
               </Link>

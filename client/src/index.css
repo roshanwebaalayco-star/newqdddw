@@ -18,7 +18,13 @@
   --color-clc-bg: #2C2E3A;
   --color-clc-fg: #F5F5F5;
   --color-clc-accent: #B08A7C;
+  --color-bg: #2C2E3A;
+  --color-fg: #F5F5F5;
+  --color-accent: #B08A7C;
+  --glass: rgba(255, 255, 255, 0.10);
+  --glass-border: rgba(255, 255, 255, 0.12);
   --radius-xl: 1.25rem;
+  --radius-2xl: 1.5rem;
   --shadow-ambient: 0 4px 24px -4px rgba(44, 46, 58, 0.12);
 
   --background: 0 0% 98%;
@@ -88,10 +94,6 @@
   --tracking-normal: 0em;
   --spacing: 0.25rem;
 
-  /* Glassmorphism effects */
-  --glass-bg: rgba(255, 255, 255, 0.2);
-  --glass-border: rgba(255, 255, 255, 0.3);
-
   /* Automatically computed borders - intensity can be controlled by the user by the --opaque-button-border-intensity setting */
 
   /* Fallback for older browsers */
@@ -123,6 +125,14 @@
   --destructive-border: hsl(from hsl(var(--destructive)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
 }
 
+.card-glass {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
 .dark {
   --button-outline: rgba(255,255,255, .10);
   --badge-outline: rgba(255,255,255, .05);
@@ -137,6 +147,11 @@
   --color-clc-bg: #2C2E3A;
   --color-clc-fg: #F5F5F5;
   --color-clc-accent: #B08A7C;
+  --color-bg: #2C2E3A;
+  --color-fg: #F5F5F5;
+  --color-accent: #B08A7C;
+  --glass: rgba(255, 255, 255, 0.10);
+  --glass-border: rgba(255, 255, 255, 0.12);
   --shadow-ambient: 0 4px 24px -4px rgba(0, 0, 0, 0.4);
 
   --background: 237 18% 18%;

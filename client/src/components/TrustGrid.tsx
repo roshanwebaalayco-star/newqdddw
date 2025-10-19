@@ -28,7 +28,7 @@ export default function TrustGrid({ items }: TrustGridProps) {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
           {items.map((item, index) => {
             const Icon = item.icon;
             return (
@@ -37,21 +37,21 @@ export default function TrustGrid({ items }: TrustGridProps) {
                 className="group relative overflow-hidden border-none bg-transparent shadow-none"
                 data-testid={`card-trust-${index}`}
               >
-                <div className="relative h-full rounded-[1.75rem] border border-white/15 bg-gradient-to-br from-[#202a48]/95 via-[#1a2440]/95 to-[#141c33]/95 p-[1px] shadow-[0_38px_120px_-70px_rgba(15,23,42,1)]">
-                  <div className="absolute inset-0 rounded-[1.75rem] bg-[radial-gradient(circle_at_18%_20%,rgba(176,138,124,0.22),transparent_60%)] opacity-80 transition duration-500 group-hover:opacity-100" />
-                  <CardContent className="relative flex h-full flex-col gap-5 rounded-[1.75rem] bg-gradient-to-br from-[#151d34]/96 via-[#162039]/96 to-[#1a2542]/96 p-7 text-left text-slate-100">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/25 bg-gradient-to-br from-secondary/65 via-secondary/45 to-primary/70 text-white shadow-[0_20px_48px_-32px_rgba(120,131,255,0.6)]">
+                <div className="relative h-full rounded-[1.75rem] border border-white/12 bg-white/10 p-[1px] shadow-[0_42px_120px_-75px_rgba(8,12,24,1)]">
+                  <div className="absolute inset-0 rounded-[1.75rem] bg-[radial-gradient(circle_at_18%_20%,rgba(176,138,124,0.18),transparent_60%)] opacity-80 transition duration-500 group-hover:opacity-100" />
+                  <CardContent className="relative flex h-full flex-col gap-5 rounded-[1.75rem] bg-[#0f1629]/95 p-7 text-left text-white/90">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/30 bg-gradient-to-br from-secondary/65 via-secondary/45 to-primary/70 text-white shadow-[0_20px_48px_-32px_rgba(176,138,124,0.6)]">
                       <Icon className="h-6 w-6" />
                     </div>
                     <div className="space-y-3">
                       <h3 className="font-heading text-xl font-semibold text-white" data-testid={`text-trust-title-${index}`}>
                         {item.title}
                       </h3>
-                      <p className="text-sm leading-relaxed text-slate-300 sm:text-base" data-testid={`text-trust-description-${index}`}>
+                      <p className="text-sm leading-relaxed text-white/80 sm:text-base" data-testid={`text-trust-description-${index}`}>
                         {item.description}
                       </p>
                     </div>
-                    <span className="mt-auto inline-flex items-center text-xs uppercase tracking-[0.32em] text-slate-300">
+                    <span className="mt-auto inline-flex items-center text-xs uppercase tracking-[0.32em] text-white/60">
                       Proven methodology
                     </span>
                   </CardContent>

@@ -3,6 +3,7 @@ import { createServer, type Server } from "http";
 import { contactFormSchema, newsletterSchema, type ContactFormInput, type NewsletterInput } from "@shared/forms";
 import { homeContent } from "./content/home";
 import { blogPosts } from "./content/blog";
+import { getLatestPosts } from "./lib/posts";
 
 const contactSubmissions: Array<ContactFormInput & { submittedAt: string }> = [];
 const newsletterSubscribers: Array<NewsletterInput & { subscribedAt: string }> = [];
@@ -28,8 +29,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.json(homeContent);
   });
 
-  app.get("/api/blog/posts", (_req: Request, res: Response) => {
-    res.json(blogPosts);
+  app.get("/api/blog/posts", async (_req: Request, res: Response) => {
+    const posts = await getLatestPosts(12);
+    if (posts.length === 0) {
+      return res.json(blogPosts);
+    }
+
+    res.set("Cache-Control", "public, max-age=300");
+    res.json(posts);
+  });
+
+  app.get("/api/posts", async (_req: Request, res: Response) => {
+    const posts = await getLatestPosts(3);
+    res.set("Cache-Control", "public, max-age=300");
+    res.json(posts);
   });
 
   app.post("/api/contact", (req: Request, res: Response) => {

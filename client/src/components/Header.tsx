@@ -40,9 +40,13 @@ export default function Header() {
           <span>Global delivery • Concept to launch</span>
         </div>
         <div className="flex items-center justify-between gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-3 backdrop-blur-lg lg:px-6">
-          <Link href="/" data-testid="link-home" className="shrink-0">
-            <Logo size="sm" />
-          </Link>
+            <Link
+              href="/"
+              data-testid="link-home"
+              className="shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#05070f]"
+            >
+              <Logo size="sm" />
+            </Link>
 
           <nav
             className="hidden items-center gap-1 rounded-full border border-white/5 bg-white/5 px-2 py-1 text-sm font-medium uppercase tracking-[0.12em] text-white/70 lg:flex"
@@ -54,7 +58,7 @@ export default function Header() {
                 <Button
                   variant="ghost"
                   className={cn(
-                    "rounded-full px-4 py-2 text-xs font-semibold text-white/70 transition-all hover:bg-white/10 hover:text-white",
+                    "rounded-full px-4 py-2 text-xs font-semibold text-white/70 transition-all hover:bg-white/10 hover:text-white focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent",
                     location === item.path &&
                       "bg-gradient-to-r from-primary/80 to-secondary/70 text-white shadow-[0_8px_24px_-12px_rgba(176,138,124,0.8)]",
                   )}
@@ -69,25 +73,30 @@ export default function Header() {
           <div className="flex items-center gap-2">
             <div className="hidden flex-col text-right text-xs leading-tight text-white/60 md:flex">
               <span className="uppercase tracking-[0.3em] text-white/40">Hotline</span>
-              <a href="tel:+15551234567" className="font-heading text-sm text-white transition hover:text-primary" data-testid="header-phone">
+              <a
+                href="tel:+15551234567"
+                className="font-heading text-sm text-white transition hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#05070f]"
+                data-testid="header-phone"
+                aria-label="Call CLC Retail Group"
+              >
                 +1 (555) 123-4567
               </a>
             </div>
             <Link href="/contact">
               <Button
                 variant="default"
-                className="hidden items-center gap-2 rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary px-5 py-2 text-sm font-semibold uppercase tracking-[0.18em] text-white shadow-[0_16px_45px_-25px_rgba(176,138,124,1)] md:inline-flex"
+                className="hidden items-center gap-2 rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary px-5 py-2 text-sm font-semibold uppercase tracking-[0.18em] text-white shadow-[0_16px_45px_-25px_rgba(176,138,124,1)] md:inline-flex focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
                 data-testid="button-cta-header"
               >
                 <PhoneCall className="h-4 w-4" />
-                Start a project
+                Schedule a consultation
               </Button>
             </Link>
 
             <Button
               variant="ghost"
               size="icon"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white md:hidden"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#05070f] md:hidden"
               onClick={() => setMobileMenuOpen((prev) => !prev)}
               aria-label="Toggle mobile menu"
               data-testid="button-mobile-menu"
@@ -108,7 +117,7 @@ export default function Header() {
                 <Button
                   variant="ghost"
                   className={cn(
-                    "w-full justify-between rounded-2xl border border-transparent bg-white/5 px-4 py-3 text-left text-sm uppercase tracking-[0.18em] text-white/70",
+                    "w-full justify-between rounded-2xl border border-transparent bg-white/5 px-4 py-3 text-left text-sm uppercase tracking-[0.18em] text-white/70 focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1222]",
                     location === item.path && "border-white/20 bg-white/10 text-white",
                   )}
                   onClick={() => setMobileMenuOpen(false)}
@@ -121,10 +130,10 @@ export default function Header() {
             <Link href="/contact">
               <Button
                 variant="default"
-                className="w-full rounded-2xl bg-gradient-to-r from-primary via-primary/80 to-secondary py-3 uppercase tracking-[0.22em]"
+                className="w-full rounded-2xl bg-gradient-to-r from-primary via-primary/80 to-secondary py-3 uppercase tracking-[0.22em] focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1222]"
                 data-testid="button-cta-mobile"
               >
-                Start a project
+                Schedule a consultation
               </Button>
             </Link>
           </nav>
