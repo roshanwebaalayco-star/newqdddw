@@ -4,6 +4,7 @@ import ServicesPreview from "@/components/ServicesPreview";
 import TestimonialsSlider from "@/components/TestimonialsSlider";
 import AnimatedSection from "@/components/AnimatedSection";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
 import MarketingLayout from "@/components/layouts/MarketingLayout";
 import LoadingScreen from "@/components/LoadingScreen";
@@ -20,6 +21,7 @@ import {
   Sparkles,
   Rocket,
   ShieldCheck,
+  CheckCircle2,
 } from "lucide-react";
 import type { IconId } from "@shared/marketing";
 
@@ -37,6 +39,9 @@ const iconMap: Record<IconId, LucideIcon> = {
 
 export default function Home() {
   const { data, isLoading, isError, error, refetch } = useHomeContent();
+
+  const experienceImage =
+    "https://images.unsplash.com/photo-1521540216272-a50305cd4421?auto=format&fit=crop&w=2000&q=80";
 
   const trustItems = useMemo(
     () =>
@@ -99,6 +104,50 @@ export default function Home() {
       />
 
       <AnimatedSection>
+        <section className="py-16 lg:py-20">
+          <div className="container mx-auto max-w-6xl px-4">
+            <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+              <div className="space-y-6 text-white">
+                <Badge className="border border-white/20 bg-white/10 px-4 py-1 text-xs uppercase tracking-[0.35em] text-white/70">
+                  Studio signature
+                </Badge>
+                <h2 className="font-heading text-3xl font-semibold sm:text-4xl lg:text-5xl">
+                  Retail spaces engineered to perform day one
+                </h2>
+                <p className="text-base text-white/70 sm:text-lg">
+                  We choreograph a seamless journey from feasibility to footfall. Our specialists align data, design, procurement, and launch marketing so every opening hits targets.
+                </p>
+                <ul className="space-y-4 text-sm text-white/70 sm:text-base">
+                  {["Immersive concept labs & prototyping", "Global supplier network & build orchestration", "Launch playbooks with embedded performance analytics"].map((item) => (
+                    <li key={item} className="flex items-start gap-3">
+                      <CheckCircle2 className="mt-1 h-5 w-5 text-primary" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="relative">
+                <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 shadow-[0_35px_95px_-50px_rgba(0,0,0,0.85)]">
+                  <img
+                    src={experienceImage}
+                    alt="Design studio collaboration"
+                    className="h-full w-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#0b0d16]/40 via-transparent to-[#0b0d16]/70" />
+                  <div className="absolute bottom-8 left-8 right-8 rounded-2xl border border-white/10 bg-white/10 p-6 text-white backdrop-blur">
+                    <p className="text-xs uppercase tracking-[0.35em] text-white/60">Launch control</p>
+                    <p className="mt-2 text-sm text-white/80">
+                      Weekly sprints and dashboards ensure procurement, staffing, and go-live milestones land on time.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </AnimatedSection>
+
+      <AnimatedSection>
         <TrustGrid items={trustItems} />
       </AnimatedSection>
 
@@ -115,32 +164,35 @@ export default function Home() {
       <AnimatedSection delay={0.2}>
         <section className="py-20">
           <div className="container mx-auto max-w-5xl px-4">
-            <div className="relative overflow-hidden rounded-3xl border border-border/60 bg-gradient-to-br from-primary/90 to-secondary/80 p-10 text-white shadow-xl">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.3),_transparent)]" />
-              <div className="relative space-y-6">
-                <h3 className="font-heading text-3xl sm:text-4xl">
-                  Ready to architect your next retail win?
-                </h3>
-                <p className="max-w-2xl text-base sm:text-lg text-white/80">
-                  Schedule a strategy session to map your launch plan, explore location intelligence, and uncover quick wins that accelerate your first ninety days.
-                </p>
-                <div className="flex flex-col gap-3 sm:flex-row">
+            <div className="relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-[#0f1222]/95 p-12 text-white shadow-[0_38px_110px_-60px_rgba(0,0,0,0.9)]">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.18),transparent_70%)]" />
+              <div className="relative grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+                <div className="space-y-4">
+                  <p className="text-xs uppercase tracking-[0.35em] text-white/60">Let’s collaborate</p>
+                  <h3 className="font-heading text-3xl sm:text-4xl">
+                    Ready to architect your next retail win?
+                  </h3>
+                  <p className="max-w-xl text-base text-white/70 sm:text-lg">
+                    Partner with a team that treats every opening as a flagship moment. We’ll map your 90-day playbook and orchestrate every detail.
+                  </p>
+                </div>
+                <div className="space-y-4">
                   <Link href="/contact">
                     <Button
                       size="lg"
-                      className="rounded-full bg-white px-8 text-base font-semibold text-foreground shadow-lg"
+                      className="w-full rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary px-10 py-6 text-xs font-semibold uppercase tracking-[0.3em] text-white"
                       data-testid="button-cta-bottom"
                     >
-                      Connect with our team
+                      Book a strategy session
                     </Button>
                   </Link>
                   <Link href="/services">
                     <Button
                       size="lg"
                       variant="outline"
-                      className="rounded-full border-white/60 bg-white/10 px-8 text-base font-semibold text-white hover:bg-white/20"
+                      className="w-full rounded-full border border-white/30 bg-white/5 px-10 py-6 text-xs font-semibold uppercase tracking-[0.3em] text-white/80 hover:text-white"
                     >
-                      See how we work
+                      Explore our services
                     </Button>
                   </Link>
                 </div>

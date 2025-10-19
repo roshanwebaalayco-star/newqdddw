@@ -2,10 +2,10 @@ import { homeContentSchema } from "@shared/marketing";
 
 export const homeContent = homeContentSchema.parse({
   hero: {
-    eyebrow: "Retail Ventures, Elevated",
-    title: "Launch a modern storefront with seasoned operators at your side",
+    eyebrow: "Retail Architecture Studio",
+    title: "Craft iconic retail experiences built to perform",
     subtitle:
-      "CLC Retail Group blends data-backed site strategy, award-winning design, and on-call operators so you can open doors with confidence.",
+      "Data-led intelligence and multi-disciplinary delivery teams align every decision, so your flagship opens with momentum and scales with clarity.",
     ctaText: "Plan your launch call",
     ctaLink: "/contact",
     secondaryCtaText: "Explore our services",
@@ -15,14 +15,14 @@ export const homeContent = homeContentSchema.parse({
   },
   stats: [
     {
-      label: "Stores launched",
+      label: "Store launches",
       value: "520+",
-      description: "Retail concepts opened across 38 states",
+      description: "Concepts delivered across 38 global markets",
     },
     {
       label: "Average payback",
       value: "13 months",
-      description: "Median timeline for franchise investments",
+      description: "Median return to profitability after launch",
     },
     {
       label: "Partner NPS",
@@ -32,21 +32,21 @@ export const homeContent = homeContentSchema.parse({
   ],
   trust: [
     {
-      title: "Co-building mindset",
+      title: "Dedicated venture squads",
       description:
-        "We integrate with your team from day zero, aligning incentives and decisions so every milestone compounds.",
+        "Cross-functional teams embed within your organisation to orchestrate real estate, design, procurement, and launch marketing in sync.",
       icon: "handshake",
     },
     {
       title: "Operational clarity",
       description:
-        "Blueprints, checklists, and dashboards keep real estate, buildout, and launch plans accountable in real time.",
+        "Blueprints, timelines, and live dashboards track critical-path milestones so you always know what’s next.",
       icon: "lightbulb",
     },
     {
       title: "Supply chain confidence",
       description:
-        "Preferred supplier programs and automated replenishment workflows prevent stock-outs from day one.",
+        "Preferred supplier programmes and automated replenishment workflows keep day-one operations resilient.",
       icon: "package",
     },
   ],
@@ -54,23 +54,23 @@ export const homeContent = homeContentSchema.parse({
     {
       title: "Concept validation",
       description:
-        "Validate your retail thesis with consumer demand modeling, competitive scans, and profitability projections.",
+        "Rapid feasibility sprints test your thesis with demand modelling, category insight, and profitability projections.",
       icon: "sparkle",
     },
     {
       title: "Location intelligence",
       description:
-        "Blend mobility data, psychographics, and on-the-ground brokers to pinpoint high-conversion trade areas.",
+        "Blend mobility data, psychographics, and local broker networks to pinpoint high-conversion trade areas.",
       icon: "map-pin",
     },
     {
-      title: "Launch operations",
+      title: "Launch orchestration",
       description:
-        "From buildout to hiring playbooks, we orchestrate every launch task so you can focus on the brand experience.",
+        "From buildout to staffing playbooks, we choreograph every launch task so you can focus on brand experience.",
       icon: "rocket",
     },
     {
-      title: "Ongoing optimization",
+      title: "Ongoing optimisation",
       description:
         "Post-launch analytics, marketing acceleration, and vendor governance keep your store scaling sustainably.",
       icon: "shield",

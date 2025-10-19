@@ -45,18 +45,18 @@ export default function Newsletter() {
   return (
     <section className="py-20">
       <div className="container mx-auto max-w-4xl px-4">
-        <Card className="overflow-hidden border border-border/60 bg-gradient-to-br from-card/90 via-card/70 to-card/90 shadow-xl">
-          <CardContent className="relative p-10 sm:p-14">
-            <div className="pointer-events-none absolute -left-10 top-0 hidden h-40 w-40 rounded-full bg-primary/20 blur-3xl sm:block" />
-            <div className="pointer-events-none absolute -right-12 bottom-0 hidden h-48 w-48 rounded-full bg-secondary/20 blur-3xl sm:block" />
+        <Card className="overflow-hidden border border-white/10 bg-[#0f1222]/95 text-white shadow-[0_36px_110px_-60px_rgba(0,0,0,0.9)]">
+          <CardContent className="relative p-12 sm:p-16">
+            <div className="pointer-events-none absolute -left-24 top-0 hidden h-48 w-48 rounded-full bg-primary/25 blur-3xl sm:block" />
+            <div className="pointer-events-none absolute -right-24 bottom-0 hidden h-56 w-56 rounded-full bg-secondary/25 blur-3xl sm:block" />
 
-            <div className="relative mx-auto max-w-2xl space-y-6 text-center">
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-primary/40 bg-primary/10 text-primary">
+            <div className="relative mx-auto max-w-2xl space-y-8 text-center">
+              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white">
                 <Mail className="h-7 w-7" />
               </div>
-              <div className="space-y-3">
+              <div className="space-y-4">
                 <h2 className="font-heading text-3xl font-semibold sm:text-4xl">Stay ahead of every retail shift</h2>
-                <p className="text-base text-muted-foreground sm:text-lg">
+                <p className="text-base text-white/70 sm:text-lg">
                   Get curated intelligence on emerging concepts, market moves, and launch tactics from the CLC team every other Friday.
                 </p>
               </div>
@@ -77,6 +77,7 @@ export default function Newsletter() {
                             {...field}
                             disabled={isSubmitting}
                             data-testid="input-newsletter-email"
+                            className="border-white/30 bg-white/5 text-white placeholder:text-white/40"
                           />
                         </FormControl>
                         <FormMessage />
@@ -87,7 +88,7 @@ export default function Newsletter() {
                     type="submit"
                     size="lg"
                     disabled={isSubmitting}
-                    className="sm:w-auto"
+                    className="rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary px-10 py-6 text-xs font-semibold uppercase tracking-[0.3em] text-white sm:w-auto"
                     data-testid="button-newsletter-subscribe"
                   >
                     {isSubmitting ? (
@@ -102,8 +103,8 @@ export default function Newsletter() {
                 </form>
               </Form>
 
-              <p className="text-xs text-muted-foreground">
-                No spam — just actionable ideas and opportunities. Unsubscribe at any time.
+              <p className="text-xs uppercase tracking-[0.3em] text-white/40">
+                No spam — just actionable ideas and opportunities.
               </p>
             </div>
           </CardContent>

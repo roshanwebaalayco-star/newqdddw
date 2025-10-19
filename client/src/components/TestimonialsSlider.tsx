@@ -78,18 +78,18 @@ export default function TestimonialsSlider({ testimonials }: TestimonialsSliderP
               }
             }}
           >
-            <Card className="glass border-0">
+            <Card className="border border-white/10 bg-[#101426]/95 text-white shadow-[0_28px_90px_-60px_rgba(0,0,0,0.9)]">
               <CardContent className="p-8 sm:p-12">
-                <Quote className="h-12 w-12 text-primary/20 mb-6" />
-                <p className="text-lg mb-6 leading-relaxed" data-testid={`text-testimonial-content-${currentIndex}`}>
+                <Quote className="mb-6 h-12 w-12 text-white/25" />
+                <p className="mb-6 text-lg leading-relaxed text-white/80" data-testid={`text-testimonial-content-${currentIndex}`}>
                   "{testimonials[currentIndex].content}"
                 </p>
                 <div>
-                  <p className="font-heading font-semibold" data-testid={`text-testimonial-name-${currentIndex}`}>
+                  <p className="font-heading text-lg font-semibold" data-testid={`text-testimonial-name-${currentIndex}`}>
                     {testimonials[currentIndex].name}
                   </p>
-                  <p className="text-sm text-muted-foreground" data-testid={`text-testimonial-role-${currentIndex}`}>
-                    {testimonials[currentIndex].role}, {testimonials[currentIndex].company}
+                  <p className="text-xs uppercase tracking-[0.32em] text-white/50" data-testid={`text-testimonial-role-${currentIndex}`}>
+                    {testimonials[currentIndex].role} — {testimonials[currentIndex].company}
                   </p>
                 </div>
               </CardContent>
@@ -98,11 +98,12 @@ export default function TestimonialsSlider({ testimonials }: TestimonialsSliderP
         </AnimatePresence>
       </div>
 
-      <div className="flex items-center justify-center gap-4 mt-6">
+      <div className="mt-6 flex items-center justify-center gap-4">
         <Button
           variant="outline"
           size="icon"
           onClick={() => paginate(-1)}
+          className="rounded-full border-white/20 bg-white/5 text-white hover:border-white/40"
           aria-label="Previous testimonial"
           data-testid="button-prev-testimonial"
         >
@@ -113,7 +114,7 @@ export default function TestimonialsSlider({ testimonials }: TestimonialsSliderP
             <button
               key={index}
               className={`h-2 rounded-full transition-all ${
-                index === currentIndex ? "w-8 bg-primary" : "w-2 bg-muted"
+                index === currentIndex ? "w-10 bg-white" : "w-2 bg-white/30"
               }`}
               onClick={() => {
                 setDirection(index > currentIndex ? 1 : -1);
@@ -128,6 +129,7 @@ export default function TestimonialsSlider({ testimonials }: TestimonialsSliderP
           variant="outline"
           size="icon"
           onClick={() => paginate(1)}
+          className="rounded-full border-white/20 bg-white/5 text-white hover:border-white/40"
           aria-label="Next testimonial"
           data-testid="button-next-testimonial"
         >

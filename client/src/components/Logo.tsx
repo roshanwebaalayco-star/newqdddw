@@ -5,6 +5,7 @@ interface LogoProps {
   className?: string;
   showText?: boolean;
   size?: "sm" | "md" | "lg";
+  stack?: "horizontal" | "vertical";
 }
 
 const SIZE_MAP: Record<NonNullable<LogoProps["size"]>, string> = {
@@ -13,67 +14,89 @@ const SIZE_MAP: Record<NonNullable<LogoProps["size"]>, string> = {
   lg: "h-16 w-16",
 };
 
-export default function Logo({ className = "", showText = true, size = "md" }: LogoProps) {
+export default function Logo({ className = "", showText = true, size = "md", stack = "horizontal" }: LogoProps) {
   const gradientId = useId();
 
   return (
-    <div className={cn("group flex items-center gap-3", className)} data-testid="logo-container">
+    <div
+      className={cn(
+        "group flex items-center gap-3 text-white",
+        stack === "vertical" && "flex-col items-start gap-2",
+        className,
+      )}
+      data-testid="logo-container"
+    >
       <svg
         viewBox="0 0 64 64"
         role="img"
         aria-hidden={!showText}
         className={cn(
-          "drop-shadow-[0_8px_18px_rgba(32,32,56,0.18)] transition-transform duration-300 group-hover:scale-105",
+          "rounded-2xl shadow-[0_18px_40px_-18px_rgba(16,16,24,0.5)] transition-transform duration-300 group-hover:scale-105",
           SIZE_MAP[size ?? "md"],
         )}
         data-testid="logo-mark"
       >
         <defs>
-          <linearGradient id={`${gradientId}-bg`} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="hsl(20 80% 65%)" />
-            <stop offset="50%" stopColor="hsl(20 90% 55%)" />
-            <stop offset="100%" stopColor="hsl(220 70% 60%)" />
+          <radialGradient id={`${gradientId}-halo`} cx="50%" cy="40%" r="70%">
+            <stop offset="0%" stopColor="rgba(255,255,255,0.22)" />
+            <stop offset="100%" stopColor="rgba(255,255,255,0)" />
+          </radialGradient>
+          <linearGradient id={`${gradientId}-surface`} x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="hsl(26 68% 66%)" />
+            <stop offset="55%" stopColor="hsl(20 62% 58%)" />
+            <stop offset="100%" stopColor="hsl(230 35% 42%)" />
           </linearGradient>
           <linearGradient id={`${gradientId}-stroke`} x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="white" stopOpacity="0.85" />
-            <stop offset="100%" stopColor="white" stopOpacity="1" />
+            <stop offset="0%" stopColor="rgba(255,255,255,0.9)" />
+            <stop offset="100%" stopColor="rgba(255,255,255,0.7)" />
+          </linearGradient>
+          <linearGradient id={`${gradientId}-accent`} x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="hsl(32 72% 72%)" />
+            <stop offset="100%" stopColor="hsl(13 73% 60%)" />
           </linearGradient>
         </defs>
+        <rect x="4" y="4" width="56" height="56" rx="18" fill={`url(#${gradientId}-surface)`} />
         <rect
-          x="4"
-          y="4"
-          width="56"
-          height="56"
-          rx="18"
-          fill={`url(#${gradientId}-bg)`}
+          x="8"
+          y="8"
+          width="48"
+          height="48"
+          rx="16"
+          fill={`url(#${gradientId}-halo)`}
         />
         <path
-          d="M41 20a14.5 14.5 0 1 0 0 24"
+          d="M46 18c-3.6-4.4-9-7-15-7-11.598 0-21 9.402-21 21s9.402 21 21 21c6.04 0 11.36-2.54 15-6.6"
           fill="none"
           stroke={`url(#${gradientId}-stroke)`}
           strokeWidth="4.5"
           strokeLinecap="round"
-          strokeLinejoin="round"
         />
         <path
-          d="M24 32c0-4.418 3.134-8 7-8"
+          d="M22 32c0-5.6 4.4-10 10-10 4 0 6.8 1.8 9 5.2"
           fill="none"
-          stroke="rgba(255,255,255,0.8)"
-          strokeWidth="4.5"
+          stroke={`url(#${gradientId}-accent)`}
+          strokeWidth="4"
           strokeLinecap="round"
         />
-        <circle cx="44" cy="23" r="5" fill="rgba(255,255,255,0.24)" />
-        <circle cx="44" cy="23" r="2.2" fill="white" />
+        <path
+          d="M32 22v20"
+          stroke="rgba(255,255,255,0.65)"
+          strokeWidth="3.2"
+          strokeLinecap="round"
+        />
+        <circle cx="46" cy="23" r="4.2" fill="rgba(255,255,255,0.2)" />
+        <circle cx="46" cy="23" r="2" fill="white" />
       </svg>
       {showText && (
         <span
-          className="hidden sm:flex flex-col leading-tight font-heading font-semibold"
+          className={cn(
+            "flex flex-col font-heading font-semibold leading-tight text-white",
+            stack === "horizontal" ? "hidden sm:flex" : "",
+          )}
           data-testid="logo-text"
         >
-          <span className="text-sm uppercase tracking-[0.3em] text-muted-foreground">CLC</span>
-          <span className="text-xl sm:text-2xl bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-primary/80">
-            Retail Group
-          </span>
+          <span className="text-xs uppercase tracking-[0.5em] text-white/60">CLC</span>
+          <span className="text-xl sm:text-2xl text-white">Retail Group</span>
         </span>
       )}
     </div>
