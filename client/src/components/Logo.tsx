@@ -1,4 +1,3 @@
-import { useId } from "react";
 import { cn } from "@/lib/utils";
 
 interface LogoProps {
@@ -9,84 +8,41 @@ interface LogoProps {
 }
 
 const SIZE_MAP: Record<NonNullable<LogoProps["size"]>, string> = {
-  sm: "h-10 w-10",
-  md: "h-12 w-12",
-  lg: "h-16 w-16",
+  sm: "h-12 w-12",
+  md: "h-14 w-14",
+  lg: "h-20 w-20",
 };
 
-export default function Logo({ className = "", showText = true, size = "md", stack = "horizontal" }: LogoProps) {
-  const gradientId = useId();
-
+export default function Logo({
+  className = "",
+  showText = true,
+  size = "md",
+  stack = "horizontal",
+}: LogoProps) {
   return (
     <div
       className={cn(
         "group flex items-center gap-3 text-white",
-        stack === "vertical" && "flex-col items-start gap-2",
+        stack === "vertical" && "flex-col items-start gap-4",
         className,
       )}
       data-testid="logo-container"
+      aria-label={!showText ? "CLC Retail Group" : undefined}
     >
-      <svg
-        viewBox="0 0 64 64"
-        role="img"
-        aria-hidden={!showText}
+      <div
         className={cn(
-          "rounded-2xl shadow-[0_18px_40px_-18px_rgba(16,16,24,0.5)] transition-transform duration-300 group-hover:scale-105",
+          "relative aspect-square overflow-hidden rounded-3xl bg-black/60 shadow-[0_22px_40px_-20px_rgba(12,12,18,0.7)] transition-transform duration-300 group-hover:scale-[1.03]",
           SIZE_MAP[size ?? "md"],
         )}
         data-testid="logo-mark"
       >
-        <defs>
-          <radialGradient id={`${gradientId}-halo`} cx="50%" cy="40%" r="70%">
-            <stop offset="0%" stopColor="rgba(255,255,255,0.22)" />
-            <stop offset="100%" stopColor="rgba(255,255,255,0)" />
-          </radialGradient>
-          <linearGradient id={`${gradientId}-surface`} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="hsl(26 68% 66%)" />
-            <stop offset="55%" stopColor="hsl(20 62% 58%)" />
-            <stop offset="100%" stopColor="hsl(230 35% 42%)" />
-          </linearGradient>
-          <linearGradient id={`${gradientId}-stroke`} x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="rgba(255,255,255,0.9)" />
-            <stop offset="100%" stopColor="rgba(255,255,255,0.7)" />
-          </linearGradient>
-          <linearGradient id={`${gradientId}-accent`} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="hsl(32 72% 72%)" />
-            <stop offset="100%" stopColor="hsl(13 73% 60%)" />
-          </linearGradient>
-        </defs>
-        <rect x="4" y="4" width="56" height="56" rx="18" fill={`url(#${gradientId}-surface)`} />
-        <rect
-          x="8"
-          y="8"
-          width="48"
-          height="48"
-          rx="16"
-          fill={`url(#${gradientId}-halo)`}
+        <img
+          src="/logo.svg"
+          alt="CLC Retail Group logo"
+          className="h-full w-full object-contain"
+          loading="lazy"
         />
-        <path
-          d="M46 18c-3.6-4.4-9-7-15-7-11.598 0-21 9.402-21 21s9.402 21 21 21c6.04 0 11.36-2.54 15-6.6"
-          fill="none"
-          stroke={`url(#${gradientId}-stroke)`}
-          strokeWidth="4.5"
-          strokeLinecap="round"
-        />
-        <path
-          d="M22 32c0-5.6 4.4-10 10-10 4 0 6.8 1.8 9 5.2"
-          fill="none"
-          stroke={`url(#${gradientId}-accent)`}
-          strokeWidth="4"
-          strokeLinecap="round"
-        />
-        <path
-          d="M32 22v20"
-          stroke="rgba(255,255,255,0.65)"
-          strokeWidth="3.2"
-          strokeLinecap="round"
-        />
-        <circle cx="46" cy="23" r="4.2" fill="rgba(255,255,255,0.2)" />
-        <circle cx="46" cy="23" r="2" fill="white" />
-      </svg>
+      </div>
       {showText && (
         <span
           className={cn(
@@ -95,7 +51,7 @@ export default function Logo({ className = "", showText = true, size = "md", sta
           )}
           data-testid="logo-text"
         >
-          <span className="text-xs uppercase tracking-[0.5em] text-white/60">CLC</span>
+          <span className="text-xs uppercase tracking-[0.5em] text-white/70">CLC</span>
           <span className="text-xl sm:text-2xl text-white">Retail Group</span>
         </span>
       )}
