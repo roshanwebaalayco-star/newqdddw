@@ -11,6 +11,11 @@ const About = lazy(() => import("@/pages/About"));
 const Services = lazy(() => import("@/pages/Services"));
 const Contact = lazy(() => import("@/pages/Contact"));
 const Blog = lazy(() => import("@/pages/Blog"));
+const StepLocation = lazy(() => import("@/pages/StepLocation"));
+const StepDesign = lazy(() => import("@/pages/StepDesign"));
+const StepFitOut = lazy(() => import("@/pages/StepFitOut"));
+const StepSuppliers = lazy(() => import("@/pages/StepSuppliers"));
+const StepLaunch = lazy(() => import("@/pages/StepLaunch"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 
 function Router() {
@@ -21,6 +26,11 @@ function Router() {
       <Route path="/services" component={Services} />
       <Route path="/contact" component={Contact} />
       <Route path="/blog" component={Blog} />
+      <Route path="/step-location" component={StepLocation} />
+      <Route path="/step-design" component={StepDesign} />
+      <Route path="/step-fit-out" component={StepFitOut} />
+      <Route path="/step-suppliers" component={StepSuppliers} />
+      <Route path="/step-launch" component={StepLaunch} />
       <Route component={NotFound} />
     </Switch>
   );

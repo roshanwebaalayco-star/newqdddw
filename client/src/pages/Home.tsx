@@ -1,529 +1,462 @@
-import { useMemo } from "react";
+import { useState } from "react";
 import { Link } from "wouter";
+import { useMutation } from "@tanstack/react-query";
 import AnimatedSection from "@/components/AnimatedSection";
 import { CardGlass } from "@/components/CardGlass";
 import HeroSection from "@/components/HeroSection";
-import { LatestInsights } from "@/components/LatestInsights";
-import LoadingScreen from "@/components/LoadingScreen";
 import MarketingLayout from "@/components/layouts/MarketingLayout";
-import ServicesPreview from "@/components/ServicesPreview";
-import TestimonialsSlider from "@/components/TestimonialsSlider";
-import TrustGrid from "@/components/TrustGrid";
 import { Seo } from "@/components/Seo";
-import { useHomeContent } from "@/hooks/useHomeContent";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
-  UserCheck,
-  Building2,
-  TrendingUp,
+  MapPin,
+  PenTool,
+  Hammer,
+  Package,
+  Rocket,
   CheckCircle2,
-  Sparkles,
-  ClipboardCheck,
-  Map as MapIcon,
-  Layers,
-  ArrowUpRight,
+  ArrowRight,
+  Download,
+  TrendingUp,
+  Users,
+  Award,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import type { IconId } from "@shared/marketing";
 import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useToast } from "@/hooks/use-toast";
+import { apiRequest } from "@/lib/queryClient";
 
 const baseUrl = "https://clcretailgroup.com";
 
-const personas = [
-  {
-    title: "Founder-led concepts",
-    description:
-      "Emerging retail brands ready to compress the jump from idea to immersive flagship without hiring full in-house teams.",
-    icon: UserCheck,
-  },
-  {
-    title: "Multi-unit operators",
-    description:
-      "Franchise and portfolio leaders balancing rollout velocity, consistent brand standards, and local market nuance.",
-    icon: Building2,
-  },
-  {
-    title: "Investment partners",
-    description:
-      "Private equity and venture groups requiring launch governance, accurate forecasting, and transparent reporting.",
-    icon: TrendingUp,
-  },
-] satisfies Array<{ title: string; description: string; icon: LucideIcon }>;
-
-const outcomes = [
-  {
-    value: "14-week",
-    label: "average concept-to-open",
-    description: "Compressed critical path with pre-built vendor playbooks",
-  },
-  {
-    value: "98%",
-    label: "vendor milestone adherence",
-    description: "Coordinated procurement and build oversight that protects budgets",
-  },
-  {
-    value: "120%",
-    label: "launch marketing ramp",
-    description: "Integrated campaigns and CRM ladders measured from day one",
-  },
-];
-
 const steps = [
   {
-    title: "Discovery & blueprint",
-    duration: "Week 0",
-    description: "Align on commercial targets, funding structure, and readiness requirements. We map risk, team bandwidth, and the launch vision.",
+    id: 1,
+    title: "Location",
+    path: "/step-location",
+    icon: MapPin,
+    summary: "Data-driven site selection with catchment analysis, competitor mapping, and feasibility reports.",
+    color: "from-blue-500 to-cyan-500",
   },
   {
-    title: "Site intelligence sprint",
-    duration: "Weeks 1-2",
-    description: "Evaluate trade areas, co-tenancy, lease terms, and permitting timelines using mobility data and on-the-ground partners.",
+    id: 2,
+    title: "Design",
+    path: "/step-design",
+    icon: PenTool,
+    summary: "Brand-led visual identity with optimised store flow and accessible layouts meeting UK regulations.",
+    color: "from-purple-500 to-pink-500",
   },
   {
-    title: "Experience design lab",
-    duration: "Weeks 3-6",
-    description: "Prototype the physical environment, planograms, staffing, and technology stack to match customer journeys and brand rituals.",
+    id: 3,
+    title: "Fit-Out",
+    path: "/step-fit-out",
+    icon: Hammer,
+    summary: "Fixed budget builds with compliant M&E works and low disruption installation schedules.",
+    color: "from-orange-500 to-red-500",
   },
   {
-    title: "Build orchestration",
-    duration: "Weeks 7-11",
-    description: "Mobilize vetted vendors, coordinate procurement, and manage weekly sprint reviews so every milestone tracks to plan.",
+    id: 4,
+    title: "Suppliers",
+    path: "/step-suppliers",
+    icon: Package,
+    summary: "Negotiated supplier terms, category plans, and stock management to improve margins.",
+    color: "from-green-500 to-emerald-500",
   },
   {
-    title: "Launch & optimize",
-    duration: "Weeks 12-14",
-    description: "Activate marketing ladders, rehearsal operations, and KPI dashboards. We stay locked in through soft opening and iteration.",
+    id: 5,
+    title: "Launch",
+    path: "/step-launch",
+    icon: Rocket,
+    summary: "Trained teams, local marketing plans, and opening-week operations for trade-ready performance.",
+    color: "from-yellow-500 to-amber-500",
   },
 ];
 
-const vendorLogos = [
-  "LuxeBuild",
-  "Forma AV",
-  "Northern Fixtures",
-  "Brightline Media",
-  "Atlas Logistics",
-  "Horizon Staffing",
-];
-
-const faqs = [
+const whyClc = [
   {
-    question: "What makes CLC Retail Group different from a traditional GC or agency?",
-    answer:
-      "We operate as an integrated launch studio—strategy, site intelligence, experience design, vendor orchestration, and go-to-market live under one plan. You get a single accountable partner and clear dashboards instead of managing multiple vendors.",
+    title: "UK Expertise",
+    description: "Deep understanding of UK convenience retail regulations, consumer behaviour, and market dynamics.",
+    icon: Award,
   },
   {
-    question: "Can you work with our existing architects or franchise requirements?",
-    answer:
-      "Absolutely. We plug into your preferred collaborators, align on brand standards, and fill the gaps—often vendor management, launch marketing, and performance measurement—so every partner works from one roadmap.",
+    title: "End-to-End Delivery",
+    description: "From location to launch, we manage every detail so you can focus on running your business.",
+    icon: CheckCircle2,
   },
   {
-    question: "How soon should we engage you before a new store launch?",
-    answer:
-      "Founders typically call us 4–6 months before target opening. That gives time to validate sites, negotiate terms, and choreograph teams. If you're already mid-build, we can still jump in to stabilize delivery and craft the launch moment.",
-  },
-  {
-    question: "Do you support multi-location rollouts?",
-    answer:
-      "Yes. Our playbooks scale. We adapt the core launch framework for each market, centralize vendor intelligence, and build feedback loops so every site opens faster and smarter than the last.",
-  },
-  {
-    question: "What does engagement look like after opening day?",
-    answer:
-      "We stay close through the first 90 days—monitoring footfall, conversion, staffing, and marketing signals. From there we offer quarterly reviews to plan refreshes, new locations, and operational optimizations.",
-  },
-  {
-    question: "Do you help with funding or franchise selection decisions?",
-    answer:
-      "We regularly support due diligence with financial modeling, franchise audits, and introductions to aligned capital partners so you can choose the launch path with the right upside and support.",
+    title: "Lender-Ready Documentation",
+    description: "Professional feasibility reports and business plans that meet investor and lender requirements.",
+    icon: TrendingUp,
   },
 ];
 
-const ICON_MAP: Record<IconId, LucideIcon> = {
-  handshake: UserCheck,
-  lightbulb: Sparkles,
-  package: Layers,
-  store: Building2,
-  "map-pin": MapIcon,
-  megaphone: TrendingUp,
-  sparkle: Sparkles,
-  rocket: TrendingUp,
-  shield: ClipboardCheck,
-};
+const caseStudies = [
+  {
+    title: "Manchester Express",
+    location: "Greater Manchester",
+    result: "£12K weekly sales in month 1",
+    image: "https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    title: "London Local",
+    location: "East London",
+    result: "Break-even achieved week 3",
+    image: "https://images.unsplash.com/photo-1555529669-2269763671c0?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    title: "Birmingham Convenience",
+    location: "Birmingham City Centre",
+    result: "Opened 2 weeks ahead of schedule",
+    image: "https://images.unsplash.com/photo-1601598851547-4302969d0614?auto=format&fit=crop&w=800&q=80",
+  },
+];
+
+const trustLogos = [
+  { name: "Nisa", icon: Users },
+  { name: "Londis", icon: Users },
+  { name: "Premier", icon: Users },
+];
 
 export default function Home() {
-  const { data, isLoading, isError, error, refetch } = useHomeContent();
+  const [selectedStep, setSelectedStep] = useState<number | null>(null);
+  const [checklistFormOpen, setChecklistFormOpen] = useState(false);
+  const [projectStage, setProjectStage] = useState<string>("");
+  const { toast } = useToast();
 
-  const experienceImage =
-    "https://images.unsplash.com/photo-1521540216272-a50305cd4421?auto=format&fit=crop&w=2000&q=80&fm=webp";
-
-  const trustItems = useMemo(
-    () =>
-      data
-        ? data.trust.map((item) => ({
-            ...item,
-            icon: ICON_MAP[item.icon],
-          }))
-        : [],
-    [data],
-  );
-
-  const services = useMemo(
-    () =>
-      data
-        ? data.services.map((service) => ({
-            ...service,
-            icon: ICON_MAP[service.icon],
-          }))
-        : [],
-    [data],
-  );
-
-  if (isLoading) {
-    return (
-      <MarketingLayout showStickyCta>
-        <LoadingScreen message="Crafting your dashboard" />
-      </MarketingLayout>
-    );
-  }
-
-  if (isError || !data) {
-    return (
-      <MarketingLayout showStickyCta>
-        <div className="container mx-auto max-w-3xl px-4 py-24 text-center">
-          <h2 className="font-heading text-3xl font-semibold text-white">We hit a snag</h2>
-          <p className="mt-4 text-white/70">
-            {error?.message ?? "We couldn’t load the latest content. Please refresh or try again shortly."}
-          </p>
-          <div className="mt-6 flex justify-center">
-            <Button onClick={() => refetch()} className="inline-flex items-center gap-2">
-              <ArrowUpRight className="h-4 w-4" />
-              Retry loading
-            </Button>
-          </div>
-        </div>
-      </MarketingLayout>
-    );
-  }
-
-  const faqJsonLd = {
-    type: "FAQPage",
-    data: {
-      mainEntity: faqs.map((faq) => ({
-        "@type": "Question",
-        name: faq.question,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: faq.answer,
-        },
-      })),
+  const leadMutation = useMutation({
+    mutationFn: async (data: { name: string; email: string; location?: string; projectStage: string }) => {
+      const response = await apiRequest("POST", "/api/leads", data);
+      return response.json();
     },
-  } as const;
-
-  const howToJsonLd = {
-    type: "HowTo",
-    data: {
-      name: "How CLC Retail Group launches a new retail location",
-      step: steps.map((step, index) => ({
-        "@type": "HowToStep",
-        position: index + 1,
-        name: step.title,
-        text: step.description,
-      })),
+    onSuccess: (response: { message: string; downloadUrl?: string }) => {
+      toast({
+        title: "Success!",
+        description: response.message,
+      });
+      setChecklistFormOpen(false);
+      setProjectStage("");
+      if (response.downloadUrl) {
+        window.open(response.downloadUrl, "_blank");
+      }
     },
-  } as const;
-
-  const breadcrumbJsonLd = {
-    type: "BreadcrumbList",
-    data: {
-      itemListElement: [
-        {
-          "@type": "ListItem",
-          position: 1,
-          name: "Home",
-          item: `${baseUrl}/`,
-        },
-      ],
+    onError: (error: Error) => {
+      toast({
+        title: "Error",
+        description: error.message || "Failed to submit form. Please try again.",
+        variant: "destructive",
+      });
     },
-  } as const;
+  });
 
-  const organizationJsonLd = {
-    type: "Organization",
-    data: {
-      name: "CLC Retail Group",
-      url: `${baseUrl}/`,
-      logo: `${baseUrl}/logo.svg`,
-      contactPoint: [
-        {
-          "@type": "ContactPoint",
-          telephone: "+1-555-123-4567",
-          contactType: "Sales",
-          areaServed: "US, UK, UAE",
-        },
-      ],
-    },
-  } as const;
+  const handleChecklistDownload = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get("name") as string,
+      email: formData.get("email") as string,
+      location: formData.get("location") as string || undefined,
+      projectStage: projectStage,
+    };
+    
+    if (!projectStage) {
+      toast({
+        title: "Missing Information",
+        description: "Please select your project stage.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    leadMutation.mutate(data);
+  };
 
   return (
     <MarketingLayout showStickyCta>
       <Seo
-        title="CLC Retail Group | Retail launch studio for modern founders"
-        description="Orchestrate concept-to-open retail launches with CLC Retail Group’s integrated strategy, site selection, vendor management, and marketing teams."
+        title="CLC Retail Solutions Group — Convenience Store Specialists UK"
+        description="End-to-end convenience store solutions from site selection to launch. Book a free site survey today."
         canonical={`${baseUrl}/`}
-        ogImage="https://images.unsplash.com/photo-1521337674500-52e5b154a71f?auto=format&fit=crop&w=1600&q=80&fm=webp"
-        jsonLd={[organizationJsonLd, breadcrumbJsonLd, howToJsonLd, faqJsonLd]}
+        ogImage="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=1600&q=80"
       />
 
       <HeroSection
-        eyebrow={data.hero.eyebrow}
-        title={data.hero.title}
-        subtitle={data.hero.subtitle}
-        ctaText="Schedule a consultation"
+        eyebrow="Retail environments crafted for modern founders"
+        title="Premium Convenience Store Solutions Across the UK"
+        subtitle="From Location to Launch — five specialist steps to open profitable, compliant convenience stores."
+        ctaText="Book a free site survey"
         ctaLink="/contact#schedule"
-        secondaryCtaText="Explore our services"
-        secondaryCtaLink="/services"
-        backgroundImage={data.hero.backgroundImage}
-        stats={data.stats}
+        backgroundImage="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=2000&q=80"
       />
 
       <AnimatedSection>
         <section className="py-16 lg:py-20">
           <div className="container mx-auto max-w-6xl px-4">
-            <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
-              <div className="space-y-6 text-white">
-                <Badge className="border border-white/25 bg-white/10 px-4 py-1 text-xs uppercase tracking-[0.35em] text-white/70">
-                  Studio signature
-                </Badge>
-                <h2 className="font-heading text-3xl font-semibold sm:text-4xl lg:text-5xl">
-                  Retail spaces engineered to perform day one
-                </h2>
-                <p className="text-base text-white/80 sm:text-lg">
-                  We choreograph a seamless journey from feasibility to footfall. Our specialists align data, design, procurement, and launch marketing so every opening hits targets.
-                </p>
-                <ul className="space-y-4 text-sm text-white/75 sm:text-base">
-                  {["Immersive concept labs & prototyping", "Global supplier network & build orchestration", "Launch playbooks with embedded performance analytics"].map((item) => (
-                    <li key={item} className="flex items-start gap-3">
-                      <CheckCircle2 className="mt-1 h-5 w-5 text-primary" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="flex flex-wrap gap-3 pt-4">
-                  <Link href="/services">
-                    <Button variant="outline" className="rounded-full border-white/30 bg-white/10 text-white/85 hover:text-white">
-                      See service playbooks
-                    </Button>
-                  </Link>
-                  <Link href="/contact#schedule">
-                    <Button className="rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary px-6 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-white">
-                      Schedule a consultation
-                    </Button>
-                  </Link>
-                </div>
+            <div className="mb-12 text-center">
+              <Badge className="border border-white/25 bg-white/10 px-4 py-1 text-xs uppercase tracking-[0.35em] text-white/70">
+                Why CLC Retail Solutions Group
+              </Badge>
+              <div className="mt-8 grid gap-6 md:grid-cols-3">
+                {whyClc.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <CardGlass key={item.title} className="p-8 text-center">
+                      <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/25 bg-white/10 text-white">
+                        <Icon className="h-6 w-6" />
+                      </div>
+                      <h3 className="font-heading text-xl text-white">{item.title}</h3>
+                      <p className="mt-4 text-white/80">{item.description}</p>
+                    </CardGlass>
+                  );
+                })}
               </div>
-              <div className="relative">
-                <div className="overflow-hidden rounded-[2rem] border border-white/12 bg-white/10 shadow-[0_35px_95px_-50px_rgba(0,0,0,0.85)]">
-                  <img
-                    src={experienceImage}
-                    alt="Design studio collaboration"
-                    className="h-full w-full object-cover object-center"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#0b0d16]/40 via-transparent to-[#0b0d16]/70" />
-                  <div className="absolute bottom-8 left-8 right-8 rounded-2xl border border-white/12 bg-white/12 p-6 text-white backdrop-blur">
-                    <p className="text-xs uppercase tracking-[0.35em] text-white/60">Launch control</p>
-                    <p className="mt-2 text-sm text-white/80">
-                      Weekly sprints and dashboards ensure procurement, staffing, and go-live milestones land on time.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </AnimatedSection>
-
-      <AnimatedSection delay={0.05}>
-        <section className="py-20">
-          <div className="container mx-auto max-w-6xl px-4">
-            <div className="flex flex-col gap-6 text-white sm:flex-row sm:items-end sm:justify-between">
-              <div className="space-y-4">
-                <Badge className="border border-white/25 bg-white/10 px-4 py-1 text-xs uppercase tracking-[0.35em] text-white/70">
-                  Who we help
-                </Badge>
-                <h2 className="font-heading text-3xl sm:text-4xl">Teams that refuse to gamble on their next opening</h2>
-                <p className="max-w-2xl text-white/75">
-                  We’re the partner when your next location has to deliver—whether it’s your first immersive flagship or the fiftieth unit in a high-growth rollout.
-                </p>
-              </div>
-            </div>
-            <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {personas.map((persona) => {
-                const Icon = persona.icon;
-                return (
-                  <CardGlass key={persona.title} className="h-full p-8">
-                    <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/25 bg-white/10 text-white">
-                      <Icon className="h-6 w-6" />
+              <div className="mt-10 flex items-center justify-center gap-8 text-white/60">
+                <p className="text-sm">Trusted by:</p>
+                {trustLogos.map((logo) => {
+                  const Icon = logo.icon;
+                  return (
+                    <div key={logo.name} className="flex items-center gap-2">
+                      <Icon className="h-5 w-5" />
+                      <span className="font-semibold">{logo.name}</span>
                     </div>
-                    <h3 className="font-heading text-xl text-white">{persona.title}</h3>
-                    <p className="mt-4 text-white/80">{persona.description}</p>
-                  </CardGlass>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
           </div>
         </section>
       </AnimatedSection>
 
       <AnimatedSection delay={0.1}>
-        <section className="py-16">
+        <section className="py-16 lg:py-20">
           <div className="container mx-auto max-w-6xl px-4">
-            <CardGlass className="flex flex-col gap-8 p-10 md:flex-row md:items-center md:justify-between">
-              <div className="max-w-md space-y-4">
-                <p className="text-xs uppercase tracking-[0.35em] text-white/60">Outcomes you can measure</p>
-                <h2 className="font-heading text-3xl text-white">Every engagement is engineered around tangible metrics</h2>
-                <p className="text-white/75">
-                  We treat launch timelines, vendor accountability, and customer activation like mission-critical KPIs—and make them transparent to your team.
-                </p>
+            <div className="mb-12 space-y-4 text-center text-white">
+              <Badge className="border border-white/25 bg-white/10 px-4 py-1 text-xs uppercase tracking-[0.35em] text-white/70">
+                The Five-Step Journey
+              </Badge>
+              <h2 className="font-heading text-3xl font-semibold sm:text-4xl">
+                Your Path to a Successful Convenience Store
+              </h2>
+              <p className="mx-auto max-w-2xl text-white/75">
+                Our proven five-step framework takes you from site selection to profitable opening. Each step builds on the last, ensuring nothing is overlooked.
+              </p>
+            </div>
+
+            <div className="relative">
+              <div className="absolute left-0 right-0 top-[4.5rem] hidden h-1 bg-gradient-to-r from-blue-500 via-purple-500 via-orange-500 via-green-500 to-yellow-500 md:block" />
+              
+              <div className="grid gap-8 md:grid-cols-5">
+                {steps.map((step, index) => {
+                  const Icon = step.icon;
+                  const isActive = selectedStep === step.id;
+                  return (
+                    <div
+                      key={step.id}
+                      className="relative"
+                      onMouseEnter={() => setSelectedStep(step.id)}
+                      onMouseLeave={() => setSelectedStep(null)}
+                    >
+                      <Link href={step.path}>
+                        <div
+                          className={`group cursor-pointer transition-all duration-300 ${
+                            isActive ? "scale-105" : ""
+                          }`}
+                          data-testid={`step-card-${step.id}`}
+                        >
+                          <div className={`relative mx-auto mb-6 flex h-36 w-36 items-center justify-center rounded-full bg-gradient-to-br ${step.color} shadow-2xl transition-all duration-300 group-hover:scale-110 md:relative md:z-10`}>
+                            <Icon className="h-12 w-12 text-white" />
+                            <div className="absolute -bottom-2 -right-2 flex h-10 w-10 items-center justify-center rounded-full bg-white font-heading text-lg font-bold text-gray-900">
+                              {step.id}
+                            </div>
+                          </div>
+                          <div className="text-center">
+                            <h3 className="font-heading text-xl font-semibold text-white">{step.title}</h3>
+                            <p
+                              className={`mt-3 text-sm text-white/70 transition-all duration-300 ${
+                                isActive ? "opacity-100" : "opacity-0 md:opacity-100"
+                              }`}
+                            >
+                              {step.summary}
+                            </p>
+                            <Button
+                              variant="ghost"
+                              className="mt-4 text-white/80 hover:text-white"
+                              data-testid={`button-learn-more-${step.id}`}
+                            >
+                              Learn more <ArrowRight className="ml-2 h-4 w-4" />
+                            </Button>
+                          </div>
+                        </div>
+                      </Link>
+                    </div>
+                  );
+                })}
               </div>
-              <div className="grid flex-1 gap-6 sm:grid-cols-3">
-                {outcomes.map((metric) => (
-                  <div key={metric.label} className="rounded-2xl border border-white/15 bg-white/5 p-6 text-center">
-                    <p className="font-heading text-3xl text-white">{metric.value}</p>
-                    <p className="mt-2 text-xs uppercase tracking-[0.3em] text-white/55">{metric.label}</p>
-                    <p className="mt-3 text-sm text-white/75">{metric.description}</p>
-                  </div>
-                ))}
-              </div>
-            </CardGlass>
+            </div>
           </div>
         </section>
       </AnimatedSection>
 
       <AnimatedSection delay={0.15}>
-        <section className="py-20">
+        <section className="py-16 lg:py-20">
           <div className="container mx-auto max-w-6xl px-4">
-            <div className="mb-10 space-y-4 text-white">
+            <div className="mb-12 space-y-4 text-center text-white">
               <Badge className="border border-white/25 bg-white/10 px-4 py-1 text-xs uppercase tracking-[0.35em] text-white/70">
-                How it works
+                Success Stories
               </Badge>
-              <h2 className="font-heading text-3xl sm:text-4xl">Five tightly choreographed phases</h2>
-              <p className="max-w-3xl text-white/75">
-                A repeatable framework that scales from single flagship launches to nationwide rollouts—while honoring the nuance of your concept and market.
+              <h2 className="font-heading text-3xl font-semibold sm:text-4xl">
+                Recent Case Studies
+              </h2>
+              <p className="mx-auto max-w-2xl text-white/75">
+                Real results from real projects across the UK. See how we've helped entrepreneurs launch profitable convenience stores.
               </p>
             </div>
-            <div className="space-y-6">
-              {steps.map((step, index) => (
-                <CardGlass key={step.title} className="flex flex-col gap-6 p-8 lg:flex-row lg:items-center lg:justify-between">
-                  <div className="flex items-start gap-4">
-                    <span className="flex h-12 w-12 items-center justify-center rounded-full border border-white/25 bg-white/10 text-lg font-semibold text-white">
-                      {index + 1}
-                    </span>
-                    <div className="space-y-3">
-                      <p className="text-xs uppercase tracking-[0.3em] text-white/60">{step.duration}</p>
-                      <h3 className="font-heading text-2xl text-white">{step.title}</h3>
-                      <p className="text-white/80">{step.description}</p>
+
+            <div className="grid gap-6 md:grid-cols-3">
+              {caseStudies.map((study) => (
+                <CardGlass key={study.title} className="group overflow-hidden p-0">
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={study.image}
+                      alt={study.title}
+                      className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0b0d16] via-[#0b0d16]/50 to-transparent" />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="font-heading text-xl text-white">{study.title}</h3>
+                    <p className="mt-2 text-sm text-white/60">{study.location}</p>
+                    <div className="mt-4 flex items-center gap-2">
+                      <TrendingUp className="h-5 w-5 text-green-400" />
+                      <p className="font-semibold text-green-400">{study.result}</p>
                     </div>
                   </div>
-                  <Link href="/contact#schedule">
-                    <Button variant="outline" className="self-start rounded-full border-white/30 bg-white/10 text-white/85 hover:text-white">
-                      Plan this phase together
-                    </Button>
-                  </Link>
                 </CardGlass>
               ))}
+            </div>
+
+            <div className="mt-10 text-center">
+              <Link href="/contact">
+                <Button variant="outline" className="rounded-full border-white/30 bg-white/10 text-white/85 hover:text-white" data-testid="button-view-all-cases">
+                  View all case studies
+                </Button>
+              </Link>
             </div>
           </div>
         </section>
       </AnimatedSection>
 
-      <AnimatedSection delay={0.18}>
-        <section className="py-16">
-          <div className="container mx-auto max-w-6xl px-4">
-            <CardGlass className="p-10">
-              <div className="flex flex-col gap-6 text-white lg:flex-row lg:items-center lg:justify-between">
-                <div className="max-w-xl space-y-4">
-                  <p className="text-xs uppercase tracking-[0.35em] text-white/60">Vendor network</p>
-                  <h2 className="font-heading text-3xl">Trusted partners on tap</h2>
-                  <p className="text-white/75">
-                    We maintain a curated bench of architects, fabricators, installers, staffing agencies, and marketing specialists across key launch markets. Every vendor is benchmarked on quality, speed, and transparency.
-                  </p>
-                </div>
-                <div className="grid flex-1 grid-cols-2 gap-4 sm:grid-cols-3">
-                  {vendorLogos.map((logo) => (
-                    <div key={logo} className="flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-4 py-5 text-sm font-semibold uppercase tracking-[0.3em] text-white/70">
-                      {logo}
-                    </div>
-                  ))}
-                </div>
+      <AnimatedSection delay={0.2}>
+        <section className="py-16 lg:py-20">
+          <div className="container mx-auto max-w-4xl px-4">
+            <CardGlass className="relative overflow-hidden p-12">
+              <div className="absolute right-0 top-0 h-64 w-64 rounded-full bg-gradient-to-br from-primary/20 to-transparent blur-3xl" />
+              <div className="relative text-center text-white">
+                <Download className="mx-auto mb-6 h-12 w-12 text-primary" />
+                <h2 className="font-heading text-3xl font-semibold sm:text-4xl">
+                  Free Location Selection Checklist
+                </h2>
+                <p className="mx-auto mt-4 max-w-2xl text-white/75">
+                  A practical checklist to validate high-potential convenience store sites. Covers catchment analysis, competition, accessibility, compliance, and financial filters.
+                </p>
+                <Dialog open={checklistFormOpen} onOpenChange={setChecklistFormOpen}>
+                  <DialogTrigger asChild>
+                    <Button
+                      size="lg"
+                      className="mt-8 rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary px-10 py-6 text-sm font-semibold uppercase tracking-[0.22em] text-white"
+                      data-testid="button-download-checklist"
+                    >
+                      Download Free Checklist
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-md">
+                    <DialogHeader>
+                      <DialogTitle>Get Your Free Checklist</DialogTitle>
+                      <DialogDescription>
+                        Enter your details below and we'll send the Location Selection Checklist to your email.
+                      </DialogDescription>
+                    </DialogHeader>
+                    <form onSubmit={handleChecklistDownload} className="space-y-4">
+                      <div>
+                        <Label htmlFor="name">Full Name</Label>
+                        <Input
+                          id="name"
+                          name="name"
+                          placeholder="John Smith"
+                          required
+                          data-testid="input-name"
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="email">Email Address</Label>
+                        <Input
+                          id="email"
+                          name="email"
+                          type="email"
+                          placeholder="john@example.com"
+                          required
+                          data-testid="input-email"
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="location">Target Location</Label>
+                        <Input
+                          id="location"
+                          name="location"
+                          placeholder="e.g., Manchester, London"
+                          data-testid="input-location"
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="stage">Project Stage</Label>
+                        <Select value={projectStage} onValueChange={setProjectStage} required>
+                          <SelectTrigger data-testid="select-stage">
+                            <SelectValue placeholder="Select stage" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="exploring">Just exploring</SelectItem>
+                            <SelectItem value="planning">Planning phase</SelectItem>
+                            <SelectItem value="ready">Ready to start</SelectItem>
+                            <SelectItem value="existing">Already have a site</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <Button
+                        type="submit"
+                        className="w-full"
+                        disabled={leadMutation.isPending}
+                        data-testid="button-submit-checklist"
+                      >
+                        {leadMutation.isPending ? "Sending..." : "Send Me the Checklist"}
+                      </Button>
+                    </form>
+                  </DialogContent>
+                </Dialog>
               </div>
             </CardGlass>
           </div>
         </section>
       </AnimatedSection>
 
-      <AnimatedSection>
-        <TrustGrid items={trustItems} />
-      </AnimatedSection>
-
-      <AnimatedSection>
-        <div className="container mx-auto max-w-5xl px-4 py-16">
-          <TestimonialsSlider testimonials={data.testimonials} />
-        </div>
-      </AnimatedSection>
-
-      <AnimatedSection>
-        <ServicesPreview services={services} />
-      </AnimatedSection>
-
-      <LatestInsights />
-
-      <AnimatedSection delay={0.1}>
-        <section className="py-20">
-          <div className="container mx-auto max-w-6xl px-4">
-            <div className="mb-8 space-y-4 text-white">
-              <Badge className="border border-white/25 bg-white/10 px-4 py-1 text-xs uppercase tracking-[0.35em] text-white/70">
-                Questions answered
-              </Badge>
-              <h2 className="font-heading text-3xl sm:text-4xl">Extended FAQs</h2>
-              <p className="max-w-2xl text-white/75">
-                Transparency keeps projects on track. If you do not see your question here, reach out and we will share the playbook.
-              </p>
-            </div>
-            <CardGlass className="p-6">
-              <Accordion type="single" collapsible className="space-y-3">
-                {faqs.map((faq) => (
-                  <AccordionItem key={faq.question} value={faq.question} className="border border-white/10 bg-white/5 px-4">
-                    <AccordionTrigger className="text-left font-heading text-lg text-white hover:text-white">
-                      {faq.question}
-                    </AccordionTrigger>
-                    <AccordionContent className="pb-4 text-sm leading-relaxed text-white/80">
-                      {faq.answer}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </CardGlass>
-          </div>
-        </section>
-      </AnimatedSection>
-
-      <AnimatedSection delay={0.2}>
+      <AnimatedSection delay={0.25}>
         <section className="py-20">
           <div className="container mx-auto max-w-5xl px-4">
             <div className="relative overflow-hidden rounded-[2.5rem] border border-white/12 bg-[#0f1222]/95 p-12 text-white shadow-[0_38px_110px_-60px_rgba(0,0,0,0.9)]">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.18),transparent_70%)]" />
               <div className="relative grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
                 <div className="space-y-4">
-                  <p className="text-xs uppercase tracking-[0.35em] text-white/60">Let’s collaborate</p>
-                  <h3 className="font-heading text-3xl sm:text-4xl">Ready to architect your next retail win?</h3>
+                  <p className="text-xs uppercase tracking-[0.35em] text-white/60">Let's collaborate</p>
+                  <h3 className="font-heading text-3xl sm:text-4xl">Ready to open your convenience store?</h3>
                   <p className="max-w-xl text-base text-white/75 sm:text-lg">
-                    Partner with a team that treats every opening as a flagship moment. We’ll map your 90-day playbook and orchestrate every detail.
+                    Book a free site survey and let us help you build a profitable, compliant convenience store from the ground up.
                   </p>
                 </div>
                 <div className="space-y-4">
@@ -533,16 +466,17 @@ export default function Home() {
                       className="w-full rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary px-10 py-6 text-xs font-semibold uppercase tracking-[0.3em] text-white"
                       data-testid="button-cta-bottom"
                     >
-                      Schedule a consultation
+                      Book a free site survey
                     </Button>
                   </Link>
-                  <Link href="/services">
+                  <Link href="/step-location">
                     <Button
                       size="lg"
                       variant="outline"
                       className="w-full rounded-full border border-white/30 bg-white/10 px-10 py-6 text-xs font-semibold uppercase tracking-[0.3em] text-white/80 hover:text-white"
+                      data-testid="button-cta-secondary"
                     >
-                      Explore our services
+                      Explore Step 1: Location
                     </Button>
                   </Link>
                 </div>
