@@ -1,9 +1,11 @@
 import type { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
 import { contactFormSchema, newsletterSchema, type ContactFormInput, type NewsletterInput } from "@shared/forms";
+import { insertLeadSchema } from "@shared/schema";
 import { homeContent } from "./content/home";
 import { blogPosts } from "./content/blog";
 import { getLatestPosts } from "./lib/posts";
+import { storage } from "./storage";
 
 const contactSubmissions: Array<ContactFormInput & { submittedAt: string }> = [];
 const newsletterSubscribers: Array<NewsletterInput & { subscribedAt: string }> = [];
@@ -75,6 +77,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
     newsletterSubscribers.push(subscription);
     res.status(201).json({ message: "You're on the list!" });
+  });
+
+  app.post("/api/leads", async (req: Request, res: Response) => {
+    const parsed = insertLeadSchema.safeParse(req.body);
+
+    if (!parsed.success) {
+      return res.status(400).json({ message: validationErrorResponse(parsed.error) });
+    }
+
+    try {
+      const lead = await storage.createLead(parsed.data);
+      res.status(201).json({ 
+        message: "Thanks! Your Location Selection Checklist is downloading now. We've also sent a copy to your email.",
+        downloadUrl: "/downloads/location-selection-checklist.pdf",
+        lead: { id: lead.id }
+      });
+    } catch (error) {
+      console.error("Error creating lead:", error);
+      res.status(500).json({ message: "Failed to process your request. Please try again." });
+    }
   });
 
   const httpServer = createServer(app);
