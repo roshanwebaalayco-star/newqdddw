@@ -18,7 +18,7 @@ import {
 import { Seo } from "@/components/Seo";
 
 const servicesImage = "https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=2000&q=80&fm=webp";
-const baseUrl = "https://clcretailgroup.com";
+const baseUrl = "https://clcretail.com";
 
 interface ServiceDetail {
   title: string;

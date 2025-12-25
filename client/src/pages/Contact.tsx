@@ -9,26 +9,26 @@ import { Seo } from "@/components/Seo";
 import { SchedulerEmbed } from "@/components/SchedulerEmbed";
 
 const contactHeroImage = "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=2000&q=80&fm=webp";
-const baseUrl = "https://clcretailgroup.com";
+const baseUrl = "https://clcretail.com";
 
 const contactInfo = [
   {
     icon: Phone,
     title: "Phone",
-    content: "+1 (555) 123-4567",
-    link: "tel:+15551234567",
+    content: "01925 967366",
+    link: "tel:01925967366",
   },
   {
     icon: Mail,
     title: "Email",
-    content: "studio@clcretailgroup.com",
-    link: "mailto:studio@clcretailgroup.com",
+    content: "hello@clcretail.com",
+    link: "mailto:hello@clcretail.com",
   },
   {
     icon: MapPin,
-    title: "Studio hubs",
-    content: "London • New York • Dubai",
-    link: "https://maps.google.com/?q=123+Business+Ave,+New+York,+NY+10001",
+    title: "Address",
+    content: "Mildenhall, UK",
+    link: "https://maps.google.com/?q=Suite+A,+82+James+Carter+Road,+Mildenhall,+IP28+7DE,+UK",
   },
   {
     icon: Clock,
@@ -42,7 +42,7 @@ export default function Contact() {
   return (
     <MarketingLayout>
       <Seo
-        title="Contact CLC Retail Group | Schedule a retail launch consultation"
+        title="Contact CLC Retail LTD | Schedule a retail launch consultation"
         description="Speak with CLC Retail Group’s launch strategists about your timeline, site search, supplier needs, or marketing plan."
         canonical={`${baseUrl}/contact`}
         ogImage={contactHeroImage}
@@ -59,16 +59,16 @@ export default function Contact() {
           {
             type: "LocalBusiness",
             data: {
-              name: "CLC Retail Group",
+              name: "CLC Retail LTD",
               url: `${baseUrl}/`,
-              telephone: "+1-555-123-4567",
+              telephone: "01925-967366",
               address: {
                 "@type": "PostalAddress",
-                streetAddress: "123 Business Ave, Suite 100",
-                addressLocality: "New York",
-                addressRegion: "NY",
-                postalCode: "10001",
-                addressCountry: "USA",
+                streetAddress: "Suite A, 82 James Carter Road",
+                addressLocality: "Mildenhall",
+                addressRegion: "Suffolk",
+                postalCode: "IP28 7DE",
+                addressCountry: "UK",
               },
               openingHours: "Mo-Fr 09:00-18:00",
             },

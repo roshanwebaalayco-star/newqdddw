@@ -36,7 +36,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 
-const baseUrl = "https://clcretailgroup.com";
+const baseUrl = "https://clcretail.com";
 
 const steps = [
   {

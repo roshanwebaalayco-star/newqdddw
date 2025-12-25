@@ -4,8 +4,8 @@ import { CardGlass } from "@/components/CardGlass";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-const FALLBACK_EMAIL = "studio@clcretailgroup.com";
-const FALLBACK_PHONE = "+1 (555) 123-4567";
+const FALLBACK_EMAIL = "hello@clcretail.com";
+const FALLBACK_PHONE = "01925 967366";
 
 function resolveEnv(name: string): string | undefined {
   const viteValue = (import.meta.env as Record<string, string | undefined>)[`VITE_${name}`];
@@ -47,7 +47,7 @@ export function SchedulerEmbed({ className }: SchedulerEmbedProps) {
           <a
             href={`mailto:${FALLBACK_EMAIL}`}
             className="group inline-flex items-center justify-center gap-2 rounded-2xl border border-white/20 bg-white/10 px-4 py-3 text-sm font-semibold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#05070f] hover:border-white/40"
-            aria-label="Email CLC Retail Group"
+            aria-label="Email CLC Retail LTD"
           >
             <Mail className="h-4 w-4" />
             {FALLBACK_EMAIL}
@@ -55,7 +55,7 @@ export function SchedulerEmbed({ className }: SchedulerEmbedProps) {
           <a
             href={`tel:${FALLBACK_PHONE.replace(/[^\d+]/g, "")}`}
             className="group inline-flex items-center justify-center gap-2 rounded-2xl border border-white/20 bg-white/10 px-4 py-3 text-sm font-semibold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#05070f] hover:border-white/40"
-            aria-label="Call CLC Retail Group"
+            aria-label="Call CLC Retail LTD"
           >
             <Phone className="h-4 w-4" />
             {FALLBACK_PHONE}

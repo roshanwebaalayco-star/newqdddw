@@ -87,38 +87,38 @@ export default function Footer() {
                 <div className="flex items-center gap-3">
                   <Phone className="h-4 w-4 text-white" />
                   <a
-                    href="tel:+15551234567"
-                    aria-label="Call CLC Retail Group"
+                    href="tel:01925967366"
+                    aria-label="Call CLC Retail LTD"
                     className="transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#141f36]"
                     data-testid="text-phone"
                   >
-                    +1 (555) 123-4567
+                    01925 967366
                   </a>
                 </div>
                 <div className="flex items-center gap-3">
                   <Mail className="h-4 w-4 text-white" />
                   <a
-                    href="mailto:studio@clcretailgroup.com"
-                    aria-label="Email CLC Retail Group"
+                    href="mailto:hello@clcretail.com"
+                    aria-label="Email CLC Retail LTD"
                     className="transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#141f36]"
                     data-testid="text-email"
                   >
-                    studio@clcretailgroup.com
+                    hello@clcretail.com
                   </a>
                 </div>
                 <div className="flex items-start gap-3">
                   <MapPin className="mt-1 h-4 w-4 text-white" />
                   <a
-                    href="https://maps.google.com/?q=123+Business+Ave,+Suite+100,+New+York,+NY+10001"
+                    href="https://maps.google.com/?q=Suite+A,+82+James+Carter+Road,+Mildenhall,+IP28+7DE,+UK"
                     target="_blank"
                     rel="noreferrer"
                     className="transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#141f36]"
-                    aria-label="Open map to 123 Business Ave, Suite 100, New York, NY"
+                    aria-label="Open map to Suite A, 82 James Carter Road, Mildenhall, IP28 7DE, UK"
                     data-testid="text-address"
                   >
-                    123 Business Ave, Suite 100
+                    Suite A, 82 James Carter Road
                     <br />
-                    New York, NY 10001
+                    Mildenhall, IP28 7DE, UK
                   </a>
                 </div>
               </div>
@@ -135,7 +135,7 @@ export default function Footer() {
           </div>
 
           <div className="mt-14 grid gap-4 border-t border-white/10 pt-6 text-xs uppercase tracking-[0.4em] text-slate-300 sm:grid-cols-2">
-            <p data-testid="text-copyright">© {currentYear} CLC Retail Group. All rights reserved.</p>
+            <p data-testid="text-copyright">© {currentYear} CLC Retail LTD. All rights reserved.</p>
             <p className="text-right text-slate-400 sm:text-left">Crafted for ambitious retail founders.</p>
           </div>
         </div>

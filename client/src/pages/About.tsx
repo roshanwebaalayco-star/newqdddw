@@ -11,13 +11,13 @@ import { Link } from "wouter";
 import { ArrowUpRight } from "lucide-react";
 
 const teamImage = "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=2000&q=80&fm=webp";
-const baseUrl = "https://clcretailgroup.com";
+const baseUrl = "https://clcretail.com";
 
 const leadership = [
   {
     name: "Clara Lewis",
     role: "Founder & Chief Experience Officer",
-    bio: "Former multi-unit franchise operator who built CLC Retail Group after witnessing how siloed teams slow launches. Clara leads the end-to-end experience vision and keeps every engagement anchored to business outcomes.",
+    bio: "Former multi-unit franchise operator who built CLC Retail LTD after witnessing how siloed teams slow launches. Clara leads the end-to-end experience vision and keeps every engagement anchored to business outcomes.",
     image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80&fm=webp",
   },
   {

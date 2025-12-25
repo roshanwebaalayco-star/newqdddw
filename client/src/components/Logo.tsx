@@ -27,7 +27,7 @@ export default function Logo({
         className,
       )}
       data-testid="logo-container"
-      aria-label={!showText ? "CLC Retail Group" : undefined}
+      aria-label={!showText ? "CLC Retail LTD" : undefined}
     >
       <div
         className={cn(
@@ -38,7 +38,7 @@ export default function Logo({
       >
         <img
           src="/logo.svg"
-          alt="CLC Retail Group logo"
+          alt="CLC Retail LTD logo"
           className="h-full w-full object-contain"
           loading="lazy"
         />
@@ -52,7 +52,7 @@ export default function Logo({
           data-testid="logo-text"
         >
           <span className="text-xs uppercase tracking-[0.5em] text-white/70">CLC</span>
-          <span className="text-xl sm:text-2xl text-white">Retail Group</span>
+          <span className="text-xl sm:text-2xl text-white">Retail LTD</span>
         </span>
       )}
     </div>
