@@ -1,0 +1,98 @@
+{
+  "colorScheme": "light",
+  "fonts": [
+    {
+      "family": "FSAlbertWeb-Bold",
+      "count": 41
+    },
+    {
+      "family": "chunkfiveroman",
+      "count": 13
+    },
+    {
+      "family": "Arial",
+      "count": 9
+    },
+    {
+      "family": "FSAlbertWeb-Light",
+      "count": 7
+    }
+  ],
+  "colors": {
+    "primary": "#58A618",
+    "accent": "#90C6EE",
+    "background": "#EDEDED",
+    "textPrimary": "#000000",
+    "link": "#90C6EE"
+  },
+  "typography": {
+    "fontFamilies": {
+      "primary": "FSAlbertWeb-Light",
+      "heading": "chunkfiveroman"
+    },
+    "fontStacks": {
+      "body": [
+        "FSAlbertWeb-Light"
+      ],
+      "heading": [
+        "chunkfiveroman"
+      ],
+      "paragraph": [
+        "FSAlbertWeb-Light"
+      ]
+    },
+    "fontSizes": {
+      "h1": "42px",
+      "h2": "42px",
+      "body": "20px"
+    }
+  },
+  "spacing": {
+    "baseUnit": 10,
+    "borderRadius": "4px"
+  },
+  "components": {
+    "input": {
+      "background": "transparent",
+      "textColor": "#FFFFFF",
+      "borderColor": "#FFFFFF",
+      "borderRadius": "25px",
+      "borderRadiusCorners": {
+        "topLeft": "25px",
+        "topRight": "25px",
+        "bottomRight": "25px",
+        "bottomLeft": "25px"
+      },
+      "shadow": "none"
+    }
+  },
+  "images": {
+    "logo": "https://www.londis.co.uk/themes/custom/londisconsumer/images/ui/londisLogo.png",
+    "favicon": "https://www.londis.co.uk/themes/custom/londisconsumer/favicon.ico",
+    "ogImage": null
+  },
+  "__framework_hints": [],
+  "__llm_logo_reasoning": {
+    "selectedIndex": 0,
+    "reasoning": "Strong indicators: header logo linking to homepage, header location, visible, highest logo on page, src contains logo, class contains logo, reasonable size. Score: 112 (clear winner by 112 points)",
+    "confidence": 0.9
+  },
+  "__llm_button_reasoning": {
+    "primary": {
+      "index": -1,
+      "text": "N/A",
+      "reasoning": "LLM failed"
+    },
+    "secondary": {
+      "index": -1,
+      "text": "N/A",
+      "reasoning": "LLM failed"
+    },
+    "confidence": 0
+  },
+  "confidence": {
+    "buttons": 0,
+    "colors": 0,
+    "overall": 0
+  }
+}

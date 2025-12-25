@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "wouter";
 import { useMutation } from "@tanstack/react-query";
+import { motion } from "framer-motion";
 import AnimatedSection from "@/components/AnimatedSection";
 import { CardGlass } from "@/components/CardGlass";
 import HeroSection from "@/components/HeroSection";
@@ -19,7 +20,6 @@ import {
   ArrowRight,
   Download,
   TrendingUp,
-  Users,
   Award,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -121,9 +121,30 @@ const caseStudies = [
 ];
 
 const trustLogos = [
-  { name: "Nisa", icon: Users },
-  { name: "Londis", icon: Users },
-  { name: "Premier", icon: Users },
+  { 
+    name: "Nisa", 
+    url: "https://www.nisalocally.co.uk",
+    bgColor: "#E8334B",
+    textColor: "#FFFFFF"
+  },
+  { 
+    name: "Londis", 
+    url: "https://www.londis.co.uk",
+    bgColor: "#0066CC",
+    textColor: "#FFFFFF"
+  },
+  { 
+    name: "Premier", 
+    url: "https://www.premier-stores.co.uk",
+    bgColor: "#4C0743",
+    textColor: "#FFDD00"
+  },
+  { 
+    name: "Morrisons Daily", 
+    url: "https://www.morrisons.com/morrisons-daily",
+    bgColor: "#FFC20E",
+    textColor: "#111111"
+  },
 ];
 
 export default function Home() {
@@ -218,17 +239,36 @@ export default function Home() {
                   );
                 })}
               </div>
-              <div className="mt-10 flex items-center justify-center gap-8 text-white/60">
-                <p className="text-sm">Trusted by:</p>
-                {trustLogos.map((logo) => {
-                  const Icon = logo.icon;
-                  return (
-                    <div key={logo.name} className="flex items-center gap-2">
-                      <Icon className="h-5 w-5" />
-                      <span className="font-semibold">{logo.name}</span>
-                    </div>
-                  );
-                })}
+              <div className="mt-10 flex flex-col items-center gap-6">
+                <p className="text-sm text-white/60">Trusted by:</p>
+                <motion.div
+                  className="flex gap-4 flex-wrap justify-center"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, staggerChildren: 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  {trustLogos.map((logo, index) => (
+                    <motion.div
+                      key={logo.name}
+                      className="rounded-lg px-6 py-3 font-semibold cursor-pointer"
+                      style={{
+                        backgroundColor: logo.bgColor,
+                        color: logo.textColor,
+                      }}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                      whileHover={{ scale: 1.08 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => window.open(logo.url, '_blank')}
+                      data-testid={`link-trusted-${logo.name.toLowerCase()}`}
+                    >
+                      {logo.name}
+                    </motion.div>
+                  ))}
+                </motion.div>
               </div>
             </div>
           </div>

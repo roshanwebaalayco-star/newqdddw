@@ -1,0 +1,98 @@
+{
+  "colorScheme": "light",
+  "fonts": [
+    {
+      "family": "Avenir LT W01_95 Black1475556",
+      "count": 39
+    },
+    {
+      "family": "Avenir LT W01_35 Light1475496",
+      "count": 14
+    },
+    {
+      "family": "Arial",
+      "count": 9
+    },
+    {
+      "family": "Avenir LT W01_65 Medium1475532",
+      "count": 3
+    }
+  ],
+  "colors": {
+    "primary": "#FFDD00",
+    "accent": "#4C0743",
+    "background": "#EDEDED",
+    "textPrimary": "#4C0743",
+    "link": "#4C0743"
+  },
+  "typography": {
+    "fontFamilies": {
+      "primary": "Avenir LT W01_35 Light1475496",
+      "heading": "Avenir LT W01_35 Light1475496"
+    },
+    "fontStacks": {
+      "body": [
+        "Avenir LT W01_35 Light1475496"
+      ],
+      "heading": [
+        "Avenir LT W01_35 Light1475496"
+      ],
+      "paragraph": [
+        "Avenir LT W01_95 Black1475556"
+      ]
+    },
+    "fontSizes": {
+      "h1": "20px",
+      "h2": "42px",
+      "body": "42px"
+    }
+  },
+  "spacing": {
+    "baseUnit": 10,
+    "borderRadius": "4px"
+  },
+  "components": {
+    "input": {
+      "background": "transparent",
+      "textColor": "#FFFFFF",
+      "borderColor": "#FFFFFF",
+      "borderRadius": "25px",
+      "borderRadiusCorners": {
+        "topLeft": "25px",
+        "topRight": "25px",
+        "bottomRight": "25px",
+        "bottomLeft": "25px"
+      },
+      "shadow": "none"
+    }
+  },
+  "images": {
+    "logo": "https://www.premier-stores.co.uk/themes/custom/premierconsumer/images/ui/premierLogo.png",
+    "favicon": "https://www.premier-stores.co.uk/themes/custom/premierconsumer/favicon.ico",
+    "ogImage": null
+  },
+  "__framework_hints": [],
+  "__llm_logo_reasoning": {
+    "selectedIndex": 0,
+    "reasoning": "Strong indicators: header logo linking to homepage, header location, visible, top-left position, highest logo on page, src contains logo, class contains logo, reasonable size. Score: 122 (clear winner by 122 points)",
+    "confidence": 0.9
+  },
+  "__llm_button_reasoning": {
+    "primary": {
+      "index": -1,
+      "text": "N/A",
+      "reasoning": "LLM failed"
+    },
+    "secondary": {
+      "index": -1,
+      "text": "N/A",
+      "reasoning": "LLM failed"
+    },
+    "confidence": 0
+  },
+  "confidence": {
+    "buttons": 0,
+    "colors": 0,
+    "overall": 0
+  }
+}

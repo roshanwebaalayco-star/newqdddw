@@ -1,0 +1,80 @@
+{
+  "colorScheme": "light",
+  "fonts": [
+    {
+      "family": "Arial",
+      "count": 5
+    },
+    {
+      "family": "sans-serif",
+      "count": 5
+    },
+    {
+      "family": "Morrisons-Agenda-Light",
+      "count": 3
+    },
+    {
+      "family": "Maja-Bold",
+      "count": 2
+    },
+    {
+      "family": "Times New Roman",
+      "count": 1
+    }
+  ],
+  "colors": {
+    "primary": "#FFC20E",
+    "accent": "#FFC20E",
+    "background": "#FFFFFF",
+    "textPrimary": "#111111",
+    "link": "#FFC20E"
+  },
+  "typography": {
+    "fontFamilies": {
+      "primary": "Times New Roman",
+      "heading": "Maja-Bold"
+    },
+    "fontStacks": {
+      "body": [
+        "Times New Roman"
+      ],
+      "heading": [
+        "Maja-Bold",
+        "Arial",
+        "sans-serif"
+      ],
+      "paragraph": [
+        "Morrisons-Agenda-Light",
+        "Arial",
+        "sans-serif"
+      ]
+    },
+    "fontSizes": {
+      "h1": "60px",
+      "h2": "60px",
+      "body": "20px"
+    }
+  },
+  "spacing": {
+    "baseUnit": 10,
+    "borderRadius": "0px"
+  },
+  "components": {},
+  "images": {
+    "logo": "File saved at: attached_assets/logo.svg",
+    "favicon": null,
+    "ogImage": null
+  },
+  "__framework_hints": [],
+  "__llm_logo_reasoning": {
+    "selectedIndex": 0,
+    "reasoning": "Logo rejected: Low confidence. Heuristic fallback: Weak indicators: no link (brand logos usually link to homepage, penalty), visible, highest logo on page, src contains logo, reasonable size, SVG format, body location without header (penalty). Score: 15. LLM validation recommended (close scores: top=15, second=0)",
+    "confidence": 0.30000000000000004,
+    "rejected": true
+  },
+  "confidence": {
+    "buttons": 0,
+    "colors": 0,
+    "overall": 0
+  }
+}
