@@ -235,22 +235,31 @@ export default function Home() {
                   );
                 })}
               </div>
-              <div className="mt-16 flex flex-col items-center gap-8">
+              <motion.div 
+                className="mt-16 flex flex-col items-center gap-8"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ 
+                  duration: 0.8, 
+                  ease: [0.21, 1.11, 0.81, 0.99] // Custom spring-like easing for a premium feel
+                }}
+                viewport={{ once: true, margin: "-100px" }}
+              >
                 <p className="text-xs uppercase tracking-[0.4em] text-white/40">Trusted Partners</p>
-                <motion.div
-                  className="flex gap-12 flex-wrap justify-center items-center opacity-70 grayscale transition-all duration-500 hover:opacity-100 hover:grayscale-0"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 0.7 }}
-                  transition={{ duration: 1 }}
-                  viewport={{ once: true }}
+                <div
+                  className="flex gap-12 flex-wrap justify-center items-center opacity-70 grayscale transition-all duration-700 hover:opacity-100 hover:grayscale-0"
                 >
                   {trustLogos.map((logo, index) => (
                     <motion.div
                       key={logo.name}
                       className="cursor-pointer group"
-                      initial={{ opacity: 0, y: 10 }}
+                      initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                      transition={{ 
+                        duration: 0.8, 
+                        delay: 0.2 + (index * 0.1),
+                        ease: "easeOut"
+                      }}
                       viewport={{ once: true }}
                       whileHover={{ scale: 1.05 }}
                       onClick={() => window.open(logo.url, '_blank')}
@@ -266,8 +275,8 @@ export default function Home() {
                       </span>
                     </motion.div>
                   ))}
-                </motion.div>
-              </div>
+                </div>
+              </motion.div>
             </div>
           </div>
         </section>
