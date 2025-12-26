@@ -124,26 +124,18 @@ const trustLogos = [
   { 
     name: "Nisa", 
     url: "https://www.nisalocally.co.uk",
-    bgColor: "#E8334B",
-    textColor: "#FFFFFF"
   },
   { 
     name: "Londis", 
     url: "https://www.londis.co.uk",
-    bgColor: "#0066CC",
-    textColor: "#FFFFFF"
   },
   { 
     name: "Premier", 
     url: "https://www.premier-stores.co.uk",
-    bgColor: "#4C0743",
-    textColor: "#FFDD00"
   },
   { 
     name: "Morrisons Daily", 
     url: "https://www.morrisons.com/morrisons-daily",
-    bgColor: "#FFC20E",
-    textColor: "#111111"
   },
 ];
 
@@ -239,33 +231,30 @@ export default function Home() {
                   );
                 })}
               </div>
-              <div className="mt-10 flex flex-col items-center gap-6">
-                <p className="text-sm text-white/60">Trusted by:</p>
+              <div className="mt-16 flex flex-col items-center gap-8">
+                <p className="text-xs uppercase tracking-[0.4em] text-white/40">Trusted Partners</p>
                 <motion.div
-                  className="flex gap-4 flex-wrap justify-center"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, staggerChildren: 0.1 }}
+                  className="flex gap-12 flex-wrap justify-center items-center opacity-50 grayscale transition-all duration-500 hover:opacity-100 hover:grayscale-0"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 0.5 }}
+                  transition={{ duration: 1 }}
                   viewport={{ once: true }}
                 >
                   {trustLogos.map((logo, index) => (
                     <motion.div
                       key={logo.name}
-                      className="rounded-lg px-6 py-3 font-semibold cursor-pointer"
-                      style={{
-                        backgroundColor: logo.bgColor,
-                        color: logo.textColor,
-                      }}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.4, delay: index * 0.1 }}
+                      className="cursor-pointer group"
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
                       viewport={{ once: true }}
-                      whileHover={{ scale: 1.08 }}
-                      whileTap={{ scale: 0.95 }}
+                      whileHover={{ scale: 1.05 }}
                       onClick={() => window.open(logo.url, '_blank')}
                       data-testid={`link-trusted-${logo.name.toLowerCase()}`}
                     >
-                      {logo.name}
+                      <span className="font-heading text-lg font-medium tracking-wider text-white/80 transition-colors group-hover:text-white">
+                        {logo.name}
+                      </span>
                     </motion.div>
                   ))}
                 </motion.div>
