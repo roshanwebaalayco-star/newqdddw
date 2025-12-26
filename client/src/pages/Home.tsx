@@ -124,18 +124,22 @@ const trustLogos = [
   { 
     name: "Nisa", 
     url: "https://www.nisalocally.co.uk",
+    color: "#E8334B"
   },
   { 
     name: "Londis", 
     url: "https://www.londis.co.uk",
+    color: "#0066CC"
   },
   { 
     name: "Premier", 
     url: "https://www.premier-stores.co.uk",
+    color: "#FFDD00"
   },
   { 
     name: "Morrisons Daily", 
     url: "https://www.morrisons.com/morrisons-daily",
+    color: "#FFC20E"
   },
 ];
 
@@ -234,9 +238,9 @@ export default function Home() {
               <div className="mt-16 flex flex-col items-center gap-8">
                 <p className="text-xs uppercase tracking-[0.4em] text-white/40">Trusted Partners</p>
                 <motion.div
-                  className="flex gap-12 flex-wrap justify-center items-center opacity-50 grayscale transition-all duration-500 hover:opacity-100 hover:grayscale-0"
+                  className="flex gap-12 flex-wrap justify-center items-center opacity-70 grayscale transition-all duration-500 hover:opacity-100 hover:grayscale-0"
                   initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 0.5 }}
+                  whileInView={{ opacity: 0.7 }}
                   transition={{ duration: 1 }}
                   viewport={{ once: true }}
                 >
@@ -252,7 +256,12 @@ export default function Home() {
                       onClick={() => window.open(logo.url, '_blank')}
                       data-testid={`link-trusted-${logo.name.toLowerCase()}`}
                     >
-                      <span className="font-heading text-lg font-medium tracking-wider text-white/80 transition-colors group-hover:text-white">
+                      <span 
+                        className="font-heading text-lg font-medium tracking-wider transition-colors duration-300"
+                        style={{ color: 'rgba(255, 255, 255, 0.8)' }}
+                        onMouseEnter={(e) => e.currentTarget.style.color = logo.color}
+                        onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.8)'}
+                      >
                         {logo.name}
                       </span>
                     </motion.div>
