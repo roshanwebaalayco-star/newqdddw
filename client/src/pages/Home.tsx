@@ -44,7 +44,7 @@ const steps = [
     title: "Location",
     path: "/step-location",
     icon: MapPin,
-    summary: "Data-driven site selection with catchment analysis, competitor mapping, and feasibility reports.",
+    summary: "Site selection that drives footfall through data-led catchment mapping and feasibility analysis.",
     color: "from-blue-500 to-cyan-500",
   },
   {
@@ -52,7 +52,7 @@ const steps = [
     title: "Design",
     path: "/step-design",
     icon: PenTool,
-    summary: "Brand-led visual identity with optimised store flow and accessible layouts meeting UK regulations.",
+    summary: "Retail layouts that maximise spend per visit through optimized flow and brand-led identity.",
     color: "from-purple-500 to-pink-500",
   },
   {
@@ -60,7 +60,7 @@ const steps = [
     title: "Fit-Out",
     path: "/step-fit-out",
     icon: Hammer,
-    summary: "Fixed budget builds with compliant M&E works and low disruption installation schedules.",
+    summary: "Fast, compliant store builds delivered on fixed budget schedules with low disruption.",
     color: "from-orange-500 to-red-500",
   },
   {
@@ -68,7 +68,7 @@ const steps = [
     title: "Suppliers",
     path: "/step-suppliers",
     icon: Package,
-    summary: "Negotiated supplier terms, category plans, and stock management to improve margins.",
+    summary: "Stock, terms, and supply chains that improve margins through negotiated leverage.",
     color: "from-green-500 to-emerald-500",
   },
   {
@@ -76,7 +76,7 @@ const steps = [
     title: "Launch",
     path: "/step-launch",
     icon: Rocket,
-    summary: "Trained teams, local marketing plans, and opening-week operations for trade-ready performance.",
+    summary: "From soft opening to trade-ready performance with trained teams and local marketing plans.",
     color: "from-yellow-500 to-amber-500",
   },
 ];
@@ -93,8 +93,8 @@ const whyClc = [
     icon: CheckCircle2,
   },
   {
-    title: "Lender-Ready Documentation",
-    description: "Professional feasibility reports and business plans that meet investor and lender requirements.",
+    title: "Investor-Ready Documentation",
+    description: "Professional feasibility reports and business plans that meet lender and investor requirements.",
     icon: TrendingUp,
   },
 ];
@@ -208,7 +208,7 @@ export default function Home() {
       <HeroSection
         eyebrow="Retail environments crafted for modern founders"
         title="Premium Convenience Store Solutions Across the UK"
-        subtitle="From Location to Launch — five specialist steps to open profitable, compliant convenience stores."
+        subtitle="From Location to Launch — four specialist steps to open profitable, compliant convenience stores."
         ctaText="Book a free site survey"
         ctaLink="/contact#schedule"
         backgroundImage="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=2000&q=80"
@@ -360,7 +360,7 @@ export default function Home() {
                 Success Stories
               </Badge>
               <h2 className="font-heading text-3xl font-semibold sm:text-4xl">
-                Recent Case Studies
+                Case Studies Snapshot
               </h2>
               <p className="mx-auto max-w-2xl text-white/75">
                 Real results from real projects across the UK. See how we've helped entrepreneurs launch profitable convenience stores.
@@ -426,39 +426,39 @@ export default function Home() {
                   </DialogTrigger>
                   <DialogContent className="sm:max-w-md">
                     <DialogHeader>
-                      <DialogTitle>Get Your Free Checklist</DialogTitle>
+                      <DialogTitle>Download Free Checklist</DialogTitle>
                       <DialogDescription>
-                        Enter your details below and we'll send the Location Selection Checklist to your email.
+                        A practical checklist to validate high-potential convenience store sites.
                       </DialogDescription>
                     </DialogHeader>
                     <form onSubmit={handleChecklistDownload} className="space-y-4">
                       <div>
-                        <Label htmlFor="name">Full Name</Label>
+                        <Label htmlFor="name">Name</Label>
                         <Input
                           id="name"
                           name="name"
-                          placeholder="John Smith"
+                          placeholder="Your Name"
                           required
                           data-testid="input-name"
                         />
                       </div>
                       <div>
-                        <Label htmlFor="email">Email Address</Label>
+                        <Label htmlFor="email">Email</Label>
                         <Input
                           id="email"
                           name="email"
                           type="email"
-                          placeholder="john@example.com"
+                          placeholder="your@email.com"
                           required
                           data-testid="input-email"
                         />
                       </div>
                       <div>
-                        <Label htmlFor="location">Target Location</Label>
+                        <Label htmlFor="location">Location</Label>
                         <Input
                           id="location"
                           name="location"
-                          placeholder="e.g., Manchester, London"
+                          placeholder="Target location"
                           data-testid="input-location"
                         />
                       </div>
@@ -482,7 +482,7 @@ export default function Home() {
                         disabled={leadMutation.isPending}
                         data-testid="button-submit-checklist"
                       >
-                        {leadMutation.isPending ? "Sending..." : "Send Me the Checklist"}
+                        {leadMutation.isPending ? "Sending..." : "Download Checklist"}
                       </Button>
                     </form>
                   </DialogContent>

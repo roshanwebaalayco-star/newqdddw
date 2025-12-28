@@ -91,7 +91,7 @@ export default function Header() {
                 data-analytics="cta-schedule"
               >
                 <PhoneCall className="h-4 w-4" />
-                Schedule a consultation
+                Start Your Business
               </Button>
             </Link>
 

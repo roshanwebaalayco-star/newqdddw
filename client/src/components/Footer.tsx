@@ -30,7 +30,7 @@ export default function Footer() {
             <div className="space-y-6">
               <Logo size="lg" stack="vertical" />
               <p className="max-w-sm text-sm leading-relaxed text-slate-200">
-                We partner with founders, franchise operators, and private equity teams to deliver concept stores that feel instinctively premium and operationally sharp.
+                UK expertise; end-to-end delivery; lender and investor-ready documentation.
               </p>
               <div className="flex flex-wrap gap-3 text-xs uppercase tracking-[0.35em] text-slate-300">
                 <span>London</span>
@@ -40,7 +40,7 @@ export default function Footer() {
             </div>
 
             <div className="space-y-5">
-              <h3 className="font-heading text-sm uppercase tracking-[0.4em] text-slate-300">Navigation</h3>
+              <h3 className="font-heading text-sm uppercase tracking-[0.4em] text-slate-300">Quick Links</h3>
               <ul className="grid grid-cols-2 gap-3 text-sm text-slate-200">
                 {navigationLinks.map((link) => (
                   <li key={link.path}>
