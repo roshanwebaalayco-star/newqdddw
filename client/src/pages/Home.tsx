@@ -206,12 +206,12 @@ export default function Home() {
       />
 
       <HeroSection
-        eyebrow="Retail environments crafted for modern founders"
-        title="Premium Convenience Store Solutions Across the UK"
-        subtitle="From Location to Launch — five specialist steps to open profitable, compliant convenience stores."
-        ctaText="Book a free site survey"
-        ctaLink="/contact#schedule"
-        backgroundImage="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=2000&q=80"
+        eyebrow="Your Dream, Our Partnership"
+        title="Your Dream, Our Partnership: Start a Successful Business Today"
+        subtitle="Ready to run your own business? CLC Retail Group provides the support, resources, and expert guidance you need to open a profitable retail business."
+        ctaText="Start Your Journey Today"
+        ctaLink="/services"
+        backgroundImage="https://images.unsplash.com/photo-1556740734-7f96267b118a?auto=format&fit=crop&w=2000&q=80"
       />
 
       <AnimatedSection>
@@ -219,21 +219,30 @@ export default function Home() {
           <div className="container mx-auto max-w-6xl px-4">
             <div className="mb-12 text-center">
               <Badge className="border border-white/25 bg-white/10 px-4 py-1 text-xs uppercase tracking-[0.35em] text-white/70">
-                Why CLC Retail Solutions Group
+                Partnership & Expertise
               </Badge>
               <div className="mt-8 grid gap-6 md:grid-cols-3">
-                {whyClc.map((item) => {
-                  const Icon = item.icon;
-                  return (
-                    <CardGlass key={item.title} className="p-8 text-center">
-                      <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/25 bg-white/10 text-white">
-                        <Icon className="h-6 w-6" />
-                      </div>
-                      <h3 className="font-heading text-xl text-white">{item.title}</h3>
-                      <p className="mt-4 text-white/80">{item.description}</p>
-                    </CardGlass>
-                  );
-                })}
+                <CardGlass className="p-8 text-center">
+                  <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/25 bg-white/10 text-white">
+                    <CheckCircle2 className="h-6 w-6" />
+                  </div>
+                  <h3 className="font-heading text-xl text-white">Visionary Partnership</h3>
+                  <p className="mt-4 text-white/80">We are more than a service provider; we are your strategic partner in growth, seeing potential where others see problems.</p>
+                </CardGlass>
+                <CardGlass className="p-8 text-center">
+                  <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/25 bg-white/10 text-white">
+                    <Award className="h-6 w-6" />
+                  </div>
+                  <h3 className="font-heading text-xl text-white">Relentless Execution</h3>
+                  <p className="mt-4 text-white/80">Flawless management of every detail—from purchase agreements and supply contracts to beautiful store design.</p>
+                </CardGlass>
+                <CardGlass className="p-8 text-center">
+                  <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/25 bg-white/10 text-white">
+                    <TrendingUp className="h-6 w-6" />
+                  </div>
+                  <h3 className="font-heading text-xl text-white">Seamless Experience</h3>
+                  <p className="mt-4 text-white/80">A hassle-free journey from idea to open store, acting as your single point of contact for all vendors and specialists.</p>
+                </CardGlass>
               </div>
               <motion.div 
                 className="mt-16 flex flex-col items-center gap-8"
@@ -500,30 +509,30 @@ export default function Home() {
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.18),transparent_70%)]" />
               <div className="relative grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
                 <div className="space-y-4">
-                  <p className="text-[10px] uppercase tracking-[0.35em] text-white/60 sm:text-xs">Let's collaborate</p>
-                  <h3 className="font-heading text-2xl sm:text-4xl">Ready to open your convenience store?</h3>
+                  <p className="text-[10px] uppercase tracking-[0.35em] text-white/60 sm:text-xs">Take control of your future</p>
+                  <h3 className="font-heading text-2xl sm:text-4xl">Ready to Take Control of Your Future?</h3>
                   <p className="max-w-xl text-sm text-white/75 sm:text-lg">
-                    Book a free site survey and let us help you build a profitable, compliant convenience store from the ground up.
+                    The first step toward financial freedom is just a click away. Contact us to learn more about how we can help you build your legacy.
                   </p>
                 </div>
                 <div className="space-y-4">
-                  <Link href="/contact#schedule">
+                  <Link href="/contact">
                     <Button
                       size="lg"
                       className="w-full rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary px-10 py-6 text-[10px] font-semibold uppercase tracking-[0.3em] text-white sm:text-xs"
                       data-testid="button-cta-bottom"
                     >
-                      Book a free site survey
+                      Connect with Our Team
                     </Button>
                   </Link>
-                  <Link href="/step-location">
+                  <Link href="/services">
                     <Button
                       size="lg"
                       variant="outline"
                       className="w-full rounded-full border border-white/30 bg-white/10 px-10 py-6 text-[10px] font-semibold uppercase tracking-[0.3em] text-white/80 hover:text-white sm:text-xs"
                       data-testid="button-cta-secondary"
                     >
-                      Explore Step 1: Location
+                      Explore Our Solutions
                     </Button>
                   </Link>
                 </div>

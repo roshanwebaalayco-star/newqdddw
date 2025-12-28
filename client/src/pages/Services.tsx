@@ -33,9 +33,9 @@ interface ServiceDetail {
 
 const services: ServiceDetail[] = [
   {
-    title: "Franchise opportunity scouting",
+    title: "Franchise Opportunities",
     summary:
-      "Match with proven franchise systems and negotiating leverage so you open with operational guardrails, marketing muscle, and profitable unit economics from day one.",
+      "We match you with a proven franchise model that fits your goals and market demands. Benefit from negotiating leverage, operational guardrails, and marketing muscle.",
     icon: Store,
     who: [
       "First-time founders wanting support without reinventing the playbook",
@@ -72,9 +72,9 @@ const services: ServiceDetail[] = [
     cta: { label: "Request a franchise match", href: "/contact" },
   },
   {
-    title: "Site selection & setup",
+    title: "Site Selection & Setup",
     summary:
-      "Identify, secure, and build the right space with data-backed confidence. We coordinate brokers, architects, contractors, and inspectors while you stay focused on the vision.",
+      "Our experts help you find the perfect location and manage the entire store setup process, from design to grand opening. We coordinate brokers, architects, and contractors.",
     icon: MapPin,
     who: [
       "Growing concepts expanding into high-stakes urban corridors",
@@ -111,9 +111,9 @@ const services: ServiceDetail[] = [
     cta: { label: "Book a site review", href: "/contact" },
   },
   {
-    title: "Inventory & supplier management",
+    title: "Inventory & Supplier Management",
     summary:
-      "Build resilient supply networks, negotiate leverage, and implement inventory systems that keep your shelves evergreen without tying up cash.",
+      "We connect you with trusted suppliers and provide a system for managing your inventory efficiently. Build resilient networks and implement smart replenishment.",
     icon: Package,
     who: [
       "Retailers scaling into new regions with variable supplier quality",
@@ -150,9 +150,9 @@ const services: ServiceDetail[] = [
     cta: { label: "Stabilize your supply chain", href: "/contact" },
   },
   {
-    title: "Marketing & brand activation",
+    title: "Marketing & Branding",
     summary:
-      "Craft the narrative, campaigns, and loyalty ladders that fill the floor on day one—and keep customers coming back.",
+      "We help you build a strong local brand and reach your target customers effectively. Craft narratives and loyalty ladders that fill the floor on day one.",
     icon: Megaphone,
     who: [
       "Concepts launching flagships or pop-ups that require outsized buzz",
@@ -201,21 +201,10 @@ export default function Services() {
   return (
     <MarketingLayout>
       <Seo
-        title="Retail launch services | CLC Retail Group"
-        description="Explore CLC Retail Group’s full-stack services—from franchise scouting and site selection to supplier orchestration and launch marketing."
+        title="Your Complete Business Solution | CLC Retail Group"
+        description="We simplify the path to business ownership with a full suite of services designed for your success. Franchise matching, site selection, and launch marketing."
         canonical={`${baseUrl}/services`}
         ogImage={servicesImage}
-        jsonLd={[
-          {
-            type: "BreadcrumbList",
-            data: {
-              itemListElement: [
-                { "@type": "ListItem", position: 1, name: "Home", item: `${baseUrl}/` },
-                { "@type": "ListItem", position: 2, name: "Services", item: `${baseUrl}/services` },
-              ],
-            },
-          },
-        ]}
       />
 
       <HeroSection
