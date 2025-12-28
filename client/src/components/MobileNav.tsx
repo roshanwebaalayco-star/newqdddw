@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { X } from "lucide-react";
 
 export interface MobileNavProps {
   open: boolean;
@@ -47,7 +48,7 @@ export function MobileNav({ open, onClose, items, currentPath }: MobileNavProps)
   return (
     <div className="fixed inset-0 z-[100] md:hidden">
       <div
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/80 backdrop-blur-md"
         onClick={onClose}
         aria-hidden="true"
       />
@@ -55,9 +56,22 @@ export function MobileNav({ open, onClose, items, currentPath }: MobileNavProps)
         role="dialog"
         aria-modal="true"
         aria-label="Main navigation"
-        className="absolute right-0 top-0 h-full w-[88%] max-w-sm overflow-y-auto rounded-l-3xl border border-white/10 bg-[#0f1222]/98 p-5 shadow-[0_24px_80px_-30px_rgba(0,0,0,0.85)] focus:outline-none focus-visible:ring-2 focus-visible:ring-clc-accent/80 sm:p-6"
+        className="absolute right-0 top-0 h-full w-[88%] max-w-[320px] overflow-y-auto border-l border-white/10 bg-[#0b0d16] p-6 shadow-[0_24px_80px_-30px_rgba(0,0,0,0.95)] focus:outline-none focus-visible:ring-2 focus-visible:ring-clc-accent/80"
       >
-        <ul className="grid gap-3 sm:gap-3.5">
+        <div className="mb-8 flex items-center justify-between">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/40">Menu</p>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={onClose}
+            className="h-10 w-10 rounded-full border border-white/10 bg-white/5 text-white/70 hover:bg-white/10 hover:text-white"
+            aria-label="Close menu"
+          >
+            <X className="h-5 w-5" />
+          </Button>
+        </div>
+
+        <ul className="grid gap-3">
           {items.map((item) => (
             <li key={item.path}>
               <Link
@@ -66,8 +80,8 @@ export function MobileNav({ open, onClose, items, currentPath }: MobileNavProps)
               >
                 <span
                   className={cn(
-                    "block min-h-[44px] cursor-pointer rounded-[2rem] border border-transparent bg-white/6 px-6 py-3.5 text-base uppercase tracking-[0.16em] text-white/70 transition-colors hover:bg-white/10 active:bg-white/14 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1222] sm:py-4",
-                    currentPath === item.path && "border-white/20 bg-white/10 text-white",
+                    "block min-h-[48px] cursor-pointer rounded-xl border border-white/5 bg-white/5 px-6 py-3.5 text-sm font-medium uppercase tracking-[0.16em] text-white/60 transition-all hover:bg-white/10 hover:text-white active:scale-[0.98]",
+                    currentPath === item.path && "border-primary/30 bg-primary/10 text-white",
                   )}
                   data-testid={`link-mobile-${item.name.toLowerCase()}`}
                 >
@@ -76,17 +90,16 @@ export function MobileNav({ open, onClose, items, currentPath }: MobileNavProps)
               </Link>
             </li>
           ))}
-          <li>
+          <li className="mt-4">
             <Link
               href="/contact#schedule"
               onClick={onClose}
             >
               <span
-                className="block min-h-[44px] cursor-pointer whitespace-nowrap rounded-[2rem] bg-gradient-to-r from-primary to-secondary px-6 py-3.5 text-center text-base uppercase tracking-[0.18em] text-white shadow-[0_10px_30px_rgba(0,0,0,.25)] transition-transform hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1222] sm:py-4"
+                className="block min-h-[48px] cursor-pointer whitespace-nowrap rounded-xl bg-gradient-to-r from-primary via-primary/80 to-secondary px-6 py-4 text-center text-sm font-bold uppercase tracking-[0.2em] text-white shadow-lg transition-all hover:brightness-110 active:scale-[0.98]"
                 data-testid="button-cta-mobile"
-                data-analytics="cta-schedule"
               >
-                Schedule a consultation
+                Book site survey
               </span>
             </Link>
           </li>

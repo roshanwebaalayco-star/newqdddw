@@ -38,7 +38,7 @@ export default function MarketingLayout({
       </div>
       <Header />
 
-      <main id="main-content" className={cn("relative z-10 flex-1 pt-32 pb-20", mainClassName)}>
+      <main id="main-content" className={cn("relative z-10 flex-1 pt-24 pb-20 sm:pt-32", mainClassName)}>
         {children}
       </main>
 

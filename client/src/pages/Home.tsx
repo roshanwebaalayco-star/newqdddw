@@ -404,21 +404,21 @@ export default function Home() {
       <AnimatedSection delay={0.2}>
         <section className="py-16 lg:py-20">
           <div className="container mx-auto max-w-4xl px-4">
-            <CardGlass className="relative overflow-hidden p-12">
+            <CardGlass className="relative overflow-hidden p-6 sm:p-12">
               <div className="absolute right-0 top-0 h-64 w-64 rounded-full bg-gradient-to-br from-primary/20 to-transparent blur-3xl" />
               <div className="relative text-center text-white">
                 <Download className="mx-auto mb-6 h-12 w-12 text-primary" />
-                <h2 className="font-heading text-3xl font-semibold sm:text-4xl">
+                <h2 className="font-heading text-2xl font-semibold sm:text-4xl">
                   Free Location Selection Checklist
                 </h2>
-                <p className="mx-auto mt-4 max-w-2xl text-white/75">
+                <p className="mx-auto mt-4 max-w-2xl text-sm text-white/75 sm:text-base">
                   A practical checklist to validate high-potential convenience store sites. Covers catchment analysis, competition, accessibility, compliance, and financial filters.
                 </p>
                 <Dialog open={checklistFormOpen} onOpenChange={setChecklistFormOpen}>
                   <DialogTrigger asChild>
                     <Button
                       size="lg"
-                      className="mt-8 rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary px-10 py-6 text-sm font-semibold uppercase tracking-[0.22em] text-white"
+                      className="mt-8 w-full rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary px-10 py-6 text-xs font-semibold uppercase tracking-[0.22em] text-white sm:w-auto sm:text-sm"
                       data-testid="button-download-checklist"
                     >
                       Download Free Checklist
@@ -496,13 +496,13 @@ export default function Home() {
       <AnimatedSection delay={0.25}>
         <section className="py-20">
           <div className="container mx-auto max-w-5xl px-4">
-            <div className="relative overflow-hidden rounded-[2.5rem] border border-white/12 bg-[#0f1222]/95 p-12 text-white shadow-[0_38px_110px_-60px_rgba(0,0,0,0.9)]">
+            <div className="relative overflow-hidden rounded-[2rem] border border-white/12 bg-[#0f1222]/95 p-6 text-white shadow-[0_38px_110px_-60px_rgba(0,0,0,0.9)] sm:rounded-[2.5rem] sm:p-12">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.18),transparent_70%)]" />
               <div className="relative grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
                 <div className="space-y-4">
-                  <p className="text-xs uppercase tracking-[0.35em] text-white/60">Let's collaborate</p>
-                  <h3 className="font-heading text-3xl sm:text-4xl">Ready to open your convenience store?</h3>
-                  <p className="max-w-xl text-base text-white/75 sm:text-lg">
+                  <p className="text-[10px] uppercase tracking-[0.35em] text-white/60 sm:text-xs">Let's collaborate</p>
+                  <h3 className="font-heading text-2xl sm:text-4xl">Ready to open your convenience store?</h3>
+                  <p className="max-w-xl text-sm text-white/75 sm:text-lg">
                     Book a free site survey and let us help you build a profitable, compliant convenience store from the ground up.
                   </p>
                 </div>
@@ -510,7 +510,7 @@ export default function Home() {
                   <Link href="/contact#schedule">
                     <Button
                       size="lg"
-                      className="w-full rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary px-10 py-6 text-xs font-semibold uppercase tracking-[0.3em] text-white"
+                      className="w-full rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary px-10 py-6 text-[10px] font-semibold uppercase tracking-[0.3em] text-white sm:text-xs"
                       data-testid="button-cta-bottom"
                     >
                       Book a free site survey
@@ -520,7 +520,7 @@ export default function Home() {
                     <Button
                       size="lg"
                       variant="outline"
-                      className="w-full rounded-full border border-white/30 bg-white/10 px-10 py-6 text-xs font-semibold uppercase tracking-[0.3em] text-white/80 hover:text-white"
+                      className="w-full rounded-full border border-white/30 bg-white/10 px-10 py-6 text-[10px] font-semibold uppercase tracking-[0.3em] text-white/80 hover:text-white sm:text-xs"
                       data-testid="button-cta-secondary"
                     >
                       Explore Step 1: Location

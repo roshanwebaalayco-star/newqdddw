@@ -246,81 +246,81 @@ export default function Services() {
               {services.map((service) => {
                 const Icon = service.icon;
                 return (
-                  <CardGlass key={service.title} className="space-y-8 p-8 text-white">
+                  <CardGlass key={service.title} className="space-y-8 p-6 text-white sm:p-8">
                     <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
                       <div className="flex items-start gap-4">
-                        <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/25 bg-white/10 text-white">
-                          <Icon className="h-7 w-7" />
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/25 bg-white/10 text-white sm:h-14 sm:w-14">
+                          <Icon className="h-6 w-6 sm:h-7 sm:w-7" />
                         </div>
-                        <div className="space-y-3">
-                          <h3 className="font-heading text-2xl">{service.title}</h3>
-                          <p className="leading-relaxed text-white/90">{service.summary}</p>
+                        <div className="space-y-2 sm:space-y-3">
+                          <h3 className="font-heading text-xl sm:text-2xl">{service.title}</h3>
+                          <p className="text-sm leading-relaxed text-white/90 sm:text-base">{service.summary}</p>
                         </div>
                       </div>
                       <Link href={service.cta.href}>
-                        <Button className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary px-6 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-white">
+                        <Button className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary px-6 py-4 text-[10px] font-semibold uppercase tracking-[0.24em] text-white sm:w-auto sm:px-6 sm:py-3 sm:text-xs">
                           {service.cta.label}
                           <ArrowUpRight className="h-4 w-4" />
                         </Button>
                       </Link>
                     </div>
 
-                    <div className="grid gap-6 lg:grid-cols-3">
+                    <div className="grid gap-8 lg:grid-cols-3">
                       <div className="space-y-4">
-                        <p className="text-xs uppercase tracking-[0.35em] text-white/70">Who it’s for</p>
-                        <ul className="space-y-3 text-white/90">
+                        <p className="text-[10px] uppercase tracking-[0.35em] text-white/70 sm:text-xs">Who it’s for</p>
+                        <ul className="space-y-3 text-sm text-white/90 sm:text-base">
                           {service.who.map((item) => (
                             <li key={item} className="flex items-start gap-3">
-                              <Check className="mt-1 h-4 w-4 text-primary" />
+                              <Check className="mt-1 h-4 w-4 shrink-0 text-primary" />
                               <span>{item}</span>
                             </li>
                           ))}
                         </ul>
                       </div>
                       <div className="space-y-4">
-                        <p className="text-xs uppercase tracking-[0.35em] text-white/70">What’s included</p>
-                        <ul className="space-y-3 text-white/90">
+                        <p className="text-[10px] uppercase tracking-[0.35em] text-white/70 sm:text-xs">What’s included</p>
+                        <ul className="space-y-3 text-sm text-white/90 sm:text-base">
                           {service.deliverables.map((deliverable) => (
                             <li key={deliverable} className="flex items-start gap-3">
-                              <Check className="mt-1 h-4 w-4 text-primary" />
+                              <Check className="mt-1 h-4 w-4 shrink-0 text-primary" />
                               <span>{deliverable}</span>
                             </li>
                           ))}
                         </ul>
                       </div>
                       <div className="space-y-4">
-                        <p className="text-xs uppercase tracking-[0.35em] text-white/70">Process & timeline</p>
-                        <ul className="space-y-3">
+                        <p className="text-[10px] uppercase tracking-[0.35em] text-white/70 sm:text-xs">Process & timeline</p>
+                        <ul className="space-y-4">
                           {service.process.map((phase) => (
                             <li key={phase.phase} className="rounded-2xl border border-white/12 bg-white/10 p-4">
-                              <div className="flex items-center justify-between text-xs uppercase tracking-[0.3em] text-white/65">
+                              <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.2em] text-white/65 sm:text-xs sm:tracking-[0.3em]">
                                 <span>{phase.phase}</span>
                                 <span className="inline-flex items-center gap-1 text-white/70">
-                                  <Clock className="h-3.5 w-3.5" />
+                                  <Clock className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
                                   {phase.duration}
                                 </span>
                               </div>
-                              <p className="mt-3 text-sm leading-relaxed text-white/85">{phase.detail}</p>
+                              <p className="mt-3 text-xs leading-relaxed text-white/85 sm:text-sm">{phase.detail}</p>
                             </li>
                           ))}
                         </ul>
                       </div>
                     </div>
 
-                    <div className="rounded-2xl border border-white/10 bg-white/10 p-6">
-                      <p className="text-xs uppercase tracking-[0.35em] text-white/70">Case snapshot</p>
-                      <div className="mt-4 grid gap-4 md:grid-cols-3">
+                    <div className="rounded-2xl border border-white/10 bg-white/10 p-5 sm:p-6">
+                      <p className="text-[10px] uppercase tracking-[0.35em] text-white/70 sm:text-xs">Case snapshot</p>
+                      <div className="mt-4 grid gap-6 md:grid-cols-3">
                         <div>
-                          <p className="text-sm font-semibold text-white">Problem</p>
-                          <p className="mt-2 text-sm leading-relaxed text-white/90">{service.caseStudy.problem}</p>
+                          <p className="text-xs font-semibold text-white sm:text-sm">Problem</p>
+                          <p className="mt-2 text-xs leading-relaxed text-white/90 sm:text-sm">{service.caseStudy.problem}</p>
                         </div>
                         <div>
-                          <p className="text-sm font-semibold text-white">Plan</p>
-                          <p className="mt-2 text-sm leading-relaxed text-white/90">{service.caseStudy.plan}</p>
+                          <p className="text-xs font-semibold text-white sm:text-sm">Plan</p>
+                          <p className="mt-2 text-xs leading-relaxed text-white/90 sm:text-sm">{service.caseStudy.plan}</p>
                         </div>
                         <div>
-                          <p className="text-sm font-semibold text-white">Outcome</p>
-                          <p className="mt-2 text-sm leading-relaxed text-white/90">{service.caseStudy.outcome}</p>
+                          <p className="text-xs font-semibold text-white sm:text-sm">Outcome</p>
+                          <p className="mt-2 text-xs leading-relaxed text-white/90 sm:text-sm">{service.caseStudy.outcome}</p>
                         </div>
                       </div>
                     </div>
