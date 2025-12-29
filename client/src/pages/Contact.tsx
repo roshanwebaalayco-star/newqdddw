@@ -42,48 +42,18 @@ export default function Contact() {
   return (
     <MarketingLayout>
       <Seo
-        title="Contact CLC Retail LTD | Schedule a retail launch consultation"
-        description="Speak with CLC Retail Group’s launch strategists about your timeline, site search, supplier needs, or marketing plan."
+        title="Contact CLC Retail Solutions Group | Book a Free Site Survey"
+        description="Speak with CLC Retail Solutions Group's experts about your convenience store launch. Book a free site survey today."
         canonical={`${baseUrl}/contact`}
         ogImage={contactHeroImage}
-        jsonLd={[
-          {
-            type: "BreadcrumbList",
-            data: {
-              itemListElement: [
-                { "@type": "ListItem", position: 1, name: "Home", item: `${baseUrl}/` },
-                { "@type": "ListItem", position: 2, name: "Contact", item: `${baseUrl}/contact` },
-              ],
-            },
-          },
-          {
-            type: "LocalBusiness",
-            data: {
-              name: "CLC Retail LTD",
-              url: `${baseUrl}/`,
-              telephone: "01925-967366",
-              address: {
-                "@type": "PostalAddress",
-                streetAddress: "Suite A, 82 James Carter Road",
-                addressLocality: "Mildenhall",
-                addressRegion: "Suffolk",
-                postalCode: "IP28 7DE",
-                addressCountry: "UK",
-              },
-              openingHours: "Mo-Fr 09:00-18:00",
-            },
-          },
-        ]}
       />
 
       <HeroSection
-        eyebrow="We’re ready when you are"
-        title="Let's map your next retail milestone"
-        subtitle="Talk directly with our expansion strategists about timelines, locations, and what launch support looks like for your concept."
-        ctaText="Schedule a consultation"
+        eyebrow="Start a Conversation"
+        title="Let's Start a Conversation"
+        subtitle="We're here to answer your questions and help you take the first step toward your business dreams."
+        ctaText="Book a Free Survey"
         ctaLink="/contact#schedule"
-        secondaryCtaText="Explore our services"
-        secondaryCtaLink="/services"
         backgroundImage={contactHeroImage}
       />
 

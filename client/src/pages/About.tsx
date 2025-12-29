@@ -130,31 +130,18 @@ export default function About() {
   return (
     <MarketingLayout>
       <Seo
-        title="About CLC Retail Group | The retail launch studio behind flagship successes"
-        description="Meet the cross-disciplinary team at CLC Retail Group and learn how our operators, designers, and analysts guide founders from feasibility to unforgettable openings."
+        title="About CLC Retail Solutions Group | Convenience Store Specialists"
+        description="Learn about CLC Retail Solutions Group's mission to empower individuals through expert retail guidance and visionary partnership."
         canonical={`${baseUrl}/about`}
         ogImage={teamImage}
-        jsonLd={[
-          {
-            type: "BreadcrumbList",
-            data: {
-              itemListElement: [
-                { "@type": "ListItem", position: 1, name: "Home", item: `${baseUrl}/` },
-                { "@type": "ListItem", position: 2, name: "About", item: `${baseUrl}/about` },
-              ],
-            },
-          },
-        ]}
       />
 
       <HeroSection
-        eyebrow="20 years of building with founders"
-        title="Our story is written with every launch we co-create"
-        subtitle="CLC Retail Group is a collective of operators, designers, and analysts rallying behind entrepreneurs who reimagine what retail can be."
-        ctaText="Schedule a consultation"
+        eyebrow="Building Success Together"
+        title="Our Story: Building Success Together"
+        subtitle="At CLC Retail Solutions Group, our mission is to empower individuals to achieve their business goals through expert resources and unwavering support."
+        ctaText="Start Your Business"
         ctaLink="/contact#schedule"
-        secondaryCtaText="Explore our services"
-        secondaryCtaLink="/services"
         backgroundImage={teamImage}
       />
 
