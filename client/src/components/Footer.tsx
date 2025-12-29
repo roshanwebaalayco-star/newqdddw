@@ -1,24 +1,17 @@
 import { Link } from "wouter";
-import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin } from "lucide-react";
+import { SiLinkedin, SiX, SiInstagram, SiFacebook } from "react-icons/si";
+import { Mail, Phone, MapPin } from "lucide-react";
 import Logo from "@/components/Logo";
 import { Button } from "@/components/ui/button";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
-  const navigationLinks = [
-    { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
-    { name: "Services", path: "/services" },
-    { name: "Blog", path: "/blog" },
-    { name: "Contact", path: "/contact" },
-  ];
-
   const socialLinks = [
-    { name: "Facebook", icon: Facebook, url: "#" },
-    { name: "Twitter", icon: Twitter, url: "#" },
-    { name: "LinkedIn", icon: Linkedin, url: "#" },
-    { name: "Instagram", icon: Instagram, url: "#" },
+    { name: "Facebook", icon: SiFacebook, url: "#" },
+    { name: "Twitter", icon: SiX, url: "#" },
+    { name: "LinkedIn", icon: SiLinkedin, url: "#" },
+    { name: "Instagram", icon: SiInstagram, url: "#" },
   ];
 
   return (
@@ -40,48 +33,17 @@ export default function Footer() {
             </div>
 
             <div className="space-y-5">
-              <h3 className="font-heading text-sm uppercase tracking-[0.4em] text-slate-300">Quick Links</h3>
+              <h3 className="font-heading text-sm uppercase tracking-[0.4em] text-slate-300">Navigation</h3>
               <ul className="grid grid-cols-1 gap-3 text-sm text-slate-200">
-                <li>
-                  <Link href="/step-location" className="inline-flex items-center gap-2 rounded-full px-2 py-1 transition hover:text-white">
-                    <span className="h-px w-4 bg-white/40" />
-                    Step 1: Location
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/step-design" className="inline-flex items-center gap-2 rounded-full px-2 py-1 transition hover:text-white">
-                    <span className="h-px w-4 bg-white/40" />
-                    Step 2: Design
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/step-fit-out" className="inline-flex items-center gap-2 rounded-full px-2 py-1 transition hover:text-white">
-                    <span className="h-px w-4 bg-white/40" />
-                    Step 3: Fit-Out
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/step-suppliers" className="inline-flex items-center gap-2 rounded-full px-2 py-1 transition hover:text-white">
-                    <span className="h-px w-4 bg-white/40" />
-                    Step 4: Suppliers
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/step-launch" className="inline-flex items-center gap-2 rounded-full px-2 py-1 transition hover:text-white">
-                    <span className="h-px w-4 bg-white/40" />
-                    Step 5: Launch
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/blog" className="inline-flex items-center gap-2 rounded-full px-2 py-1 transition hover:text-white">
-                    <span className="h-px w-4 bg-white/40" />
-                    Blog
-                  </Link>
-                </li>
+                <li><Link href="/" className="transition hover:text-white">Home</Link></li>
+                <li><Link href="/about" className="transition hover:text-white">About</Link></li>
+                <li><Link href="/services" className="transition hover:text-white">Services</Link></li>
+                <li><Link href="/blog" className="transition hover:text-white">Blog</Link></li>
+                <li><Link href="/contact" className="transition hover:text-white">Contact</Link></li>
               </ul>
 
               <div className="space-y-3 pt-6">
-                <h4 className="font-heading text-sm uppercase tracking-[0.4em] text-slate-300">Follow</h4>
+                <h4 className="font-heading text-sm uppercase tracking-[0.4em] text-slate-300">Follow Us</h4>
                 <div className="flex gap-3">
                   {socialLinks.map((social) => {
                     const Icon = social.icon;
@@ -102,17 +64,13 @@ export default function Footer() {
             </div>
 
             <div className="space-y-6 rounded-3xl border border-white/15 bg-gradient-to-br from-[#111a2f]/95 via-[#141f36]/95 to-[#1a2743]/95 p-8 shadow-[0_36px_120px_-70px_rgba(15,23,42,1)]">
-              <h3 className="font-heading text-lg font-semibold">Let’s build your next location</h3>
-              <p className="text-sm leading-relaxed text-slate-200">
-                Connect with our studio for an immersive workshop and tailored roadmap.
-              </p>
+              <h3 className="font-heading text-lg font-semibold">Contact Information</h3>
               <div className="space-y-4 text-sm text-slate-200">
                 <div className="flex items-center gap-3">
                   <Phone className="h-4 w-4 text-white" />
                   <a
                     href="tel:01925967366"
-                    aria-label="Call CLC Retail LTD"
-                    className="transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#141f36]"
+                    className="transition hover:text-white"
                     data-testid="text-phone"
                   >
                     01925 967366
@@ -122,8 +80,7 @@ export default function Footer() {
                   <Mail className="h-4 w-4 text-white" />
                   <a
                     href="mailto:hello@clcretail.com"
-                    aria-label="Email CLC Retail LTD"
-                    className="transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#141f36]"
+                    className="transition hover:text-white"
                     data-testid="text-email"
                   >
                     hello@clcretail.com
@@ -131,35 +88,25 @@ export default function Footer() {
                 </div>
                 <div className="flex items-start gap-3">
                   <MapPin className="mt-1 h-4 w-4 text-white" />
-                  <a
-                    href="https://maps.google.com/?q=Suite+A,+82+James+Carter+Road,+Mildenhall,+IP28+7DE,+UK"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#141f36]"
-                    aria-label="Open map to Suite A, 82 James Carter Road, Mildenhall, IP28 7DE, UK"
-                    data-testid="text-address"
-                  >
-                    Suite A, 82 James Carter Road
-                    <br />
+                  <span data-testid="text-address">
+                    Suite A, 82 James Carter Road,<br />
                     Mildenhall, IP28 7DE, UK
-                  </a>
+                  </span>
                 </div>
               </div>
               <Link href="/contact#schedule">
                 <Button
-                  className="w-full whitespace-nowrap rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary py-3 text-xs font-semibold uppercase tracking-[0.3em] text-white focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#141f36]"
+                  className="w-full whitespace-nowrap rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary py-3 text-xs font-semibold uppercase tracking-[0.3em] text-white"
                   data-testid="button-footer-cta"
-                  data-analytics="cta-schedule"
                 >
-                  Schedule a consultation
+                  Book a free site survey
                 </Button>
               </Link>
             </div>
           </div>
 
-          <div className="mt-14 grid gap-4 border-t border-white/10 pt-6 text-xs uppercase tracking-[0.4em] text-slate-300 sm:grid-cols-2">
+          <div className="mt-14 border-t border-white/10 pt-6 text-xs uppercase tracking-[0.4em] text-slate-300">
             <p data-testid="text-copyright">© {currentYear} CLC Retail LTD. All rights reserved.</p>
-            <p className="text-right text-slate-400 sm:text-left">Crafted for ambitious retail founders.</p>
           </div>
         </div>
       </div>
