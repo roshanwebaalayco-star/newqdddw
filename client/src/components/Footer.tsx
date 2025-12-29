@@ -41,20 +41,43 @@ export default function Footer() {
 
             <div className="space-y-5">
               <h3 className="font-heading text-sm uppercase tracking-[0.4em] text-slate-300">Quick Links</h3>
-              <ul className="grid grid-cols-2 gap-3 text-sm text-slate-200">
-                {navigationLinks.map((link) => (
-                  <li key={link.path}>
-                    <Link href={link.path}>
-                      <span
-                        className="inline-flex items-center gap-2 rounded-full px-2 py-1 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#10172b]"
-                        data-testid={`link-footer-${link.name.toLowerCase()}`}
-                      >
-                        <span className="h-px w-4 bg-white/40" />
-                        {link.name}
-                      </span>
-                    </Link>
-                  </li>
-                ))}
+              <ul className="grid grid-cols-1 gap-3 text-sm text-slate-200">
+                <li>
+                  <Link href="/step-location" className="inline-flex items-center gap-2 rounded-full px-2 py-1 transition hover:text-white">
+                    <span className="h-px w-4 bg-white/40" />
+                    Step 1: Location
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/step-design" className="inline-flex items-center gap-2 rounded-full px-2 py-1 transition hover:text-white">
+                    <span className="h-px w-4 bg-white/40" />
+                    Step 2: Design
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/step-fit-out" className="inline-flex items-center gap-2 rounded-full px-2 py-1 transition hover:text-white">
+                    <span className="h-px w-4 bg-white/40" />
+                    Step 3: Fit-Out
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/step-suppliers" className="inline-flex items-center gap-2 rounded-full px-2 py-1 transition hover:text-white">
+                    <span className="h-px w-4 bg-white/40" />
+                    Step 4: Suppliers
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/step-launch" className="inline-flex items-center gap-2 rounded-full px-2 py-1 transition hover:text-white">
+                    <span className="h-px w-4 bg-white/40" />
+                    Step 5: Launch
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/blog" className="inline-flex items-center gap-2 rounded-full px-2 py-1 transition hover:text-white">
+                    <span className="h-px w-4 bg-white/40" />
+                    Blog
+                  </Link>
+                </li>
               </ul>
 
               <div className="space-y-3 pt-6">

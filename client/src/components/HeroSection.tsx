@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import { cn } from "@/lib/utils";
 
 interface HeroSectionProps {
   eyebrow?: string;
@@ -11,6 +12,8 @@ interface HeroSectionProps {
   secondaryCtaLink?: string;
   backgroundImage?: string;
   overlay?: boolean;
+  showProgressBar?: boolean;
+  currentStep?: number;
   stats?: {
     label: string;
     value: string;
@@ -28,8 +31,18 @@ export default function HeroSection({
   secondaryCtaLink,
   backgroundImage,
   overlay = true,
+  showProgressBar = false,
+  currentStep = 1,
   stats,
 }: HeroSectionProps) {
+  const steps = [
+    { id: 1, name: "Location" },
+    { id: 2, name: "Design" },
+    { id: 3, name: "Fit-Out" },
+    { id: 4, name: "Suppliers" },
+    { id: 5, name: "Launch" },
+  ];
+
   return (
     <section className="relative isolate overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10">
@@ -55,6 +68,30 @@ export default function HeroSection({
                 </p>
               )}
             </div>
+
+            {showProgressBar && (
+              <div className="flex w-full max-w-xl flex-col gap-4 pt-4">
+                <div className="flex justify-between px-1">
+                  {steps.map((step) => (
+                    <div
+                      key={step.id}
+                      className={cn(
+                        "text-[10px] uppercase tracking-[0.2em] transition-colors duration-300",
+                        step.id === currentStep ? "font-bold text-white" : "text-white/40"
+                      )}
+                    >
+                      {step.name}
+                    </div>
+                  ))}
+                </div>
+                <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-white/10">
+                  <div
+                    className="absolute inset-y-0 left-0 bg-gradient-to-r from-primary to-secondary transition-all duration-700 ease-out"
+                    style={{ width: `${(currentStep / steps.length) * 100}%` }}
+                  />
+                </div>
+              </div>
+            )}
 
             {(ctaText && ctaLink) || (secondaryCtaText && secondaryCtaLink) ? (
               <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center">

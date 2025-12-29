@@ -93,7 +93,7 @@ const whyClc = [
     icon: CheckCircle2,
   },
   {
-    title: "Investor-Ready Documentation",
+    title: "Lender-Ready Documentation",
     description: "Professional feasibility reports and business plans that meet lender and investor requirements.",
     icon: TrendingUp,
   },
@@ -141,6 +141,12 @@ const trustLogos = [
     url: "https://www.morrisons.com/morrisons-daily",
     color: "#FFC20E"
   },
+];
+
+const complianceBadges = [
+  { name: "ACS Member", detail: "Association of Convenience Stores" },
+  { name: "SafeContractor", detail: "Accredited Health & Safety" },
+  { name: "ICO Registered", detail: "Data Protection Compliant" },
 ];
 
 export default function Home() {
@@ -212,6 +218,8 @@ export default function Home() {
         ctaText="Book a free site survey"
         ctaLink="/contact#schedule"
         backgroundImage="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=2000&q=80"
+        showProgressBar={true}
+        currentStep={1}
       />
 
       <AnimatedSection>
@@ -236,45 +244,59 @@ export default function Home() {
                 })}
               </div>
               <motion.div 
-                className="mt-16 flex flex-col items-center gap-8"
+                className="mt-16 flex flex-col items-center gap-10"
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ 
                   duration: 0.8, 
-                  ease: [0.21, 1.11, 0.81, 0.99] // Custom spring-like easing for a premium feel
+                  ease: [0.21, 1.11, 0.81, 0.99]
                 }}
                 viewport={{ once: true, margin: "-100px" }}
               >
-                <p className="text-xs uppercase tracking-[0.4em] text-white/40">Trusted Partners</p>
-                <div
-                  className="flex gap-12 flex-wrap justify-center items-center opacity-70 grayscale transition-all duration-700 hover:opacity-100 hover:grayscale-0"
-                >
-                  {trustLogos.map((logo, index) => (
-                    <motion.div
-                      key={logo.name}
-                      className="cursor-pointer group"
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ 
-                        duration: 0.8, 
-                        delay: 0.2 + (index * 0.1),
-                        ease: "easeOut"
-                      }}
-                      viewport={{ once: true }}
-                      whileHover={{ scale: 1.05 }}
-                      onClick={() => window.open(logo.url, '_blank')}
-                      data-testid={`link-trusted-${logo.name.toLowerCase()}`}
-                    >
-                      <span 
-                        className="font-heading text-lg font-medium tracking-wider transition-colors duration-300"
-                        style={{ color: 'rgba(255, 255, 255, 0.8)' }}
-                        onMouseEnter={(e) => e.currentTarget.style.color = logo.color}
-                        onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.8)'}
+                <div className="flex flex-col items-center gap-4">
+                  <p className="text-xs uppercase tracking-[0.4em] text-white/40">Trusted Partners</p>
+                  <div
+                    className="flex gap-12 flex-wrap justify-center items-center opacity-70 grayscale transition-all duration-700 hover:opacity-100 hover:grayscale-0"
+                  >
+                    {trustLogos.map((logo, index) => (
+                      <motion.div
+                        key={logo.name}
+                        className="cursor-pointer group"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ 
+                          duration: 0.8, 
+                          delay: 0.2 + (index * 0.1),
+                          ease: "easeOut"
+                        }}
+                        viewport={{ once: true }}
+                        whileHover={{ scale: 1.05 }}
+                        onClick={() => window.open(logo.url, '_blank')}
+                        data-testid={`link-trusted-${logo.name.toLowerCase()}`}
                       >
-                        {logo.name}
-                      </span>
-                    </motion.div>
-                  ))}
+                        <span 
+                          className="font-heading text-lg font-medium tracking-wider transition-colors duration-300"
+                          style={{ color: 'rgba(255, 255, 255, 0.8)' }}
+                          onMouseEnter={(e) => e.currentTarget.style.color = logo.color}
+                          onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.8)'}
+                        >
+                          {logo.name}
+                        </span>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="flex flex-col items-center gap-4 border-t border-white/5 pt-10 w-full max-w-4xl">
+                  <p className="text-xs uppercase tracking-[0.4em] text-white/40">Compliance & Memberships</p>
+                  <div className="flex flex-wrap justify-center gap-8">
+                    {complianceBadges.map((badge) => (
+                      <div key={badge.name} className="flex flex-col items-center text-center">
+                        <span className="text-white font-semibold text-sm">{badge.name}</span>
+                        <span className="text-white/40 text-[10px] uppercase tracking-wider mt-1">{badge.detail}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </motion.div>
             </div>
@@ -318,27 +340,30 @@ export default function Home() {
                           }`}
                           data-testid={`step-card-${step.id}`}
                         >
-                          <div className={`relative mx-auto mb-6 flex h-36 w-36 items-center justify-center rounded-full bg-gradient-to-br ${step.color} shadow-2xl transition-all duration-300 group-hover:scale-110 md:relative md:z-10`}>
-                            <Icon className="h-12 w-12 text-white" />
-                            <div className="absolute -bottom-2 -right-2 flex h-10 w-10 items-center justify-center rounded-full bg-white font-heading text-lg font-bold text-gray-900">
+                          <div className={`relative mx-auto mb-6 flex h-32 w-32 items-center justify-center rounded-full bg-gradient-to-br ${step.color} shadow-2xl transition-all duration-300 group-hover:scale-110 md:relative md:z-10`}>
+                            <Icon className="h-10 w-10 text-white" />
+                            <div className="absolute -bottom-1 -right-1 flex h-8 w-8 items-center justify-center rounded-full bg-white font-heading text-base font-bold text-gray-900">
                               {step.id}
                             </div>
                           </div>
                           <div className="text-center">
-                            <h3 className="font-heading text-xl font-semibold text-white">{step.title}</h3>
-                            <p
-                              className={`mt-3 text-sm text-white/70 transition-all duration-300 ${
-                                isActive ? "opacity-100" : "opacity-0 md:opacity-100"
-                              }`}
-                            >
-                              {step.summary}
-                            </p>
+                            <h3 className="font-heading text-lg font-semibold text-white">{step.title}</h3>
+                            <div className="min-h-[4.5rem]">
+                              <p
+                                className={`mt-2 text-xs text-white/70 transition-all duration-300 ${
+                                  isActive ? "opacity-100" : "opacity-0 md:opacity-100 line-clamp-3"
+                                }`}
+                              >
+                                {step.summary}
+                              </p>
+                            </div>
                             <Button
                               variant="ghost"
-                              className="mt-4 text-white/80 hover:text-white"
+                              size="sm"
+                              className="mt-2 text-white/80 hover:text-white h-8"
                               data-testid={`button-learn-more-${step.id}`}
                             >
-                              Learn more <ArrowRight className="ml-2 h-4 w-4" />
+                              Learn more <ArrowRight className="ml-2 h-3 w-3" />
                             </Button>
                           </div>
                         </div>
