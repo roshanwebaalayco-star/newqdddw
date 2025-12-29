@@ -97,21 +97,10 @@ export default function Blog() {
   return (
     <MarketingLayout>
       <Seo
-        title="Retail insights & playbooks | CLC Retail Group Blog"
-        description="Read launch playbooks, location intelligence breakdowns, and operational guidance from CLC Retail Group’s retail launch studio."
+        title="Blog | CLC Retail LTD"
+        description="Read launch playbooks, location intelligence breakdowns, and operational guidance from CLC Retail LTD’s retail launch studio."
         canonical={`${baseUrl}/blog`}
         ogImage={blogHeroImage}
-        jsonLd={[
-          {
-            type: "BreadcrumbList",
-            data: {
-              itemListElement: [
-                { "@type": "ListItem", position: 1, name: "Home", item: `${baseUrl}/` },
-                { "@type": "ListItem", position: 2, name: "Blog", item: `${baseUrl}/blog` },
-              ],
-            },
-          },
-        ]}
       />
 
       <HeroSection

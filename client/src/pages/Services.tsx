@@ -15,6 +15,8 @@ import {
   Check,
   ArrowUpRight,
   ChevronRight,
+  Store,
+  Megaphone,
 } from "lucide-react";
 import { Seo } from "@/components/Seo";
 
@@ -158,16 +160,16 @@ export default function Services() {
   return (
     <MarketingLayout>
       <Seo
-        title="Retail Launch Services | CLC Retail Solutions Group"
-        description="End-to-end convenience store solutions from site selection to launch. Book a free site survey today."
+        title="Services | CLC Retail LTD"
+        description="We simplify the path to business ownership with a full suite of services designed for your success."
         canonical={`${baseUrl}/services`}
         ogImage={servicesImage}
       />
 
       <HeroSection
-        eyebrow="The Five-Step Journey"
-        title="Your path to a profitable convenience store"
-        subtitle="Our proven framework takes you from initial site selection to a successful opening day."
+        eyebrow="Your Complete Business Solution"
+        title="Your Complete Business Solution"
+        subtitle="We simplify the path to business ownership with a full suite of services designed for your success."
         ctaText="Start Your Business"
         ctaLink="/contact#schedule"
         backgroundImage={servicesImage}
@@ -175,79 +177,66 @@ export default function Services() {
 
       <section className="py-20">
         <div className="container mx-auto max-w-6xl px-4">
-          <div className="space-y-24">
-            {services.map((service, index) => {
-              const Icon = service.icon;
-              return (
-                <AnimatedSection key={service.id} delay={index * 0.1}>
-                  <div className={`grid gap-12 lg:grid-cols-2 ${index % 2 === 1 ? 'lg:direction-rtl' : ''}`}>
-                    <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
-                      <Badge className="mb-4 border border-primary/20 bg-primary/10 px-4 py-1 text-xs uppercase tracking-[0.2em] text-primary">
-                        Step {service.step}: {service.title}
-                      </Badge>
-                      <h2 className="font-heading text-3xl font-bold text-white sm:text-4xl">
-                        {service.headline}
-                      </h2>
-                      
-                      <div className="mt-8 space-y-6">
-                        <div className="grid gap-4 sm:grid-cols-3">
-                          {service.outcomes.map((outcome) => (
-                            <div key={outcome} className="flex flex-col gap-2 rounded-xl border border-white/5 bg-white/5 p-4">
-                              <Check className="h-5 w-5 text-primary" />
-                              <span className="text-xs font-medium leading-tight text-white/80">{outcome}</span>
-                            </div>
-                          ))}
-                        </div>
+          <div className="grid gap-8 md:grid-cols-2">
+            <AnimatedSection delay={0.1}>
+              <CardGlass className="p-8 h-full flex flex-col items-center text-center">
+                <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-primary/10">
+                  <Store className="h-10 w-10 text-primary" />
+                </div>
+                <h3 className="font-heading text-2xl font-bold text-white mb-4">Franchise Opportunities</h3>
+                <p className="text-white/70 mb-8">We match you with a proven franchise model that fits your goals and market demands.</p>
+                <div className="mt-auto">
+                  <Link href="/contact#schedule">
+                    <Button variant="outline" className="rounded-full">Request Info</Button>
+                  </Link>
+                </div>
+              </CardGlass>
+            </AnimatedSection>
 
-                        <div className="grid gap-8 sm:grid-cols-2 pt-4">
-                          <div className="space-y-4">
-                            <h4 className="text-xs font-semibold uppercase tracking-widest text-white/40">Process</h4>
-                            <ul className="space-y-3">
-                              {service.process.map((p) => (
-                                <li key={p} className="flex items-center gap-3 text-sm text-white/70">
-                                  <ChevronRight className="h-3 w-3 text-primary" />
-                                  {p}
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                          <div className="space-y-4">
-                            <h4 className="text-xs font-semibold uppercase tracking-widest text-white/40">Deliverables</h4>
-                            <ul className="space-y-3">
-                              {service.deliverables.map((d) => (
-                                <li key={d} className="flex items-center gap-3 text-sm text-white/70">
-                                  <ChevronRight className="h-3 w-3 text-primary" />
-                                  {d}
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        </div>
+            <AnimatedSection delay={0.2}>
+              <CardGlass className="p-8 h-full flex flex-col items-center text-center">
+                <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-primary/10">
+                  <MapPin className="h-10 w-10 text-primary" />
+                </div>
+                <h3 className="font-heading text-2xl font-bold text-white mb-4">Site Selection & Setup</h3>
+                <p className="text-white/70 mb-8">Our experts help you find the perfect location and manage the entire store setup process, from design to grand opening.</p>
+                <div className="mt-auto">
+                  <Link href="/contact#schedule">
+                    <Button variant="outline" className="rounded-full">Book Site Survey</Button>
+                  </Link>
+                </div>
+              </CardGlass>
+            </AnimatedSection>
 
-                        <div className="pt-6">
-                          <Link href="/contact#schedule">
-                            <Button className="rounded-full bg-gradient-to-r from-primary to-secondary px-8 py-6 text-sm font-semibold uppercase tracking-wider text-white">
-                              {service.cta}
-                              <ArrowUpRight className="ml-2 h-4 w-4" />
-                            </Button>
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
+            <AnimatedSection delay={0.3}>
+              <CardGlass className="p-8 h-full flex flex-col items-center text-center">
+                <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-primary/10">
+                  <Package className="h-10 w-10 text-primary" />
+                </div>
+                <h3 className="font-heading text-2xl font-bold text-white mb-4">Inventory & Supplier Management</h3>
+                <p className="text-white/70 mb-8">We connect you with trusted suppliers and provide a system for managing your inventory efficiently.</p>
+                <div className="mt-auto">
+                  <Link href="/contact#schedule">
+                    <Button variant="outline" className="rounded-full">Learn More</Button>
+                  </Link>
+                </div>
+              </CardGlass>
+            </AnimatedSection>
 
-                    <CardGlass className={`flex items-center justify-center p-12 ${index % 2 === 1 ? 'lg:order-1' : ''}`}>
-                      <div className="relative">
-                        <div className="absolute -inset-4 rounded-full bg-primary/20 blur-2xl" />
-                        <Icon className="relative h-32 w-32 text-white opacity-20" />
-                        <div className="absolute inset-0 flex items-center justify-center font-heading text-6xl font-bold text-white">
-                          {service.step}
-                        </div>
-                      </div>
-                    </CardGlass>
-                  </div>
-                </AnimatedSection>
-              );
-            })}
+            <AnimatedSection delay={0.4}>
+              <CardGlass className="p-8 h-full flex flex-col items-center text-center">
+                <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-primary/10">
+                  <Megaphone className="h-10 w-10 text-primary" />
+                </div>
+                <h3 className="font-heading text-2xl font-bold text-white mb-4">Marketing & Branding</h3>
+                <p className="text-white/70 mb-8">We help you build a strong local brand and reach your target customers effectively.</p>
+                <div className="mt-auto">
+                  <Link href="/contact#schedule">
+                    <Button variant="outline" className="rounded-full">Get Started</Button>
+                  </Link>
+                </div>
+              </CardGlass>
+            </AnimatedSection>
           </div>
         </div>
       </section>

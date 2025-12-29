@@ -205,7 +205,7 @@ export default function Home() {
   return (
     <MarketingLayout showStickyCta>
       <Seo
-        title="CLC Retail Solutions Group — Convenience Store Specialists UK"
+        title="Home | CLC Retail LTD"
         description="End-to-end convenience store solutions from site selection to launch. Book a free site survey today."
         canonical={`${baseUrl}/`}
         ogImage="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=1600&q=80"

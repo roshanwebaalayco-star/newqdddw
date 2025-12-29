@@ -130,8 +130,8 @@ export default function About() {
   return (
     <MarketingLayout>
       <Seo
-        title="About CLC Retail Solutions Group | Convenience Store Specialists"
-        description="Learn about CLC Retail Solutions Group's mission to empower individuals through expert retail guidance and visionary partnership."
+        title="About | CLC Retail LTD"
+        description="Learn about CLC Retail LTD's mission to empower individuals through expert retail guidance and visionary partnership."
         canonical={`${baseUrl}/about`}
         ogImage={teamImage}
       />
@@ -139,7 +139,7 @@ export default function About() {
       <HeroSection
         eyebrow="Building Success Together"
         title="Our Story: Building Success Together"
-        subtitle="At CLC Retail Solutions Group, our mission is to empower individuals to achieve their business goals through expert resources and unwavering support."
+        subtitle="At CLC Retail LTD, our mission is to empower individuals to achieve their business goals through expert resources and unwavering support."
         ctaText="Start Your Business"
         ctaLink="/contact#schedule"
         backgroundImage={teamImage}
@@ -150,24 +150,12 @@ export default function About() {
           <div className="container mx-auto max-w-4xl px-4">
             <CardGlass className="p-10 text-white">
               <Badge className="border border-white/25 bg-white/10 px-4 py-1 text-xs uppercase tracking-[0.35em] text-white/70">
-                Our approach
+                Our Mission
               </Badge>
-              <h2 className="mt-6 font-heading text-3xl sm:text-4xl">We operate as an embedded launch team</h2>
+              <h2 className="mt-6 font-heading text-3xl sm:text-4xl">Our Mission</h2>
               <p className="mt-4 text-lg leading-relaxed text-white/80">
-                We exist to democratize retail ownership. By uniting data-driven strategy with hands-on execution, we give every partner the clarity, confidence, and resources to launch and scale resilient storefronts. Our teams co-locate with clients, share the same dashboards, and stay accountable long after opening day. The result: launches that feel choreographed, measurable, and uniquely yours.
+                At CLC Retail LTD, our mission is to empower individuals to achieve their business goals. We are committed to providing the best resources, unwavering support, and a pathway to entrepreneurial success for our partners.
               </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Link href="/services">
-                  <Button variant="outline" className="rounded-full border-white/30 bg-white/10 text-white/85 hover:text-white">
-                    Explore our capabilities
-                  </Button>
-                </Link>
-                <Link href="/contact#schedule">
-                  <Button className="rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary px-6 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-white">
-                    Schedule a consultation
-                  </Button>
-                </Link>
-              </div>
             </CardGlass>
           </div>
         </section>
@@ -179,42 +167,45 @@ export default function About() {
             <div className="flex flex-col gap-6 text-white sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <Badge className="border border-white/25 bg-white/10 px-4 py-1 text-xs uppercase tracking-[0.35em] text-white/70">
-                  Leadership & advisors
+                  The Values That Drive Us
                 </Badge>
-                <h2 className="mt-4 font-heading text-3xl sm:text-4xl">Meet the operators behind the playbook</h2>
+                <h2 className="mt-4 font-heading text-3xl sm:text-4xl">The Values That Drive Us</h2>
                 <p className="mt-4 max-w-2xl text-white/75">
-                  A studio of former founders, analysts, franchise operators, and marketers united by one mission: help ambitious retailers open with confidence.
+                  Core Values for CLC Retail LTD
                 </p>
               </div>
             </div>
-            <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-              {leadership.map((leader) => (
-                <CardGlass key={leader.name} className="overflow-hidden p-0">
-                  <div className="h-56 w-full overflow-hidden">
-                    <img
-                      src={leader.image}
-                      alt={leader.name}
-                      className="h-full w-full object-cover object-center"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className="space-y-3 p-6">
-                    <p className="text-xs uppercase tracking-[0.3em] text-white/60">{leader.role}</p>
-                    <h3 className="font-heading text-2xl text-white">{leader.name}</h3>
-                    <p className="text-sm leading-relaxed text-white/80">{leader.bio}</p>
-                  </div>
-                </CardGlass>
-              ))}
-            </div>
-
-            <div className="mt-12 grid gap-6 md:grid-cols-3">
-              {advisorHighlights.map((story) => (
-                <CardGlass key={story.title} className="h-full p-6">
-                  <p className="text-xs uppercase tracking-[0.3em] text-white/60">Advisor insight</p>
-                  <h3 className="mt-3 font-heading text-xl text-white">{story.title}</h3>
-                  <p className="mt-3 text-white/80">{story.description}</p>
-                </CardGlass>
-              ))}
+            <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              <CardGlass className="p-8">
+                <h3 className="font-heading text-xl text-white">1. Visionary Partnership</h3>
+                <p className="mt-4 text-sm text-white/80">
+                  We are more than a service provider; we are your strategic partner in growth. Our value lies in seeing potential where others see problems, from identifying the perfect location to envisioning a successful, profitable retail space. We work alongside our clients, sharing insights and expertise at every step, ensuring their vision for a new store becomes a reality.
+                </p>
+              </CardGlass>
+              <CardGlass className="p-8">
+                <h3 className="font-heading text-xl text-white">2. Relentless Execution</h3>
+                <p className="mt-4 text-sm text-white/80">
+                  From the moment a property is acquired, our focus is on flawless execution. We are driven by a commitment to managing every detail of the process with precision and efficiency—from navigating complex purchase agreements and securing supply contracts to designing a functional and beautiful store. Our goal is to handle the complexities so our clients can focus on their business, confident that their project is on track for a successful opening.
+                </p>
+              </CardGlass>
+              <CardGlass className="p-8">
+                <h3 className="font-heading text-xl text-white">3. Integrity & Transparency</h3>
+                <p className="mt-4 text-sm text-white/80">
+                  Trust is the cornerstone of our business. We operate with complete honesty and transparency in all our dealings, from property negotiations to project budgets. Our clients can rely on us for candid communication, ethical practices, and a commitment to doing what is right, ensuring a relationship built on mutual respect and open dialogue.
+                </p>
+              </CardGlass>
+              <CardGlass className="p-8">
+                <h3 className="font-heading text-xl text-white">4. Innovation in Design & Operations</h3>
+                <p className="mt-4 text-sm text-white/80">
+                  We believe that a retail space is a strategic asset. Our team is constantly seeking innovative solutions in store design, layout, and supply chain management to maximize efficiency and customer experience. We leverage the latest trends and technologies to create spaces that are not only aesthetically pleasing but also highly functional and profitable, setting our clients up for long-term success.
+                </p>
+              </CardGlass>
+              <CardGlass className="p-8 lg:col-span-2">
+                <h3 className="font-heading text-xl text-white">5. Seamless Experience</h3>
+                <p className="mt-4 text-sm text-white/80">
+                  The journey from an idea to an open store can be complex, but we are dedicated to making it a smooth and seamless experience for our clients. We act as a single point of contact, coordinating all aspects of the project, including real estate agents, designers, contractors, and suppliers. Our commitment to a hassle-free process ensures that the transition to a new location is as easy and stress-free as possible.
+                </p>
+              </CardGlass>
             </div>
           </div>
         </section>
