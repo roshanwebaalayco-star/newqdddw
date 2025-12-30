@@ -211,6 +211,51 @@ export default function About() {
         </section>
       </AnimatedSection>
 
+      <AnimatedSection delay={0.1}>
+        <Timeline
+          items={milestones}
+          variant="dark"
+          title="Milestones & impact"
+          subtitle="From a boutique advisory to a global launch studio"
+        />
+      </AnimatedSection>
+
+      <AnimatedSection delay={0.15}>
+        <ValuesCard values={values} />
+      </AnimatedSection>
+
+      <AnimatedSection delay={0.2}>
+        <section className="py-20">
+          <div className="container mx-auto max-w-5xl px-4 text-white">
+            <div className="mb-10 space-y-4 text-center">
+              <Badge className="border border-white/25 bg-white/10 px-4 py-1 text-xs uppercase tracking-[0.35em] text-white/70">
+                Values in action
+              </Badge>
+              <h2 className="font-heading text-3xl sm:text-4xl">How our principles show up on the ground</h2>
+              <p className="mx-auto max-w-3xl text-white/75">
+                Our values guide every meeting, milestone, and metric. Here are a few recent engagements that demonstrate what that looks like in practice.
+              </p>
+            </div>
+            <div className="grid gap-6 md:grid-cols-3">
+              {valuesInAction.map((item) => (
+                <CardGlass key={item.name} className="h-full p-6 text-white">
+                  <p className="text-xs uppercase tracking-[0.3em] text-white/60">{item.value}</p>
+                  <h3 className="mt-3 font-heading text-xl">{item.name}</h3>
+                  <p className="mt-3 text-white/80">{item.narrative}</p>
+                </CardGlass>
+              ))}
+            </div>
+            <div className="mt-10 flex justify-center">
+              <Link href="/contact#schedule">
+                <Button className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary px-8 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-white">
+                  Book a discovery call
+                  <ArrowUpRight className="h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </section>
+      </AnimatedSection>
     </MarketingLayout>
   );
 }
