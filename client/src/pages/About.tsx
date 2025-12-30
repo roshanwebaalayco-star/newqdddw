@@ -217,10 +217,6 @@ export default function About() {
         />
       </AnimatedSection>
 
-      <AnimatedSection delay={0.15}>
-        <ValuesCard values={values} />
-      </AnimatedSection>
-
       <AnimatedSection delay={0.2}>
         <section className="py-20">
           <div className="container mx-auto max-w-5xl px-4 text-white">
