@@ -191,7 +191,53 @@ export default function About() {
                 </CardGlass>
               ))}
             </div>
-            <div className="mt-10 flex justify-center">
+
+            <AnimatedSection delay={0.25}>
+              <div className="mt-20">
+                <div className="flex flex-col gap-6 text-white sm:flex-row sm:items-end sm:justify-between">
+                  <div className="text-left">
+                    <Badge className="border border-white/25 bg-white/10 px-4 py-1 text-xs uppercase tracking-[0.35em] text-white/70">
+                      The Values That Drive Us
+                    </Badge>
+                    <h2 className="mt-4 font-heading text-3xl sm:text-4xl">The Values That Drive Us</h2>
+                  </div>
+                </div>
+                <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                  <CardGlass className="p-8">
+                    <h3 className="font-heading text-xl text-white">1. Visionary Partnership</h3>
+                    <p className="mt-4 text-sm text-white/80">
+                      We are more than a service provider; we are your strategic partner in growth. Our value lies in seeing potential where others see problems, from identifying the perfect location to envisioning a successful, profitable retail space. We work alongside our clients, sharing insights and expertise at every step, ensuring their vision for a new store becomes a reality.
+                    </p>
+                  </CardGlass>
+                  <CardGlass className="p-8">
+                    <h3 className="font-heading text-xl text-white">2. Relentless Execution</h3>
+                    <p className="mt-4 text-sm text-white/80">
+                      From the moment a property is acquired, our focus is on flawless execution. We are driven by a commitment to managing every detail of the process with precision and efficiency—from navigating complex purchase agreements and securing supply contracts to designing a functional and beautiful store. Our goal is to handle the complexities so our clients can focus on their business, confident that their project is on track for a successful opening.
+                    </p>
+                  </CardGlass>
+                  <CardGlass className="p-8">
+                    <h3 className="font-heading text-xl text-white">3. Integrity & Transparency</h3>
+                    <p className="mt-4 text-sm text-white/80">
+                      Trust is the cornerstone of our business. We operate with complete honesty and transparency in all our dealings, from property negotiations to project budgets. Our clients can rely on us for candid communication, ethical practices, and a commitment to doing what is right, ensuring a relationship built on mutual respect and open dialogue.
+                    </p>
+                  </CardGlass>
+                  <CardGlass className="p-8">
+                    <h3 className="font-heading text-xl text-white">4. Innovation in Design & Operations</h3>
+                    <p className="mt-4 text-sm text-white/80">
+                      We believe that a retail space is a strategic asset. Our team is constantly seeking innovative solutions in store design, layout, and supply chain management to maximize efficiency and customer experience. We leverage the latest trends and technologies to create spaces that are not only aesthetically pleasing but also highly functional and profitable, setting our clients up for long-term success.
+                    </p>
+                  </CardGlass>
+                  <CardGlass className="p-8 lg:col-span-2">
+                    <h3 className="font-heading text-xl text-white">5. Seamless Experience</h3>
+                    <p className="mt-4 text-sm text-white/80">
+                      The journey from an idea to an open store can be complex, but we are dedicated to making it a smooth and seamless experience for our clients. We act as a single point of contact, coordinating all aspects of the project, including real estate agents, designers, contractors, and suppliers. Our commitment to a hassle-free process ensures that the transition to a new location is as easy and stress-free as possible.
+                    </p>
+                  </CardGlass>
+                </div>
+              </div>
+            </AnimatedSection>
+
+            <div className="mt-16 flex justify-center">
               <Link href="/contact#schedule">
                 <Button className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary px-8 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-white">
                   Book a discovery call
