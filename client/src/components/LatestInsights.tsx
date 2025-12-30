@@ -26,9 +26,9 @@ export function LatestInsights() {
               <Button
                 variant="outline"
                 asChild
-                className="inline-flex items-center gap-2 rounded-full border-white/30 bg-white/10 text-white/80 transition hover:border-white/40 hover:text-white"
+                className="inline-flex items-center gap-2 rounded-full border-white/30 bg-white/5 px-8 text-white/80 transition hover:border-white/40 hover:text-white cursor-pointer"
               >
-                <div className="flex items-center gap-2 cursor-pointer">
+                <div className="flex items-center gap-2">
                   View all insights
                   <ArrowUpRight className="h-4 w-4" />
                 </div>
@@ -58,12 +58,12 @@ export function LatestInsights() {
               <div className="mt-6 flex justify-center gap-3">
                 <Link href="/contact#schedule">
                   <Button asChild className="rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary px-8 py-3 text-sm uppercase tracking-[0.18em]">
-                    <div className="cursor-pointer">Schedule a consultation</div>
+                    <span className="cursor-pointer">Schedule a consultation</span>
                   </Button>
                 </Link>
                 <Link href="/blog">
                   <Button variant="outline" asChild className="rounded-full border-white/30 bg-white/10 text-white/80 hover:text-white">
-                    <div className="cursor-pointer">Explore the blog</div>
+                    <span className="cursor-pointer">Explore the blog</span>
                   </Button>
                 </Link>
               </div>
