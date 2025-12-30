@@ -417,8 +417,8 @@ export default function Home() {
 
             <div className="mt-10 text-center">
               <Link href="/contact">
-                <Button variant="outline" className="rounded-full border-white/30 bg-white/10 text-white/85 hover:text-white" data-testid="button-view-all-cases">
-                  View all case studies
+                <Button variant="outline" asChild className="rounded-full border-white/30 bg-white/10 text-white/85 hover:text-white" data-testid="button-view-all-cases">
+                  <span>View all case studies</span>
                 </Button>
               </Link>
             </div>

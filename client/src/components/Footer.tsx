@@ -91,10 +91,11 @@ export default function Footer() {
               </div>
               <Link href="/contact#schedule">
                 <Button
+                  asChild
                   className="w-full whitespace-nowrap rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary py-3 text-xs font-semibold uppercase tracking-[0.3em] text-white"
                   data-testid="button-footer-cta"
                 >
-                  Book a free site survey
+                  <span>Book a free site survey</span>
                 </Button>
               </Link>
             </div>
