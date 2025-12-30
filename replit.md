@@ -70,170 +70,67 @@ Preferred communication style: Simple, everyday language.
 - Server: esbuild bundles server code to dist/index.js
 - Single production artifact runs both API server and serves static assets
 
-### Data Storage Solutions
+---
 
-**Current Implementation:**
-- In-memory storage (MemStorage class) for development/demo purposes
-- Contact form submissions and newsletter subscriptions stored in arrays
-- User schema defined with Drizzle ORM but not actively used
+## Operations Guide
 
-**Database Configuration:**
-- Drizzle ORM configured for PostgreSQL (drizzle.config.ts)
-- Schema defined in shared/schema.ts (users table with id, username, password)
-- Migration support via drizzle-kit
-- Neon serverless PostgreSQL driver configured but not currently utilized
-- Database can be added later without significant refactoring
+### 1. How Forms Work Across the Site
 
-**Data Flow:**
-- Forms validate client-side with React Hook Form + Zod
-- Submissions sent to API endpoints with JSON payloads
-- Server validates again with same Zod schemas (shared validation)
-- Success/error feedback via toast notifications
+The website uses a unified form system built with **React Hook Form**, **Zod**, and **TanStack Query**.
 
-### Authentication & Authorization
+**Workflow:**
+1.  **Validation**: When a user fills out a form (e.g., Contact Us or Newsletter), the data is validated instantly on the frontend using a Zod schema (defined in `shared/schema.ts`).
+2.  **Submission**: On valid submission, the `apiRequest` utility sends a POST request to the Express backend (e.g., `/api/contact`).
+3.  **Backend Handling**: The server re-validates the data for security and then stores it. Currently, it uses `MemStorage` (in-memory), which means submissions are logged to the console and stored in temporary arrays.
+4.  **Feedback**: The user receives a visual confirmation via the `useToast` hook (success or error message).
 
-**Current State:**
-- No authentication implemented
-- User schema exists (username/password) but not in use
-- Contact and newsletter forms are public, no login required
+### 2. How to Set Up the Project
 
-**Session Infrastructure:**
-- connect-pg-simple package installed for future PostgreSQL session store
-- Express session middleware not currently configured
-- Ready for authentication implementation when needed
+**Initial Setup:**
+1.  **Environment Variables**: Ensure you have a `.env` file or secrets configured for:
+    - `VITE_SCHEDULER_PROVIDER`: "cal" or "calendly" (optional)
+    - `VITE_SCHEDULER_URL`: Your scheduling link (optional)
+2.  **Install Dependencies**: Run `npm install`.
+3.  **Development Mode**: Run `npm run dev` to start both the frontend (Vite) and backend (Express).
 
-### Performance Optimizations
+**Production Deployment**:
+The site is built as a single artifact.
+1.  **Build**: `npm run build`.
+2.  **Run**: `npm start`.
 
-**Image Optimization:**
-- Unsplash CDN with query parameters (w=width, q=quality, fm=webp)
-- Lazy loading for below-the-fold images
-- Responsive image sizing (1920px for heroes, 800px for cards)
-- WebP format for better compression
+### 3. How to Manage Blog Posts
 
-**Code Splitting:**
-- Lazy-loaded route components with React.lazy
-- Suspense boundaries with LoadingScreen fallback
-- Separate vendor and application bundles
+The blog posts are stored as JSON data in the server storage.
 
-**Caching Strategy:**
-- TanStack Query cache with 5-minute stale time for content
-- HTTP cache headers on blog post responses (max-age=300)
-- Static asset caching via Vite build
+**Steps to Upload Blogs:**
+1.  **Open Code**: Navigate to `server/storage.ts`.
+2.  **Find `this.posts`**: Locate the initialization of the `posts` array in the `MemStorage` class.
+3.  **Add Entry**: Add a new object to the array following this format:
+    ```typescript
+    {
+      id: number,
+      title: string,
+      excerpt: string,
+      content: string,
+      category: string,
+      date: string (ISO),
+      image: string (URL),
+      author: string
+    }
+    ```
+4.  **Save & Restart**: Save the file. The server will restart, and the new post will appear on the `/blog` page automatically.
 
-**Bundle Optimization:**
-- Tree shaking via ES modules
-- Tailwind CSS purging in production
-- Source maps for debugging (via @jridgewell/trace-mapping)
-
-### SEO & Metadata
-
-**Meta Tags:**
-- Seo component for per-page title, description, and Open Graph tags
-- Canonical URLs configured for each page
-- Twitter Card support for social sharing
-
-**Structured Data:**
-- JSON-LD schemas implemented: Organization, BreadcrumbList, HowTo, FAQPage, LocalBusiness
-- Schema validation via Zod for type safety
-
-**Sitemap & Robots:**
-- Static robots.txt allowing all crawlers
-- Sitemap reference in robots.txt
-- Clean URL structure (/, /about, /services, /blog, /contact)
-
-### Third-Party Integrations
-
-**Scheduler Integration:**
-- Conditional rendering for Cal.com or Calendly embeds
-- Environment variable configuration (VITE_SCHEDULER_PROVIDER, VITE_SCHEDULER_URL)
-- Fallback UI with email/phone contact when scheduler unavailable
-- SchedulerModal and SchedulerEmbed components for inline and overlay displays
-
-**Analytics Readiness:**
-- data-analytics attributes on CTA buttons for event tracking
-- No analytics library currently installed (ready for Google Analytics, Plausible, etc.)
-
-**Email Service:**
-- Contact form and newsletter submissions logged server-side
-- No email sending service integrated (ready for SendGrid, Mailgun, etc.)
-- Toast notifications confirm submissions to users
+---
 
 ## External Dependencies
 
 ### Core Dependencies
 
-**Frontend Framework:**
-- react (v18): UI library with hooks and concurrent features
-- react-dom (v18): DOM rendering for React
-- typescript: Type safety and developer experience
+**Frontend:**
+- react, wouter, lucide-react, framer-motion, @tanstack/react-query
 
-**Build & Development:**
-- vite: Fast build tool with HMR
-- @vitejs/plugin-react: React integration for Vite
-- esbuild: Server code bundling
+**UI:**
+- shadcn/ui (Radix UI primitives), tailwindcss
 
-**Backend Framework:**
-- express: Web server for API and static file serving
-- @neondatabase/serverless: PostgreSQL driver (configured but not used)
-
-**UI Component Libraries:**
-- @radix-ui/react-*: 20+ headless accessible components (dialog, dropdown, accordion, etc.)
-- lucide-react: Icon library with 1000+ icons
-- framer-motion: Animation and gesture library
-- embla-carousel-react: Touch-friendly carousel
-
-**Form & Validation:**
-- react-hook-form: Form state management and validation
-- @hookform/resolvers: Zod integration for react-hook-form
-- zod: Schema validation for forms and API responses
-
-**Data Fetching:**
-- @tanstack/react-query: Server state management with caching
-
-**Database & ORM:**
-- drizzle-orm: TypeScript ORM for PostgreSQL
-- drizzle-kit: Migration toolkit
-- drizzle-zod: Zod schema generation from Drizzle schemas
-- connect-pg-simple: PostgreSQL session store (not active)
-
-**Styling:**
-- tailwindcss: Utility-first CSS framework
-- tailwind-merge: Merge Tailwind classes without conflicts
-- clsx: Conditional class names
-- class-variance-authority: Component variant styling
-- postcss & autoprefixer: CSS processing
-
-**Routing:**
-- wouter: Minimal client-side router (2KB alternative to React Router)
-
-**Utilities:**
-- date-fns: Date manipulation and formatting
-- nanoid: Unique ID generation
-
-### Development Dependencies
-
-**Type Checking:**
-- @types/node: Node.js type definitions
-- vite/client types: Vite environment types
-
-**Replit Plugins:**
-- @replit/vite-plugin-runtime-error-modal: Error overlay in development
-- @replit/vite-plugin-cartographer: Code navigation (conditional, dev only)
-- @replit/vite-plugin-dev-banner: Development banner (conditional, dev only)
-
-### Service Dependencies
-
-**Image CDN:**
-- Unsplash: All imagery served via Unsplash CDN with optimization parameters
-
-**Font Hosting:**
-- Google Fonts: Montserrat, Poppins (headings), Open Sans, Lato (body text)
-- Preconnect configured for fonts.googleapis.com and fonts.gstatic.com
-
-**Potential Future Integrations:**
-- PostgreSQL database (Neon serverless configured)
-- Email service (SendGrid, Mailgun, Resend)
-- Analytics (Google Analytics, Plausible)
-- Scheduler (Cal.com, Calendly) - infrastructure ready
-- Error tracking (Sentry)
-- Monitoring (Datadog, New Relic)
+**Backend:**
+- express, zod, drizzle-orm
