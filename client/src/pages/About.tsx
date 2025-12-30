@@ -1,6 +1,4 @@
 import HeroSection from "@/components/HeroSection";
-import ValuesCard from "@/components/ValuesCard";
-import Timeline from "@/components/Timeline";
 import AnimatedSection from "@/components/AnimatedSection";
 import MarketingLayout from "@/components/layouts/MarketingLayout";
 import { Seo } from "@/components/Seo";
@@ -49,82 +47,7 @@ const advisorHighlights = [
   },
 ];
 
-const values = [
-  {
-    title: "Visionary Partnership",
-    description:
-      "More than a service provider; strategic partner in growth. Seeing potential, identifying locations, envisioning profitable spaces. Working alongside clients, sharing insights and expertise to make their store vision a reality.",
-  },
-  {
-    title: "Relentless Execution",
-    description:
-      "Focus on flawless execution from property acquisition. Managing every detail with precision and efficiency: complex purchase agreements, securing supply contracts, designing functional and beautiful stores. Handling complexities so clients can focus on their business.",
-  },
-  {
-    title: "Integrity & Transparency",
-    description:
-      "Cornerstone of business. Operating with complete honesty and transparency: property negotiations, project budgets. Clients can rely on candid communication, ethical practices, and doing what is right. Relationship built on mutual respect and open dialogue.",
-  },
-  {
-    title: "Innovation in Design & Operations",
-    description:
-      "Retail space as a strategic asset. Constantly seeking innovative solutions in store design, layout, and supply chain management for efficiency and customer experience. Leveraging latest trends and technologies for aesthetically pleasing, functional, and profitable spaces for long-term success.",
-  },
-  {
-    title: "Seamless Experience",
-    description:
-      "Making the journey from idea to open store smooth and seamless. Acting as a single point of contact, coordinating real estate agents, designers, contractors, and suppliers. Commitment to a hassle-free process for an easy and stress-free transition to a new location.",
-  },
-];
 
-const milestones = [
-  {
-    year: "2004",
-    title: "Founded",
-    description: "CLC Retail Group was established by industry veterans with a vision to democratize retail business ownership.",
-  },
-  {
-    year: "2008",
-    title: "100 Businesses",
-    description: "Reached a milestone of helping 100 entrepreneurs successfully launch their retail businesses.",
-  },
-  {
-    year: "2015",
-    title: "Global network",
-    description: "Expanded our partner bench across North America, Europe, and the Middle East to support cross-border growth.",
-  },
-  {
-    year: "2020",
-    title: "Digital innovation",
-    description: "Launched remote launch control rooms and data dashboards so distributed teams could collaborate in real time.",
-  },
-  {
-    year: "2024",
-    title: "500+ success stories",
-    description: "Celebrated helping over 500 entrepreneurs achieve their business dreams with continued growth.",
-  },
-];
-
-const valuesInAction = [
-  {
-    name: "Flagship, fast",
-    value: "Relentless Execution",
-    narrative:
-      "An emerging athleisure brand needed to open in SoHo in under four months. We compressed vendor onboarding, staged procurement, and coordinated marketing pop-ups—launching on schedule with 17% under-run on build costs.",
-  },
-  {
-    name: "Transparent reinvention",
-    value: "Integrity & Transparency",
-    narrative:
-      "For a legacy grocer reimagining urban footprints, we instituted weekly performance standups, real-time budget dashboards, and clear change-control so leadership always had truth in numbers.",
-  },
-  {
-    name: "Experience innovation",
-    value: "Innovation in Design & Operations",
-    narrative:
-      "We transformed a suburban electronics store into a hands-on discovery lab, layering digital signage, modular fixtures, and experiential demos that increased dwell time by 26%.",
-  },
-];
 
 export default function About() {
   return (
@@ -161,101 +84,7 @@ export default function About() {
         </section>
       </AnimatedSection>
 
-      <AnimatedSection delay={0.05}>
-        <section className="py-20">
-          <div className="container mx-auto max-w-6xl px-4">
-            <div className="flex flex-col gap-6 text-white sm:flex-row sm:items-end sm:justify-between">
-              <div>
-                <Badge className="border border-white/25 bg-white/10 px-4 py-1 text-xs uppercase tracking-[0.35em] text-white/70">
-                  The Values That Drive Us
-                </Badge>
-                <h2 className="mt-4 font-heading text-3xl sm:text-4xl">The Values That Drive Us</h2>
-                <p className="mt-4 max-w-2xl text-white/75">
-                  Core Values for CLC Retail LTD
-                </p>
-              </div>
-            </div>
-            <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              <CardGlass className="p-8">
-                <h3 className="font-heading text-xl text-white">1. Visionary Partnership</h3>
-                <p className="mt-4 text-sm text-white/80">
-                  We are more than a service provider; we are your strategic partner in growth. Our value lies in seeing potential where others see problems, from identifying the perfect location to envisioning a successful, profitable retail space. We work alongside our clients, sharing insights and expertise at every step, ensuring their vision for a new store becomes a reality.
-                </p>
-              </CardGlass>
-              <CardGlass className="p-8">
-                <h3 className="font-heading text-xl text-white">2. Relentless Execution</h3>
-                <p className="mt-4 text-sm text-white/80">
-                  From the moment a property is acquired, our focus is on flawless execution. We are driven by a commitment to managing every detail of the process with precision and efficiency—from navigating complex purchase agreements and securing supply contracts to designing a functional and beautiful store. Our goal is to handle the complexities so our clients can focus on their business, confident that their project is on track for a successful opening.
-                </p>
-              </CardGlass>
-              <CardGlass className="p-8">
-                <h3 className="font-heading text-xl text-white">3. Integrity & Transparency</h3>
-                <p className="mt-4 text-sm text-white/80">
-                  Trust is the cornerstone of our business. We operate with complete honesty and transparency in all our dealings, from property negotiations to project budgets. Our clients can rely on us for candid communication, ethical practices, and a commitment to doing what is right, ensuring a relationship built on mutual respect and open dialogue.
-                </p>
-              </CardGlass>
-              <CardGlass className="p-8">
-                <h3 className="font-heading text-xl text-white">4. Innovation in Design & Operations</h3>
-                <p className="mt-4 text-sm text-white/80">
-                  We believe that a retail space is a strategic asset. Our team is constantly seeking innovative solutions in store design, layout, and supply chain management to maximize efficiency and customer experience. We leverage the latest trends and technologies to create spaces that are not only aesthetically pleasing but also highly functional and profitable, setting our clients up for long-term success.
-                </p>
-              </CardGlass>
-              <CardGlass className="p-8 lg:col-span-2">
-                <h3 className="font-heading text-xl text-white">5. Seamless Experience</h3>
-                <p className="mt-4 text-sm text-white/80">
-                  The journey from an idea to an open store can be complex, but we are dedicated to making it a smooth and seamless experience for our clients. We act as a single point of contact, coordinating all aspects of the project, including real estate agents, designers, contractors, and suppliers. Our commitment to a hassle-free process ensures that the transition to a new location is as easy and stress-free as possible.
-                </p>
-              </CardGlass>
-            </div>
-          </div>
-        </section>
-      </AnimatedSection>
-
-      <AnimatedSection delay={0.1}>
-        <Timeline
-          items={milestones}
-          variant="dark"
-          title="Milestones & impact"
-          subtitle="From a boutique advisory to a global launch studio"
-        />
-      </AnimatedSection>
-
-      <AnimatedSection delay={0.15}>
-        <ValuesCard values={values} />
-      </AnimatedSection>
-
-      <AnimatedSection delay={0.2}>
-        <section className="py-20">
-          <div className="container mx-auto max-w-5xl px-4 text-white">
-            <div className="mb-10 space-y-4 text-center">
-              <Badge className="border border-white/25 bg-white/10 px-4 py-1 text-xs uppercase tracking-[0.35em] text-white/70">
-                Values in action
-              </Badge>
-              <h2 className="font-heading text-3xl sm:text-4xl">How our principles show up on the ground</h2>
-              <p className="mx-auto max-w-3xl text-white/75">
-                Our values guide every meeting, milestone, and metric. Here are a few recent engagements that demonstrate what that looks like in practice.
-              </p>
-            </div>
-            <div className="grid gap-6 md:grid-cols-3">
-              {valuesInAction.map((item) => (
-                <CardGlass key={item.name} className="h-full p-6 text-white">
-                  <p className="text-xs uppercase tracking-[0.3em] text-white/60">{item.value}</p>
-                  <h3 className="mt-3 font-heading text-xl">{item.name}</h3>
-                  <p className="mt-3 text-white/80">{item.narrative}</p>
-                </CardGlass>
-              ))}
-            </div>
-            <div className="mt-10 flex justify-center">
-              <Link href="/contact#schedule">
-                <Button className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary px-8 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-white">
-                  Book a discovery call
-                  <ArrowUpRight className="h-4 w-4" />
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </section>
-      </AnimatedSection>
+      
     </MarketingLayout>
   );
 }
