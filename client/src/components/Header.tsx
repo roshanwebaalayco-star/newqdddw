@@ -86,12 +86,15 @@ export default function Header() {
             <Link href="/contact#schedule">
               <Button
                 variant="default"
+                asChild
                 className="hidden items-center gap-2 whitespace-nowrap rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary px-5 py-2 text-sm font-semibold uppercase tracking-[0.18em] text-white shadow-[0_16px_45px_-25px_rgba(176,138,124,1)] md:inline-flex focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
                 data-testid="button-cta-header"
                 data-analytics="cta-schedule"
               >
-                <PhoneCall className="h-4 w-4" />
-                Start Your Business
+                <a href="/contact#schedule">
+                  <PhoneCall className="h-4 w-4" />
+                  Start Your Business
+                </a>
               </Button>
             </Link>
 

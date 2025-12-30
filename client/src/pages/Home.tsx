@@ -360,10 +360,13 @@ export default function Home() {
                             <Button
                               variant="ghost"
                               size="sm"
+                              asChild
                               className="mt-2 text-white/80 hover:text-white h-8"
                               data-testid={`button-learn-more-${step.id}`}
                             >
-                              Learn more <ArrowRight className="ml-2 h-3 w-3" />
+                              <a href={step.path}>
+                                Learn more <ArrowRight className="ml-2 h-3 w-3" />
+                              </a>
                             </Button>
                           </div>
                         </div>
@@ -535,10 +538,11 @@ export default function Home() {
                   <Link href="/contact#schedule">
                     <Button
                       size="lg"
+                      asChild
                       className="w-full rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary px-10 py-6 text-[10px] font-semibold uppercase tracking-[0.3em] text-white sm:text-xs"
                       data-testid="button-cta-bottom"
                     >
-                      Book a free site survey
+                      <a href="/contact#schedule">Book a free site survey</a>
                     </Button>
                   </Link>
                   <Link href="/step-location">
