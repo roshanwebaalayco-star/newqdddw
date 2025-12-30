@@ -91,10 +91,10 @@ export default function Header() {
                 data-testid="button-cta-header"
                 data-analytics="cta-schedule"
               >
-                <a href="/contact#schedule">
+                <div className="flex items-center gap-2 cursor-pointer">
                   <PhoneCall className="h-4 w-4" />
                   Start Your Business
-                </a>
+                </div>
               </Button>
             </Link>
 

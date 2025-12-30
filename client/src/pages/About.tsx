@@ -266,10 +266,10 @@ export default function About() {
             <div className="mt-16 flex justify-center">
               <Link href="/contact#schedule">
                 <Button asChild className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary px-8 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-white shadow-[0_16px_45px_-25px_rgba(176,138,124,1)]">
-                  <a href="/contact#schedule" className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 cursor-pointer">
                     Book a discovery call
                     <ArrowUpRight className="h-4 w-4" />
-                  </a>
+                  </div>
                 </Button>
               </Link>
             </div>

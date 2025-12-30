@@ -542,7 +542,7 @@ export default function Home() {
                       className="w-full rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary px-10 py-6 text-[10px] font-semibold uppercase tracking-[0.3em] text-white sm:text-xs"
                       data-testid="button-cta-bottom"
                     >
-                      <a href="/contact#schedule">Book a free site survey</a>
+                      <div className="cursor-pointer">Book a free site survey</div>
                     </Button>
                   </Link>
                   <Link href="/step-location">

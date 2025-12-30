@@ -10,9 +10,9 @@ interface BlogCardProps {
 
 export default function BlogCard({ post }: BlogCardProps) {
   return (
-    <Link href={`/blog/${post.slug}`} aria-label={`Read ${post.title}`}>
+    <Link href={`/blog/${post.slug}`}>
       <Card
-        className="group flex h-full flex-col overflow-hidden border border-white/10 bg-[#0f1222]/80 shadow-[0_28px_90px_-60px_rgba(0,0,0,0.9)] transition duration-500 hover:-translate-y-1 hover:border-white/20"
+        className="group flex h-full flex-col overflow-hidden border border-white/10 bg-[#0f1222]/80 shadow-[0_28px_90px_-600px_rgba(0,0,0,0.9)] transition duration-500 hover:-translate-y-1 hover:border-white/20"
         data-testid={`card-blog-${post.id}`}
       >
         <div className="relative aspect-[16/9] overflow-hidden">
