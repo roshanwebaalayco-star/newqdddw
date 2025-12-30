@@ -170,9 +170,6 @@ export default function About() {
                   The Values That Drive Us
                 </Badge>
                 <h2 className="mt-4 font-heading text-3xl sm:text-4xl">The Values That Drive Us</h2>
-                <p className="mt-4 max-w-2xl text-white/75">
-                  Core Values for CLC Retail LTD
-                </p>
               </div>
             </div>
             <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
