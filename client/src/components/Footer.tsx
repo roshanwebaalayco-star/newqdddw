@@ -25,11 +25,6 @@ export default function Footer() {
               <p className="max-w-sm text-sm leading-relaxed text-slate-200">
                 UK expertise; end-to-end delivery; lender and investor-ready documentation.
               </p>
-              <div className="flex flex-wrap gap-3 text-xs uppercase tracking-[0.35em] text-slate-300">
-                <span>London</span>
-                <span>New York</span>
-                <span>Dubai</span>
-              </div>
             </div>
 
             <div className="space-y-5">
