@@ -32,13 +32,32 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   app.get("/api/blog/posts", async (_req: Request, res: Response) => {
-    const posts = await getLatestPosts(12);
-    if (posts.length === 0) {
+    try {
+      const posts = await getLatestPosts(12);
+      if (posts && posts.length > 0) {
+        res.set("Cache-Control", "public, max-age=300");
+        return res.json(posts);
+      }
+      return res.json(blogPosts);
+    } catch (error) {
+      console.error("Error in /api/blog/posts:", error);
       return res.json(blogPosts);
     }
+  });
 
-    res.set("Cache-Control", "public, max-age=300");
-    res.json(posts);
+  app.get("/api/blog/posts/:slug", async (req: Request, res: Response) => {
+    try {
+      const { slug } = req.params;
+      const posts = await getLatestPosts(100);
+      const post = posts.find(p => p.slug === slug) || blogPosts.find(p => p.slug === slug);
+      
+      if (!post) {
+        return res.status(404).json({ message: "Post not found" });
+      }
+      res.json(post);
+    } catch (error) {
+      res.status(500).json({ message: "Error fetching post" });
+    }
   });
 
   app.get("/api/posts", async (_req: Request, res: Response) => {
