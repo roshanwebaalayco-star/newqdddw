@@ -60,6 +60,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Catch-all route for SPA - MUST BE LAST
+  app.get("*", (_req: Request, res: Response, next) => {
+    if (_req.path.startsWith("/api")) {
+      return next();
+    }
+    res.sendFile("index.html", { root: "dist/public" });
+  });
+
+
   app.get("/api/posts", async (_req: Request, res: Response) => {
     const posts = await getLatestPosts(3);
     res.set("Cache-Control", "public, max-age=300");
