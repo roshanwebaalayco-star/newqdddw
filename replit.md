@@ -9,6 +9,7 @@ The website serves as the primary digital presence for showcasing services (fran
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+Email notifications: Send form submissions to hello@clcretail.com. The user opted out of native email integrations, so submissions are currently logged to the server console. For actual delivery, a 3rd party service (Resend/SendGrid) needs to be configured manually.
 
 ## System Architecture
 
