@@ -92,10 +92,10 @@ export default function Footer() {
               <Link href="/contact#schedule">
                 <Button
                   asChild
-                  className="w-full whitespace-nowrap rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary py-3 text-xs font-semibold uppercase tracking-[0.3em] text-white cursor-pointer"
+                  className="w-full whitespace-nowrap rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary py-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-white cursor-pointer sm:text-xs sm:tracking-[0.3em]"
                   data-testid="button-footer-cta"
                 >
-                  <div className="flex items-center justify-center w-full h-full">Book a free site survey</div>
+                  <div className="flex items-center justify-center w-full h-full px-2">Book a free site survey</div>
                 </Button>
               </Link>
             </div>

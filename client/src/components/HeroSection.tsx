@@ -100,7 +100,7 @@ export default function HeroSection({
                     <Button
                       size="lg"
                       asChild
-                      className="rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary px-10 py-6 text-sm font-semibold uppercase tracking-[0.22em] text-white shadow-[0_18px_65px_-30px_rgba(176,138,124,0.9)] cursor-pointer"
+                      className="rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary px-6 py-5 text-[10px] font-semibold uppercase tracking-[0.15em] text-white shadow-[0_18px_65px_-30px_rgba(176,138,124,0.9)] cursor-pointer sm:px-10 sm:py-6 sm:text-sm sm:tracking-[0.22em]"
                       data-testid="button-hero-cta"
                     >
                       <div className="flex items-center justify-center w-full h-full">{ctaText}</div>
@@ -113,7 +113,7 @@ export default function HeroSection({
                       size="lg"
                       variant="outline"
                       asChild
-                      className="rounded-full border border-white/30 bg-white/5 px-10 py-6 text-sm font-semibold uppercase tracking-[0.22em] text-white/80 transition hover:border-white/40 hover:text-white cursor-pointer"
+                      className="rounded-full border border-white/30 bg-white/5 px-6 py-5 text-[10px] font-semibold uppercase tracking-[0.15em] text-white/80 transition hover:border-white/40 hover:text-white cursor-pointer sm:px-10 sm:py-6 sm:text-sm sm:tracking-[0.22em]"
                       data-testid="button-hero-secondary"
                     >
                       <div className="flex items-center justify-center w-full h-full">{secondaryCtaText}</div>

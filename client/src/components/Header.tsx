@@ -87,7 +87,7 @@ export default function Header() {
               <Button
                 variant="default"
                 asChild
-                className="hidden items-center gap-2 whitespace-nowrap rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary px-5 py-2 text-sm font-semibold uppercase tracking-[0.18em] text-white shadow-[0_16px_45px_-25px_rgba(176,138,124,1)] md:inline-flex focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent cursor-pointer"
+                className="hidden items-center gap-2 whitespace-nowrap rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.1em] text-white shadow-[0_16px_45px_-25px_rgba(176,138,124,1)] lg:inline-flex lg:px-5 lg:text-sm lg:tracking-[0.18em] focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent cursor-pointer"
                 data-testid="button-cta-header"
                 data-analytics="cta-schedule"
               >
