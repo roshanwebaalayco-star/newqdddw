@@ -89,15 +89,17 @@ export default function Footer() {
                   </span>
                 </div>
               </div>
-              <Link href="/contact#schedule">
-                <Button
-                  asChild
-                  className="w-full whitespace-nowrap rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary py-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-white cursor-pointer sm:text-xs sm:tracking-[0.3em]"
-                  data-testid="button-footer-cta"
-                >
-                  <div className="flex items-center justify-center w-full h-full px-2">Book a free site survey</div>
-                </Button>
-              </Link>
+              <div className="flex justify-start">
+                <Link href="/contact#schedule">
+                  <Button
+                    asChild
+                    className="whitespace-nowrap rounded-full bg-gradient-to-r from-primary via-primary/80 to-secondary py-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-white cursor-pointer sm:text-xs sm:tracking-[0.3em]"
+                    data-testid="button-footer-cta"
+                  >
+                    <div className="flex items-center justify-center px-6">Book a free site survey</div>
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
 
