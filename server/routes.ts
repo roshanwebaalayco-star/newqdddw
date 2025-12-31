@@ -1,5 +1,7 @@
 import type { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
+import path from "path";
+import fs from "fs";
 import { contactFormSchema, newsletterSchema, type ContactFormInput, type NewsletterInput } from "@shared/forms";
 import { insertLeadSchema } from "@shared/schema";
 import { homeContent } from "./content/home";
@@ -65,7 +67,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
     if (_req.path.startsWith("/api")) {
       return next();
     }
-    res.sendFile("index.html", { root: "dist/public" });
+    
+    // In development, let Vite handle it
+    if (process.env.NODE_ENV !== "production") {
+      return next();
+    }
+
+    const indexPath = path.resolve(process.cwd(), "dist", "public", "index.html");
+    if (fs.existsSync(indexPath)) {
+      res.sendFile(indexPath);
+    } else {
+      // Fallback for case where dist/public might not be ready yet
+      res.status(404).send("Application not ready. Please try again in a few moments.");
+    }
   });
 
 
