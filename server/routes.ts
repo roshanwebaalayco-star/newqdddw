@@ -47,7 +47,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.json(posts);
   });
 
-  app.post("/api/contact", (req: Request, res: Response) => {
+  app.post("/api/contact", async (req: Request, res: Response) => {
     const parsed = contactFormSchema.safeParse(req.body);
 
     if (!parsed.success) {
@@ -60,10 +60,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
     };
 
     contactSubmissions.push(submission);
+    
+    // Log the data for the user as requested
+    console.log(`[EMAIL NOTIFICATION] to: hello@clcretail.com`);
+    console.log(`Subject: New Contact Form Submission from ${parsed.data.fullName}`);
+    console.log(`Data:`, JSON.stringify(submission, null, 2));
+
     res.status(201).json({ message: "Thanks for reaching out! Our team will follow up shortly." });
   });
 
-  app.post("/api/newsletter", (req: Request, res: Response) => {
+  app.post("/api/newsletter", async (req: Request, res: Response) => {
     const parsed = newsletterSchema.safeParse(req.body);
 
     if (!parsed.success) {
@@ -76,6 +82,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
     };
 
     newsletterSubscribers.push(subscription);
+
+    console.log(`[EMAIL NOTIFICATION] to: hello@clcretail.com`);
+    console.log(`Subject: New Newsletter Subscription: ${parsed.data.email}`);
+
     res.status(201).json({ message: "You're on the list!" });
   });
 
@@ -88,6 +98,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
     try {
       const lead = await storage.createLead(parsed.data);
+      
+      console.log(`[EMAIL NOTIFICATION] to: hello@clcretail.com`);
+      console.log(`Subject: New Lead Generated: ${parsed.data.name}`);
+      console.log(`Details: Stage: ${parsed.data.projectStage}, Email: ${parsed.data.email}`);
+
       res.status(201).json({ 
         message: "Thanks! Your Location Selection Checklist is downloading now. We've also sent a copy to your email.",
         downloadUrl: "/downloads/location-selection-checklist.pdf",
