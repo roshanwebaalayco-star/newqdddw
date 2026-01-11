@@ -104,7 +104,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     contactSubmissions.push(submission);
     
     // Log the data for the user as requested
-    console.log(`[EMAIL NOTIFICATION] to: hello@clcretail.com`);
+    console.log(`[EMAIL NOTIFICATION] to: roshan5nov@gmail.com`);
     console.log(`Subject: New Contact Form Submission from ${parsed.data.fullName}`);
     console.log(`Data:`, JSON.stringify(submission, null, 2));
 
@@ -125,7 +125,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
     newsletterSubscribers.push(subscription);
 
-    console.log(`[EMAIL NOTIFICATION] to: hello@clcretail.com`);
+    console.log(`[EMAIL NOTIFICATION] to: roshan5nov@gmail.com`);
     console.log(`Subject: New Newsletter Subscription: ${parsed.data.email}`);
 
     res.status(201).json({ message: "You're on the list!" });
@@ -141,7 +141,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const lead = await storage.createLead(parsed.data);
       
-      console.log(`[EMAIL NOTIFICATION] to: hello@clcretail.com`);
+      console.log(`[EMAIL NOTIFICATION] to: roshan5nov@gmail.com`);
       console.log(`Subject: New Lead Generated: ${parsed.data.name}`);
       console.log(`Details: Stage: ${parsed.data.projectStage}, Email: ${parsed.data.email}`);
 
