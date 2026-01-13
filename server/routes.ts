@@ -2,7 +2,11 @@ import type { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
 import path from "path";
 import fs from "fs";
+import { Resend } from "resend";
 import { contactFormSchema, newsletterSchema, type ContactFormInput, type NewsletterInput } from "@shared/forms";
+
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
+const TEST_EMAIL = "roshan5nov@gmail.com";
 import { insertLeadSchema } from "@shared/schema";
 import { homeContent } from "./content/home";
 import { blogPosts } from "./content/blog";
@@ -103,10 +107,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
     contactSubmissions.push(submission);
     
-    // Log the data for the user as requested
-    console.log(`[EMAIL NOTIFICATION] to: roshan5nov@gmail.com`);
-    console.log(`Subject: New Contact Form Submission from ${parsed.data.fullName}`);
-    console.log(`Data:`, JSON.stringify(submission, null, 2));
+    if (resend) {
+      try {
+        await resend.emails.send({
+          from: "CLC Retail <onboarding@resend.dev>",
+          to: TEST_EMAIL,
+          subject: `New Contact Form Submission from ${parsed.data.fullName}`,
+          text: `
+Name: ${parsed.data.fullName}
+Email: ${parsed.data.email}
+Message: ${parsed.data.message}
+Submitted At: ${submission.submittedAt}
+          `,
+        });
+        console.log(`[RESEND] Email sent to: ${TEST_EMAIL}`);
+      } catch (error) {
+        console.error("[RESEND] Error sending contact email:", error);
+      }
+    } else {
+      console.log(`[EMAIL NOTIFICATION] (MOCKED) to: ${TEST_EMAIL}`);
+      console.log(`Subject: New Contact Form Submission from ${parsed.data.fullName}`);
+      console.log(`Data:`, JSON.stringify(submission, null, 2));
+    }
 
     res.status(201).json({ message: "Thanks for reaching out! Our team will follow up shortly." });
   });
@@ -125,8 +147,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
     newsletterSubscribers.push(subscription);
 
-    console.log(`[EMAIL NOTIFICATION] to: roshan5nov@gmail.com`);
-    console.log(`Subject: New Newsletter Subscription: ${parsed.data.email}`);
+    if (resend) {
+      try {
+        await resend.emails.send({
+          from: "CLC Retail <onboarding@resend.dev>",
+          to: TEST_EMAIL,
+          subject: `New Newsletter Subscription: ${parsed.data.email}`,
+          text: `New subscriber: ${parsed.data.email}\nSubscribed At: ${subscription.subscribedAt}`,
+        });
+        console.log(`[RESEND] Email sent to: ${TEST_EMAIL}`);
+      } catch (error) {
+        console.error("[RESEND] Error sending newsletter email:", error);
+      }
+    } else {
+      console.log(`[EMAIL NOTIFICATION] (MOCKED) to: ${TEST_EMAIL}`);
+      console.log(`Subject: New Newsletter Subscription: ${parsed.data.email}`);
+    }
 
     res.status(201).json({ message: "You're on the list!" });
   });
@@ -141,9 +177,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const lead = await storage.createLead(parsed.data);
       
-      console.log(`[EMAIL NOTIFICATION] to: roshan5nov@gmail.com`);
-      console.log(`Subject: New Lead Generated: ${parsed.data.name}`);
-      console.log(`Details: Stage: ${parsed.data.projectStage}, Email: ${parsed.data.email}`);
+      if (resend) {
+        try {
+          await resend.emails.send({
+            from: "CLC Retail <onboarding@resend.dev>",
+            to: TEST_EMAIL,
+            subject: `New Lead Generated: ${parsed.data.name}`,
+            text: `
+Name: ${parsed.data.name}
+Email: ${parsed.data.email}
+Project Stage: ${parsed.data.projectStage}
+Details: ${parsed.data.projectDetails || "N/A"}
+            `,
+          });
+          console.log(`[RESEND] Email sent to: ${TEST_EMAIL}`);
+        } catch (error) {
+          console.error("[RESEND] Error sending lead email:", error);
+        }
+      } else {
+        console.log(`[EMAIL NOTIFICATION] (MOCKED) to: ${TEST_EMAIL}`);
+        console.log(`Subject: New Lead Generated: ${parsed.data.name}`);
+        console.log(`Details: Stage: ${parsed.data.projectStage}, Email: ${parsed.data.email}`);
+      }
 
       res.status(201).json({ 
         message: "Thanks! Your Location Selection Checklist is downloading now. We've also sent a copy to your email.",
