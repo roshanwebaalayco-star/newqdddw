@@ -73,7 +73,7 @@ export default function Header() {
 
           <div className="flex items-center gap-2">
             <div className="hidden flex-col text-right text-xs leading-tight text-white/60 md:flex">
-              <span className="uppercase tracking-[0.3em] text-white/40">Hotline</span>
+              <span className="uppercase tracking-[0.3em] text-white/40">Let's Begin</span>
               <a
                 href="tel:01925967366"
                 className="font-heading text-sm text-white transition hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#05070f]"
