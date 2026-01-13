@@ -109,8 +109,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     
     if (resend) {
       try {
-        await resend.emails.send({
-          from: "CLC Retail <onboarding@resend.dev>",
+        const { data, error } = await resend.emails.send({
+          from: "onboarding@resend.dev",
           to: TEST_EMAIL,
           subject: `New Contact Form Submission from ${parsed.data.fullName}`,
           text: `
@@ -120,9 +120,14 @@ Message: ${parsed.data.message}
 Submitted At: ${submission.submittedAt}
           `,
         });
-        console.log(`[RESEND] Email sent to: ${TEST_EMAIL}`);
+        
+        if (error) {
+          console.error("[RESEND ERROR]", JSON.stringify(error, null, 2));
+        } else {
+          console.log(`[RESEND SUCCESS] ID: ${data?.id}`);
+        }
       } catch (error) {
-        console.error("[RESEND] Error sending contact email:", error);
+        console.error("[RESEND EXCEPTION]", error);
       }
     } else {
       console.log(`[EMAIL NOTIFICATION] (MOCKED) to: ${TEST_EMAIL}`);
@@ -149,15 +154,20 @@ Submitted At: ${submission.submittedAt}
 
     if (resend) {
       try {
-        await resend.emails.send({
-          from: "CLC Retail <onboarding@resend.dev>",
+        const { data, error } = await resend.emails.send({
+          from: "onboarding@resend.dev",
           to: TEST_EMAIL,
           subject: `New Newsletter Subscription: ${parsed.data.email}`,
           text: `New subscriber: ${parsed.data.email}\nSubscribed At: ${subscription.subscribedAt}`,
         });
-        console.log(`[RESEND] Email sent to: ${TEST_EMAIL}`);
+        
+        if (error) {
+          console.error("[RESEND ERROR]", JSON.stringify(error, null, 2));
+        } else {
+          console.log(`[RESEND SUCCESS] ID: ${data?.id}`);
+        }
       } catch (error) {
-        console.error("[RESEND] Error sending newsletter email:", error);
+        console.error("[RESEND EXCEPTION]", error);
       }
     } else {
       console.log(`[EMAIL NOTIFICATION] (MOCKED) to: ${TEST_EMAIL}`);
@@ -180,14 +190,13 @@ Submitted At: ${submission.submittedAt}
       if (resend) {
         try {
           await resend.emails.send({
-            from: "CLC Retail <onboarding@resend.dev>",
+            from: "onboarding@resend.dev",
             to: TEST_EMAIL,
             subject: `New Lead Generated: ${parsed.data.name}`,
             text: `
 Name: ${parsed.data.name}
 Email: ${parsed.data.email}
 Project Stage: ${parsed.data.projectStage}
-Details: ${parsed.data.projectDetails || "N/A"}
             `,
           });
           console.log(`[RESEND] Email sent to: ${TEST_EMAIL}`);
