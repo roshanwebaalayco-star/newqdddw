@@ -104,7 +104,7 @@ export default function Footer() {
           </div>
 
           <div className="mt-14 border-t border-white/10 pt-6 text-xs uppercase tracking-[0.4em] text-slate-300">
-            <p data-testid="text-copyright" className="text-center">© {currentYear} CLC Retail LTD. All rights reserved.</p>
+            <p data-testid="text-copyright" className="text-center">© {currentYear} CLC Retail LTD.<br />All rights reserved.</p>
           </div>
         </div>
       </div>
