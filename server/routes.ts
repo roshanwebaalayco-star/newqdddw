@@ -6,7 +6,7 @@ import { Resend } from "resend";
 import { contactFormSchema, newsletterSchema, type ContactFormInput, type NewsletterInput } from "@shared/forms";
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
-const TEST_EMAIL = "roshan5nov@gmail.com";
+const TEST_EMAIL = "alleyesonreasi@gmail.com";
 import { insertLeadSchema } from "@shared/schema";
 import { homeContent } from "./content/home";
 import { blogPosts } from "./content/blog";
