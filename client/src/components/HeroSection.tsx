@@ -149,12 +149,6 @@ export default function HeroSection({
                 />
                 {overlay && <div className="absolute inset-0 bg-gradient-to-br from-[#0b0d16]/40 via-transparent to-[#0b0d16]/65" />}
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.25),_transparent_55%)]" />
-                <div className="absolute bottom-5 right-5 flex max-w-[min(320px,85%)] flex-col gap-2 rounded-2xl border border-white/15 bg-[#111526]/95 p-5 text-white shadow-[0_24px_70px_-35px_rgba(0,0,0,0.85)]">
-                  <p className="text-[11px] uppercase tracking-[0.35em] text-white/45">Signature approach</p>
-                  <p className="text-sm text-white/85">
-                    Multi-disciplinary teams orchestrating strategy, architecture, and operations in lockstep.
-                  </p>
-                </div>
               </div>
             </div>
           )}

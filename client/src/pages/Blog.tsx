@@ -13,7 +13,7 @@ import { Link } from "wouter";
 import { ArrowUpRight, RefreshCw } from "lucide-react";
 import { Seo } from "@/components/Seo";
 
-const blogHeroImage = "https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=2000&q=80&fm=webp";
+import blogHeroImage from "@assets/generated_images/Entrepreneur_working_retail_business_524a5c04.png";
 const baseUrl = "https://clcretail.com";
 
 const categories = [

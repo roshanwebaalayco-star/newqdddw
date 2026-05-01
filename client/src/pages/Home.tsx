@@ -366,17 +366,12 @@ export default function Home() {
                                 {step.summary}
                               </p>
                             </div>
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              asChild
-                              className="mt-2 text-white/80 hover:text-white h-8"
+                            <span
+                              className="mt-2 inline-flex h-8 items-center justify-center rounded-md px-3 text-sm font-medium text-white/80 transition-colors group-hover:text-white"
                               data-testid={`button-learn-more-${step.id}`}
                             >
-                              <a href={step.path}>
-                                Learn more <ArrowRight className="ml-2 h-3 w-3" />
-                              </a>
-                            </Button>
+                              Learn more <ArrowRight className="ml-2 h-3 w-3" />
+                            </span>
                           </div>
                         </div>
                       </Link>

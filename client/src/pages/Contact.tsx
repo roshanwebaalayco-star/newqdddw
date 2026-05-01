@@ -8,7 +8,7 @@ import { Phone, Mail, MapPin, Clock, CalendarClock, ShieldCheck } from "lucide-r
 import { Seo } from "@/components/Seo";
 import { SchedulerEmbed } from "@/components/SchedulerEmbed";
 
-const contactHeroImage = "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=2000&q=80&fm=webp";
+import contactHeroImage from "@assets/generated_images/Business_partnership_handshake_retail_480f72db.png";
 const baseUrl = "https://clcretail.com";
 
 const contactInfo = [

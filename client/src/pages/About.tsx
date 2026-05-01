@@ -17,7 +17,7 @@ import {
   Layers 
 } from "lucide-react";
 
-const teamImage = "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=2000&q=80&fm=webp";
+import teamImage from "@assets/generated_images/Professional_business_team_photo_512d4920.png";
 const baseUrl = "https://clcretail.com";
 
 const leadership = [
