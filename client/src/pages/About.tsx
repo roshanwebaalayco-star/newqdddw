@@ -86,29 +86,9 @@ const values = [
 
 const milestones = [
   {
-    year: "2004",
+    year: "2025",
     title: "Founded",
-    description: "CLC Retail Group was established by industry veterans with a vision to democratize retail business ownership.",
-  },
-  {
-    year: "2008",
-    title: "100 Businesses",
-    description: "Reached a milestone of helping 100 entrepreneurs successfully launch their retail businesses.",
-  },
-  {
-    year: "2015",
-    title: "Global network",
-    description: "Expanded our partner bench across North America, Europe, and the Middle East to support cross-border growth.",
-  },
-  {
-    year: "2020",
-    title: "Digital innovation",
-    description: "Launched remote launch control rooms and data dashboards so distributed teams could collaborate in real time.",
-  },
-  {
-    year: "2024",
-    title: "500+ success stories",
-    description: "Celebrated helping over 500 entrepreneurs achieve their business dreams with continued growth.",
+    description: "CLC Retail LTD was established to give UK founders a single, accountable partner for site selection, store design, fit-out, and launch.",
   },
 ];
 
@@ -172,8 +152,8 @@ export default function About() {
         <Timeline
           items={milestones}
           variant="dark"
-          title="Milestones & impact"
-          subtitle="From a boutique advisory to a global launch studio"
+          title="Our story so far"
+          subtitle="A new UK retail studio with deep founder-side experience"
         />
       </AnimatedSection>
 

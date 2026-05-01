@@ -27,7 +27,7 @@ const contactInfo = [
   {
     icon: MapPin,
     title: "Address",
-    content: "Mildenhall, UK",
+    content: "Suite A, 82 James Carter Road, Mildenhall, UK, IP28 7DE",
     link: "https://maps.google.com/?q=Suite+A,+82+James+Carter+Road,+Mildenhall,+IP28+7DE,+UK",
   },
   {
@@ -103,10 +103,10 @@ export default function Contact() {
                 <CardGlass className="p-8">
                   <h3 className="font-heading text-2xl">Where we work</h3>
                   <p className="mt-3 text-white/75">
-                    We support launches across North America, the UK, and the Gulf Cooperation Council. Our specialists travel to key markets and coordinate trusted vendor networks locally.
+                    We support launches across the UK and partner with vendor networks internationally as projects require.
                   </p>
                   <p className="mt-4 text-white/75">
-                    Headquarters: 123 Business Ave, Suite 100, New York, NY 10001. Satellite teams in London and Dubai ensure round-the-clock coverage for international programs.
+                    Head office: Suite A, 82 James Carter Road, Mildenhall, UK, IP28 7DE.
                   </p>
                 </CardGlass>
 
