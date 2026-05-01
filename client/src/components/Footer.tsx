@@ -12,7 +12,7 @@ export default function Footer() {
     { name: "Twitter", icon: SiX, url: "#" },
     { name: "LinkedIn", icon: SiLinkedin, url: "#" },
     { name: "Instagram", icon: SiInstagram, url: "#" },
-  ];
+  ].filter((s) => s.url && s.url !== "#");
 
   return (
     <footer className="relative mt-20 overflow-hidden border-t border-white/10 bg-gradient-to-b from-[#090c16] via-[#10172b] to-[#0c1222] text-white">
@@ -37,25 +37,29 @@ export default function Footer() {
                 <li><Link href="/contact" className="transition hover:text-white">Contact</Link></li>
               </ul>
 
-              <div className="space-y-3 pt-6">
-                <h4 className="font-heading text-sm uppercase tracking-[0.4em] text-slate-300">Follow Us</h4>
-                <div className="flex gap-3">
-                  {socialLinks.map((social) => {
-                    const Icon = social.icon;
-                    return (
-                      <a
-                        key={social.name}
-                        href={social.url}
-                        className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-slate-200 transition hover:border-white/40 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#10172b]"
-                        aria-label={social.name}
-                        data-testid={`link-social-${social.name.toLowerCase()}`}
-                      >
-                        <Icon className="h-4 w-4" />
-                      </a>
-                    );
-                  })}
+              {socialLinks.length > 0 && (
+                <div className="space-y-3 pt-6">
+                  <h4 className="font-heading text-sm uppercase tracking-[0.4em] text-slate-300">Follow Us</h4>
+                  <div className="flex gap-3">
+                    {socialLinks.map((social) => {
+                      const Icon = social.icon;
+                      return (
+                        <a
+                          key={social.name}
+                          href={social.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-slate-200 transition hover:border-white/40 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clc-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#10172b]"
+                          aria-label={social.name}
+                          data-testid={`link-social-${social.name.toLowerCase()}`}
+                        >
+                          <Icon className="h-4 w-4" />
+                        </a>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
 
             <div className="space-y-6 rounded-3xl border border-white/15 bg-gradient-to-br from-[#111a2f]/95 via-[#141f36]/95 to-[#1a2743]/95 p-8 shadow-[0_36px_120px_-70px_rgba(15,23,42,1)]">
