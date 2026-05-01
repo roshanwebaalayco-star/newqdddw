@@ -77,4 +77,9 @@ export const blogPostSchema = z.object({
 
 export const blogPostsSchema = z.array(blogPostSchema);
 
+export const blogPostDetailSchema = blogPostSchema.extend({
+  body: z.string(),
+});
+
 export type BlogPost = z.infer<typeof blogPostSchema>;
+export type BlogPostDetail = z.infer<typeof blogPostDetailSchema>;

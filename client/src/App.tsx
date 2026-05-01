@@ -11,7 +11,7 @@ const About = lazy(() => import("@/pages/About"));
 const Services = lazy(() => import("@/pages/Services"));
 const Contact = lazy(() => import("@/pages/Contact"));
 const Blog = lazy(() => import("@/pages/Blog"));
-const BlogPost = lazy(() => import("@/pages/Blog").then(m => ({ default: m.default }))); // Temporary placeholder
+const BlogPost = lazy(() => import("@/pages/BlogPost"));
 const StepLocation = lazy(() => import("@/pages/StepLocation"));
 const StepDesign = lazy(() => import("@/pages/StepDesign"));
 const StepFitOut = lazy(() => import("@/pages/StepFitOut"));
@@ -27,7 +27,7 @@ function Router() {
       <Route path="/services" component={Services} />
       <Route path="/contact" component={Contact} />
       <Route path="/blog" component={Blog} />
-      <Route path="/blog/:slug" component={Blog} />
+      <Route path="/blog/:slug" component={BlogPost} />
       <Route path="/step-location" component={StepLocation} />
       <Route path="/step-design" component={StepDesign} />
       <Route path="/step-fit-out" component={StepFitOut} />

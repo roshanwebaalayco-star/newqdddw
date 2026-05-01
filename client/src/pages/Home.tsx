@@ -168,7 +168,16 @@ export default function Home() {
       setChecklistFormOpen(false);
       setProjectStage("");
       if (response.downloadUrl) {
-        window.open(response.downloadUrl, "_blank");
+        // Trigger a real file download via a temporary anchor with the `download`
+        // attribute. This is more reliable than window.open(), which is often
+        // blocked by popup blockers when called from a mutation callback.
+        const link = document.createElement("a");
+        link.href = response.downloadUrl;
+        link.download = "location-selection-checklist.pdf";
+        link.rel = "noopener";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
       }
     },
     onError: (error: Error) => {

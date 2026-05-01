@@ -28,7 +28,7 @@ const fieldMeta: Array<{ name: keyof ContactFormInput; label: string; placeholde
   {
     name: "phone",
     label: "Phone",
-    placeholder: "(555) 123-4567",
+    placeholder: "01925 967366",
     icon: <Phone className="h-4 w-4 text-primary" />,
     type: "tel",
   },

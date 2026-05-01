@@ -9,7 +9,7 @@ The website serves as the primary digital presence for showcasing services (fran
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
-Email notifications: Send form submissions to hello@clcretail.com. The user opted out of native email integrations, so submissions are currently logged to the server console. For actual delivery, a 3rd party service (Resend/SendGrid) needs to be configured manually.
+Email notifications: Form submissions are sent to `NOTIFICATION_EMAIL` (env var, default `hello@clcretail.com`) using Resend. Required secrets: `RESEND_API_KEY`. Optional env vars: `NOTIFICATION_EMAIL` (recipient), `RESEND_FROM_EMAIL` (sender, default `onboarding@resend.dev`). To send to addresses other than the Resend account owner's signup email, the user must verify a sending domain at https://resend.com/domains and set `RESEND_FROM_EMAIL` to an address on that domain. Email failures are logged but never fail the form submission for the visitor.
 
 ## System Architecture
 
@@ -101,25 +101,26 @@ The site is built as a single artifact.
 
 ### 3. How to Manage Blog Posts
 
-The blog posts are stored as JSON data in the server storage.
+Blog posts are MDX files in `content/blog/`. Each file has a frontmatter block followed by the article body in Markdown.
 
-**Steps to Upload Blogs:**
-1.  **Open Code**: Navigate to `server/storage.ts`.
-2.  **Find `this.posts`**: Locate the initialization of the `posts` array in the `MemStorage` class.
-3.  **Add Entry**: Add a new object to the array following this format:
-    ```typescript
-    {
-      id: number,
-      title: string,
-      excerpt: string,
-      content: string,
-      category: string,
-      date: string (ISO),
-      image: string (URL),
-      author: string
-    }
+**Steps to add a post:**
+1.  Create a new file `content/blog/<short-name>.mdx`.
+2.  Add frontmatter (between `---` lines):
+    ```yaml
+    ---
+    slug: my-new-post-slug
+    title: "Article title"
+    excerpt: "One-sentence summary shown on the listing page."
+    category: "Operations"   # or Marketing, Site Selection, etc.
+    date: "2026-05-01"
+    readTime: "6 min read"
+    image: "https://images.unsplash.com/..."   # hero image URL
+    ---
     ```
-4.  **Save & Restart**: Save the file. The server will restart, and the new post will appear on the `/blog` page automatically.
+3.  Write the body in Markdown below the frontmatter. Headings (`##`, `###`), lists, links, and tables (via remark-gfm) are all rendered.
+4.  Save. The server picks it up automatically — the post appears on `/blog` and at `/blog/<slug>`.
+
+The legacy hardcoded posts in `server/content/blog.ts` are only used as a fallback if the MDX directory cannot be read.
 
 ---
 
