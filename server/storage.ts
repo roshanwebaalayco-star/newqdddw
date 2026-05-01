@@ -1,8 +1,13 @@
-import { type User, type InsertUser, type Lead, type InsertLead } from "@shared/schema";
-import { randomUUID } from "crypto";
-
-// modify the interface with any CRUD methods
-// you might need
+import { eq, desc } from "drizzle-orm";
+import {
+  users,
+  leads,
+  type User,
+  type InsertUser,
+  type Lead,
+  type InsertLead,
+} from "@shared/schema";
+import { db } from "./db";
 
 export interface IStorage {
   getUser(id: string): Promise<User | undefined>;
@@ -12,47 +17,39 @@ export interface IStorage {
   getLeads(): Promise<Lead[]>;
 }
 
-export class MemStorage implements IStorage {
-  private users: Map<string, User>;
-  private leads: Map<string, Lead>;
-
-  constructor() {
-    this.users = new Map();
-    this.leads = new Map();
-  }
-
+export class DbStorage implements IStorage {
   async getUser(id: string): Promise<User | undefined> {
-    return this.users.get(id);
+    const [row] = await db.select().from(users).where(eq(users.id, id));
+    return row;
   }
 
   async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
+    const [row] = await db
+      .select()
+      .from(users)
+      .where(eq(users.username, username));
+    return row;
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
-    const id = randomUUID();
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
-    return user;
+    const [row] = await db.insert(users).values(insertUser).returning();
+    return row;
   }
 
   async createLead(insertLead: InsertLead): Promise<Lead> {
-    const id = randomUUID();
-    const lead: Lead = { 
-      ...insertLead,
-      location: insertLead.location ?? null,
-      id,
-      createdAt: new Date(),
-    };
-    this.leads.set(id, lead);
-    return lead;
+    const [row] = await db
+      .insert(leads)
+      .values({
+        ...insertLead,
+        location: insertLead.location ?? null,
+      })
+      .returning();
+    return row;
   }
 
   async getLeads(): Promise<Lead[]> {
-    return Array.from(this.leads.values());
+    return db.select().from(leads).orderBy(desc(leads.createdAt));
   }
 }
 
-export const storage = new MemStorage();
+export const storage: IStorage = new DbStorage();

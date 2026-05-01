@@ -55,10 +55,16 @@ Email notifications: Form submissions are sent to `NOTIFICATION_EMAIL` (env var,
 
 **API Design:**
 - RESTful endpoints under `/api` prefix
-- Content endpoints: `/api/content/home`, `/api/blog/posts`, `/api/posts`
-- Form submission endpoints: `/api/contact`, `/api/newsletter`
-- In-memory storage for form submissions (MemStorage implementation)
+- Content endpoints: `/api/content/home`, `/api/blog/posts`, `/api/blog/posts/:slug`, `/api/posts`
+- Form submission endpoints: `/api/contact`, `/api/newsletter`, `/api/leads`
 - Zod schema validation on both client and server
+
+**Persistence (Drizzle + Neon Postgres):**
+- `server/db.ts` exports a Neon `Pool` and a typed `drizzle` client (with `ws` for WebSocket transport).
+- `server/storage.ts` exports `DbStorage` implementing `IStorage`. Lead and user CRUD go to the real Postgres tables defined in `shared/schema.ts`.
+- Use `npm run db:push` to sync schema changes; never write SQL migrations by hand.
+- The Express server registers `SIGTERM`/`SIGINT` handlers in `server/index.ts` that close the HTTP server and `pool.end()` for clean shutdowns.
+- Contact form and newsletter submissions are still kept in transient in-memory arrays (only the email notification matters for those); leads are persisted.
 
 **Content Management:**
 - Static content served from server/content directory
@@ -82,7 +88,7 @@ The website uses a unified form system built with **React Hook Form**, **Zod**, 
 **Workflow:**
 1.  **Validation**: When a user fills out a form (e.g., Contact Us or Newsletter), the data is validated instantly on the frontend using a Zod schema (defined in `shared/schema.ts`).
 2.  **Submission**: On valid submission, the `apiRequest` utility sends a POST request to the Express backend (e.g., `/api/contact`).
-3.  **Backend Handling**: The server re-validates the data for security and then stores it. Currently, it uses `MemStorage` (in-memory), which means submissions are logged to the console and stored in temporary arrays.
+3.  **Backend Handling**: The server re-validates the data for security and then stores it. Leads (`/api/leads`) are persisted to Postgres via `DbStorage`. Contact and newsletter submissions are kept transiently in-memory and notify the team via Resend email.
 4.  **Feedback**: The user receives a visual confirmation via the `useToast` hook (success or error message).
 
 ### 2. How to Set Up the Project
