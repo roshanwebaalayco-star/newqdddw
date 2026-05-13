@@ -43,7 +43,90 @@ function validationErrorResponse(error: unknown) {
   return messages.join(" ") || "Invalid payload";
 }
 
-async function sendNotificationEmail(subject: string, text: string, context: string) {
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#x27;");
+}
+
+function buildEmailHtml(title: string, preheader: string, rows: Array<{ label: string; value: string }>, bodyNote?: string): string {
+  const rowsHtml = rows
+    .map(
+      ({ label, value }) => `
+      <tr>
+        <td style="padding:8px 12px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;color:#888;white-space:nowrap;vertical-align:top;width:140px;">${escapeHtml(label)}</td>
+        <td style="padding:8px 12px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#2C2E3A;vertical-align:top;">${value}</td>
+      </tr>`,
+    )
+    .join("");
+
+  const noteHtml = bodyNote
+    ? `<p style="margin:20px 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#555;line-height:1.6;white-space:pre-wrap;">${escapeHtml(bodyNote)}</p>`
+    : "";
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>${escapeHtml(title)}</title>
+</head>
+<body style="margin:0;padding:0;background:#f4f4f6;">
+  <!-- preheader -->
+  <div style="display:none;max-height:0;overflow:hidden;mso-hide:all;">${escapeHtml(preheader)}</div>
+
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f4f6;padding:32px 16px;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;">
+
+          <!-- Header -->
+          <tr>
+            <td style="background:#2C2E3A;border-radius:8px 8px 0 0;padding:28px 32px;text-align:center;">
+              <span style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:20px;font-weight:700;color:#B08A7C;letter-spacing:0.05em;">CLC Retail Group</span>
+              <br>
+              <span style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;color:#9499aa;letter-spacing:0.12em;text-transform:uppercase;">Retail Architecture Studio</span>
+            </td>
+          </tr>
+
+          <!-- Title bar -->
+          <tr>
+            <td style="background:#B08A7C;padding:12px 32px;">
+              <span style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;font-weight:600;color:#fff;letter-spacing:0.08em;text-transform:uppercase;">${escapeHtml(title)}</span>
+            </td>
+          </tr>
+
+          <!-- Body -->
+          <tr>
+            <td style="background:#fff;padding:28px 32px;border-radius:0 0 8px 8px;">
+              <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;border:1px solid #eee;border-radius:6px;overflow:hidden;">
+                ${rowsHtml}
+              </table>
+              ${noteHtml}
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:20px 32px;text-align:center;">
+              <span style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;color:#aaa;">
+                This is an automated notification from <a href="https://clcretailgroup.uk" style="color:#B08A7C;text-decoration:none;">clcretailgroup.uk</a>. Do not reply to this email.
+              </span>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
+}
+
+async function sendNotificationEmail(subject: string, text: string, context: string, html?: string) {
   if (!transporter) {
     console.log(`[EMAIL] (SMTP not configured — set SMTP_HOST, SMTP_USER, SMTP_PASS) ${context}`);
     console.log(`To: ${NOTIFICATION_EMAIL} | Subject: ${subject}`);
@@ -57,6 +140,7 @@ async function sendNotificationEmail(subject: string, text: string, context: str
       to: NOTIFICATION_EMAIL,
       subject,
       text,
+      ...(html ? { html } : {}),
     });
     console.log(`[SMTP SUCCESS] ${context} → ${NOTIFICATION_EMAIL} (messageId: ${info.messageId})`);
   } catch (err) {
@@ -125,16 +209,32 @@ export async function registerRoutes(app: Express): Promise<Server> {
     const submission = { ...parsed.data, submittedAt: new Date().toISOString() };
     contactSubmissions.push(submission);
 
-    await sendNotificationEmail(
-      `New contact form submission from ${parsed.data.fullName}`,
-      `Name: ${parsed.data.fullName}
+    const contactText = `Name: ${parsed.data.fullName}
 Email: ${parsed.data.email}
 Phone: ${parsed.data.phone}
 Submitted at: ${submission.submittedAt}
 
 Message:
-${parsed.data.message}`,
+${parsed.data.message}`;
+
+    const safeContactEmail = escapeHtml(parsed.data.email);
+    const contactHtml = buildEmailHtml(
+      "New Contact Form Submission",
+      `${parsed.data.fullName} just filled out the contact form on clcretailgroup.uk`,
+      [
+        { label: "Name", value: escapeHtml(parsed.data.fullName) },
+        { label: "Email", value: `<a href="mailto:${safeContactEmail}" style="color:#B08A7C;">${safeContactEmail}</a>` },
+        { label: "Phone", value: escapeHtml(parsed.data.phone || "Not provided") },
+        { label: "Submitted at", value: escapeHtml(new Date(submission.submittedAt).toUTCString()) },
+      ],
+      parsed.data.message,
+    );
+
+    await sendNotificationEmail(
+      `New contact form submission from ${parsed.data.fullName}`,
+      contactText,
       `Contact form (${parsed.data.email})`,
+      contactHtml,
     );
 
     res.status(201).json({ message: "Thanks for reaching out! Our team will follow up shortly." });
@@ -149,10 +249,21 @@ ${parsed.data.message}`,
     const subscription = { ...parsed.data, subscribedAt: new Date().toISOString() };
     newsletterSubscribers.push(subscription);
 
+    const safeNewsletterEmail = escapeHtml(parsed.data.email);
+    const newsletterHtml = buildEmailHtml(
+      "New Newsletter Subscriber",
+      `${parsed.data.email} just subscribed to the CLC Retail Group newsletter`,
+      [
+        { label: "Email", value: `<a href="mailto:${safeNewsletterEmail}" style="color:#B08A7C;">${safeNewsletterEmail}</a>` },
+        { label: "Subscribed at", value: escapeHtml(new Date(subscription.subscribedAt).toUTCString()) },
+      ],
+    );
+
     await sendNotificationEmail(
       `New newsletter subscription: ${parsed.data.email}`,
       `New subscriber: ${parsed.data.email}\nSubscribed at: ${subscription.subscribedAt}`,
       `Newsletter (${parsed.data.email})`,
+      newsletterHtml,
     );
 
     res.status(201).json({ message: "You're on the list!" });
@@ -167,13 +278,28 @@ ${parsed.data.message}`,
     try {
       const lead = await storage.createLead(parsed.data);
 
-      await sendNotificationEmail(
-        `New lead generated: ${parsed.data.name}`,
-        `Name: ${parsed.data.name}
+      const leadText = `Name: ${parsed.data.name}
 Email: ${parsed.data.email}
 Location: ${parsed.data.location || "Not provided"}
-Project stage: ${parsed.data.projectStage}`,
+Project stage: ${parsed.data.projectStage}`;
+
+      const safeLeadEmail = escapeHtml(parsed.data.email);
+      const leadHtml = buildEmailHtml(
+        "New Lead Captured",
+        `${parsed.data.name} just downloaded the Location Selection Checklist on clcretailgroup.uk`,
+        [
+          { label: "Name", value: escapeHtml(parsed.data.name) },
+          { label: "Email", value: `<a href="mailto:${safeLeadEmail}" style="color:#B08A7C;">${safeLeadEmail}</a>` },
+          { label: "Location", value: escapeHtml(parsed.data.location || "Not provided") },
+          { label: "Project stage", value: escapeHtml(parsed.data.projectStage) },
+        ],
+      );
+
+      await sendNotificationEmail(
+        `New lead generated: ${parsed.data.name}`,
+        leadText,
         `Lead capture (${parsed.data.email})`,
+        leadHtml,
       );
 
       res.status(201).json({
