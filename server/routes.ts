@@ -11,7 +11,7 @@ import { storage } from "./storage";
 const NOTIFICATION_EMAIL = process.env.NOTIFICATION_EMAIL || "hello@clcretail.com";
 const SMTP_FROM = process.env.SMTP_FROM || "CLC Retail <noreply@clcretailgroup.uk>";
 
-function createTransporter() {
+function buildTransporter() {
   const host = process.env.SMTP_HOST;
   const port = parseInt(process.env.SMTP_PORT || "465", 10);
   const user = process.env.SMTP_USER;
@@ -29,6 +29,8 @@ function createTransporter() {
   });
 }
 
+const transporter = buildTransporter();
+
 const contactSubmissions: Array<ContactFormInput & { submittedAt: string }> = [];
 const newsletterSubscribers: Array<NewsletterInput & { subscribedAt: string }> = [];
 
@@ -42,8 +44,6 @@ function validationErrorResponse(error: unknown) {
 }
 
 async function sendNotificationEmail(subject: string, text: string, context: string) {
-  const transporter = createTransporter();
-
   if (!transporter) {
     console.log(`[EMAIL] (SMTP not configured — set SMTP_HOST, SMTP_USER, SMTP_PASS) ${context}`);
     console.log(`To: ${NOTIFICATION_EMAIL} | Subject: ${subject}`);
