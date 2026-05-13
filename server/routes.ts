@@ -1,7 +1,7 @@
 import type { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
 import nodemailer from "nodemailer";
-import { contactFormSchema, newsletterSchema, type ContactFormInput, type NewsletterInput } from "@shared/forms";
+import { contactFormSchema, newsletterSchema } from "@shared/forms";
 import { insertLeadSchema } from "@shared/schema";
 import { homeContent } from "./content/home";
 import { blogPosts } from "./content/blog";
@@ -30,9 +30,6 @@ function buildTransporter() {
 }
 
 const transporter = buildTransporter();
-
-const contactSubmissions: Array<ContactFormInput & { submittedAt: string }> = [];
-const newsletterSubscribers: Array<NewsletterInput & { subscribedAt: string }> = [];
 
 function validationErrorResponse(error: unknown) {
   if (typeof error !== "object" || error === null || !("flatten" in (error as any))) {
@@ -206,10 +203,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       return res.status(400).json({ message: validationErrorResponse(parsed.error) });
     }
 
-    const submission = { ...parsed.data, submittedAt: new Date().toISOString() };
-    contactSubmissions.push(submission);
+    try {
+      const submission = await storage.createContactSubmission(parsed.data);
 
-    const contactText = `Name: ${parsed.data.fullName}
+      const contactText = `Name: ${parsed.data.fullName}
 Email: ${parsed.data.email}
 Phone: ${parsed.data.phone}
 Submitted at: ${submission.submittedAt}
@@ -217,27 +214,31 @@ Submitted at: ${submission.submittedAt}
 Message:
 ${parsed.data.message}`;
 
-    const safeContactEmail = escapeHtml(parsed.data.email);
-    const contactHtml = buildEmailHtml(
-      "New Contact Form Submission",
-      `${parsed.data.fullName} just filled out the contact form on clcretailgroup.uk`,
-      [
-        { label: "Name", value: escapeHtml(parsed.data.fullName) },
-        { label: "Email", value: `<a href="mailto:${safeContactEmail}" style="color:#B08A7C;">${safeContactEmail}</a>` },
-        { label: "Phone", value: escapeHtml(parsed.data.phone || "Not provided") },
-        { label: "Submitted at", value: escapeHtml(new Date(submission.submittedAt).toUTCString()) },
-      ],
-      parsed.data.message,
-    );
+      const safeContactEmail = escapeHtml(parsed.data.email);
+      const contactHtml = buildEmailHtml(
+        "New Contact Form Submission",
+        `${parsed.data.fullName} just filled out the contact form on clcretailgroup.uk`,
+        [
+          { label: "Name", value: escapeHtml(parsed.data.fullName) },
+          { label: "Email", value: `<a href="mailto:${safeContactEmail}" style="color:#B08A7C;">${safeContactEmail}</a>` },
+          { label: "Phone", value: escapeHtml(parsed.data.phone || "Not provided") },
+          { label: "Submitted at", value: escapeHtml(new Date(submission.submittedAt).toUTCString()) },
+        ],
+        parsed.data.message,
+      );
 
-    await sendNotificationEmail(
-      `New contact form submission from ${parsed.data.fullName}`,
-      contactText,
-      `Contact form (${parsed.data.email})`,
-      contactHtml,
-    );
+      await sendNotificationEmail(
+        `New contact form submission from ${parsed.data.fullName}`,
+        contactText,
+        `Contact form (${parsed.data.email})`,
+        contactHtml,
+      );
 
-    res.status(201).json({ message: "Thanks for reaching out! Our team will follow up shortly." });
+      res.status(201).json({ message: "Thanks for reaching out! Our team will follow up shortly." });
+    } catch (error) {
+      console.error("Error saving contact submission:", error);
+      res.status(500).json({ message: "Failed to process your message. Please try again." });
+    }
   });
 
   app.post("/api/newsletter", async (req: Request, res: Response) => {
@@ -246,27 +247,32 @@ ${parsed.data.message}`;
       return res.status(400).json({ message: validationErrorResponse(parsed.error) });
     }
 
-    const subscription = { ...parsed.data, subscribedAt: new Date().toISOString() };
-    newsletterSubscribers.push(subscription);
+    try {
+      const subscription = await storage.createNewsletterSubscriber(parsed.data);
+      const subscribedAt = subscription?.subscribedAt ?? new Date();
 
-    const safeNewsletterEmail = escapeHtml(parsed.data.email);
-    const newsletterHtml = buildEmailHtml(
-      "New Newsletter Subscriber",
-      `${parsed.data.email} just subscribed to the CLC Retail Group newsletter`,
-      [
-        { label: "Email", value: `<a href="mailto:${safeNewsletterEmail}" style="color:#B08A7C;">${safeNewsletterEmail}</a>` },
-        { label: "Subscribed at", value: escapeHtml(new Date(subscription.subscribedAt).toUTCString()) },
-      ],
-    );
+      const safeNewsletterEmail = escapeHtml(parsed.data.email);
+      const newsletterHtml = buildEmailHtml(
+        "New Newsletter Subscriber",
+        `${parsed.data.email} just subscribed to the CLC Retail Group newsletter`,
+        [
+          { label: "Email", value: `<a href="mailto:${safeNewsletterEmail}" style="color:#B08A7C;">${safeNewsletterEmail}</a>` },
+          { label: "Subscribed at", value: escapeHtml(new Date(subscribedAt).toUTCString()) },
+        ],
+      );
 
-    await sendNotificationEmail(
-      `New newsletter subscription: ${parsed.data.email}`,
-      `New subscriber: ${parsed.data.email}\nSubscribed at: ${subscription.subscribedAt}`,
-      `Newsletter (${parsed.data.email})`,
-      newsletterHtml,
-    );
+      await sendNotificationEmail(
+        `New newsletter subscription: ${parsed.data.email}`,
+        `New subscriber: ${parsed.data.email}\nSubscribed at: ${new Date(subscribedAt).toISOString()}`,
+        `Newsletter (${parsed.data.email})`,
+        newsletterHtml,
+      );
 
-    res.status(201).json({ message: "You're on the list!" });
+      res.status(201).json({ message: "You're on the list!" });
+    } catch (error) {
+      console.error("Error saving newsletter subscriber:", error);
+      res.status(500).json({ message: "Failed to process your subscription. Please try again." });
+    }
   });
 
   app.post("/api/leads", async (req: Request, res: Response) => {
