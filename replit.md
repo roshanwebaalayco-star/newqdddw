@@ -9,7 +9,7 @@ The website serves as the primary digital presence for showcasing services (fran
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
-Email notifications: Form submissions are sent to `NOTIFICATION_EMAIL` (env var, default `hello@clcretail.com`) using Resend. Required secrets: `RESEND_API_KEY`. Optional env vars: `NOTIFICATION_EMAIL` (recipient), `RESEND_FROM_EMAIL` (sender, default `onboarding@resend.dev`). To send to addresses other than the Resend account owner's signup email, the user must verify a sending domain at https://resend.com/domains and set `RESEND_FROM_EMAIL` to an address on that domain. Email failures are logged but never fail the form submission for the visitor.
+Email notifications: Form submissions are sent via **Nodemailer over HostGator SMTP** (port 465, SSL). Emails arrive at `NOTIFICATION_EMAIL` (env var = `night.roshann@gmail.com`) FROM `SMTP_FROM` (env var = `CLC Retail <noreply@clcretailgroup.uk>`). Required secrets: `SMTP_PASS`. Required env vars: `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_FROM`, `NOTIFICATION_EMAIL` (all set in shared environment). Email failures are logged but never fail the form submission for the visitor. The `RESEND_API_KEY` secret is no longer used.
 
 ## System Architecture
 
