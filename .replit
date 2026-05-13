@@ -53,3 +53,7 @@ SMTP_HOST = "gator3073.hostgator.com"
 SMTP_PORT = "465"
 SMTP_USER = "noreply@clcretailgroup.uk"
 SMTP_FROM = "CLC Retail <noreply@clcretailgroup.uk>"
+
+[postMerge]
+path = "scripts/post-merge.sh"
+timeoutMs = 20000
