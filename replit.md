@@ -88,7 +88,7 @@ The website uses a unified form system built with **React Hook Form**, **Zod**, 
 **Workflow:**
 1.  **Validation**: When a user fills out a form (e.g., Contact Us or Newsletter), the data is validated instantly on the frontend using a Zod schema (defined in `shared/schema.ts`).
 2.  **Submission**: On valid submission, the `apiRequest` utility sends a POST request to the Express backend (e.g., `/api/contact`).
-3.  **Backend Handling**: The server re-validates the data for security and then stores it. Leads (`/api/leads`) are persisted to Postgres via `DbStorage`. Contact and newsletter submissions are kept transiently in-memory and notify the team via Resend email.
+3.  **Backend Handling**: The server re-validates the data for security and then stores it. Leads (`/api/leads`) are persisted to Postgres via `DbStorage`. Contact and newsletter submissions are kept transiently in-memory and a notification email is sent via Nodemailer (HostGator SMTP, port 465) to `NOTIFICATION_EMAIL`.
 4.  **Feedback**: The user receives a visual confirmation via the `useToast` hook (success or error message).
 
 ### 2. How to Set Up the Project
