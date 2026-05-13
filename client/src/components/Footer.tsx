@@ -8,10 +8,10 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { name: "Facebook", icon: SiFacebook, url: "#" },
-    { name: "Twitter", icon: SiX, url: "#" },
-    { name: "LinkedIn", icon: SiLinkedin, url: "#" },
-    { name: "Instagram", icon: SiInstagram, url: "#" },
+    { name: "Facebook", icon: SiFacebook, url: "https://www.facebook.com/people/CLC-Retail-Solutions/61584731875408/" },
+    { name: "Twitter", icon: SiX, url: "https://x.com/CLCRetailLtd" },
+    { name: "LinkedIn", icon: SiLinkedin, url: "https://www.linkedin.com/company/113236612" },
+    { name: "Instagram", icon: SiInstagram, url: "https://www.instagram.com/clcretailltd" },
   ].filter((s) => s.url && s.url !== "#");
 
   return (
